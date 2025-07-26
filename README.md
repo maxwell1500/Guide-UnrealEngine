@@ -581,23 +581,25 @@ Tools
 This section was written in conjunction with ChatGPT.
 </td></tr></table>
 
-Highly recommend taking a short class of native C++. Here is a video link to ~1h long [video tutorial from Mosh](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
+C++ serves as Unreal Engine's native programming language, providing direct access to the engine's complete feature set and maximum performance potential. While Blueprint visual scripting handles many tasks effectively, C++ becomes essential for performance-critical systems, complex algorithms, and deep engine customization.
 
-You can also watch a playlist from [GGameDev about getting started with Unreal Engine C++](https://youtube.com/playlist?list=PLaaDnVlfJwc4Lncf4XTYaTRG_osOk-T0N).
+Understanding C++ fundamentals, including memory management, object-oriented principles, and compilation processes, forms the foundation for effective Unreal development.
 
-C++ is a statically typed, compiled, general-purpose programming language that offers a combination of high-level and low-level features. It was developed by [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup) at Bell Labs in 1979 as an enhancement to the [C language](https://en.wikipedia.org/wiki/C_(programming_language)), originally named C[^10] with Classes and later renamed [C++](https://en.wikipedia.org/wiki/C%2B%2B) in 1983.
+**The language's static typing and compile-time optimizations align well with game development's performance requirements.**
 
-You can read more about [C++ Language Reference from Microsoft Learn](https://learn.microsoft.com/en-us/cpp/cpp/cpp-language-reference?view=msvc-170).
+<table><tr><td>
 
-Using C++ with Unreal Engine unlocks the engine's full feature set, allowing developers to harness advanced graphics rendering, physics simulations, networking, and AI capabilities. C++ provides a level of control, customization, and performance optimization that complements visual scripting.
+**C++ Fundamentals:**
+- [Learn C++ in 1 Hour by Mosh](https://www.youtube.com/watch?v=ZzaPdXTrSb8) (~1 hour video overview)
+- [Microsoft C++ Language Reference](https://learn.microsoft.com/en-us/cpp/cpp/cpp-language-reference?view=msvc-170) (Microsoft learn documentation)
+- [cppreference](https://cppreference.com) (community-maintained wiki)
 
-Developing with C++ in Unreal Engine enables better debugging, profiling, and performance optimization through techniques such as multithreading and memory management. It also facilitates integration with third-party libraries, expanding the range of functionality and flexibility available to developers.
+**Unreal Engine C++:**
+- [GGameDev Unreal C++ Playlist](https://youtube.com/playlist?list=PLaaDnVlfJwc4Lncf4XTYaTRG_osOk-T0N) (YouTube Playlist about UE c++)
+- [Official Unreal Programming Documentation](https://docs.unrealengine.com/5.2/en-US/unreal-engine-programming-and-scripting/) (Official docs)
+</td></tr></table>
 
-You can read more about it on [their docs](https://docs.unrealengine.com/5.2/en-US/unreal-engine-programming-and-scripting/).
-
-To use C++ effectively in Unreal Engine, it is crucial to have a strong foundation in programming principles and understanding of Unreal Engine's architecture and conventions. Leveraging resources like the Unreal Engine documentation, community forums, and collaboration with other developers helps to gain knowledge and best practices.
-
-*By combining the power of C++ and Unreal Engine, developers can create immersive experiences and unlock the full potential of the engine's capabilities.*
+Mastering both C++ principles and Unreal's architectural patterns enables developers to create optimized, maintainable systems that leverage the engine's full capabilities.
 
 ### 🌈 Integrated Development Environment
 
@@ -613,7 +615,7 @@ Popular IDEs used in Unreal Engine and C++ development include:
 
 * [Visual Studio Code (VSCode)](https://code.visualstudio.com/): Visual Studio Code is a lightweight, cross-platform code editor with a rich ecosystem of extensions, including ones for Unreal Engine development. `Free`.
 
-* [Rider](https://www.jetbrains.com/rider/): Rider is a popular IDE developed by JetBrains, designed for game development, and it offers solid integration with Unreal Engine projects. `Cost`.
+* [Rider](https://www.jetbrains.com/rider/): Rider is a popular IDE developed by JetBrains, designed for game development, and it offers solid integration with Unreal Engine projects. `Free` (for personal use), `Cost` (for commercial use).
 
 ### ⛏️ Tools to help your journey
 
