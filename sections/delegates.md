@@ -81,7 +81,7 @@ MyEvent.BindDynamic(this, &AMyActor::MyFunction, 100, true, TEXT("Hello, World!"
 
 Here is a list of binding functions for Non-Dynamic Single Delegate:
 
--   `Bind()` - Binds to an existing delegate object. This allows you to bind a delegate to an existing delegate, allowing for a more flexible way of binding delegates together.
+-   `Bind()` - Chains to another delegate. Useful for combining multiple delegates into one.
 
 -   `BindLambda()` - Binds a functor. This is generally used for lambda functions. The functor is stored by value, so make sure it's small and efficient to copy.
 
@@ -91,11 +91,11 @@ Here is a list of binding functions for Non-Dynamic Single Delegate:
 
 -   `BindSP()` - Binds a shared pointer-based member function delegate. Shared pointer delegates keep a weak reference to your object. You can use `ExecuteIfBound()` to call them.
 
--   `BindUFunction()` - Binds a `UFunction` delegate. This allows you to bind to a blueprint function or a function in a `UObject` subclass. When the delegate is executed, it will call the function on the object it was bound to at the time of binding. If the object is garbage collected, the delegate will not be executed. You can use `ExecuteIfBound()` to call the function if it's still valid.
+-   `BindUFunction()` - Binds a Blueprint-exposed (`UFUNCTION`) function. Safe — if the object is garbage collected, the delegate won't fire. Use `ExecuteIfBound()` to check validity before calling.
 
 -   `BindUObject()` - Binds a `UObject` member function delegate. `UObject` delegates keep a weak reference to the `UObject` you target. You can use `ExecuteIfBound()` to call them.
 
--   `BindWeakLambda()` - Binds a functor that keeps a weak reference to the object it's bound to. This allows you to bind a delegate to an object that may be garbage collected. When the delegate is executed, it will check if the object is still valid. If it is, it will call the functor. If it's not, the delegate will not be executed.
+-   `BindWeakLambda()` - Binds a lambda that keeps a weak reference to its captured object. If the object gets GC'd, the delegate silently does nothing.
 
 -   `BindThreadSafeSP()` - Binds a shared pointer-based member function delegate that is safe to call from any thread. This is similar to `BindSP()`, but it uses a thread-safe reference counting scheme.
 
@@ -117,7 +117,7 @@ And here is the list of binding functions for Non-Dynamic Multicast Delegate:
 
 -   `AddUFunction()` - Adds a UFunction delegate. The delegate will be executed when the `Broadcast()` function is called. The delegate will be invoked with the specified parameters.
 
--   `AddWeakLambda()` - Adds a functor that keeps a weak reference to the object it's bound to. This allows you to bind a delegate to an object that may be garbage collected. When the delegate is executed, it will check if the object is still valid. If it is, it will call the functor. If it's not, the delegate will not be executed. The delegate will be executed when the `Broadcast()` function is called. The delegate will be invoked with the specified parameters.
+-   `AddWeakLambda()` - Same as `BindWeakLambda()` but for multicast delegates. Silently skips if the object is garbage collected.
 
 -   `AddThreadSafeSP()` - Adds a shared pointer-based member function delegate that is safe to call from any thread. This is similar to `AddSP()`, but it uses a thread-safe reference counting scheme. The delegate will be executed when the `Broadcast()` function is called. The delegate will be invoked with the specified parameters.
 
@@ -144,9 +144,7 @@ bool bIsBound = MyEvent.IsBound();
 
 ### Summary
 
-By using delegates, developers can create modular and flexible event systems that can be easily extended and customized.
-
-Delegates can be used to trigger events in response to user input, game state changes, or other types of events, and can be used to implement a wide variety of gameplay features and mechanics.
+Delegates are the C++ equivalent of Blueprint event dispatchers — they let you decouple code so objects don't need direct references to each other. Use them for input events, state changes, damage callbacks, or any situation where multiple systems need to react to the same thing.
 
 > [!TIP]
 > Here is an [online tool by BenUI](https://benui.ca/unreal/delegates-advanced/#delegate-signature-tool) for helping you to create a delegate macro.

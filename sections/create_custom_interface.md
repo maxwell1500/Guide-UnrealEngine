@@ -6,7 +6,7 @@ Interface are very useful for handling functions in a generic way. It allows you
 
 For an example, IVehicle can contain functions such as `Honk()` or `StallEngine()`. However, these functions can be implemented in a range of classes. Such as `ACarPawn` or `ABoatPawn`.
 
-When calling the interface function in C++, Unreal will check if the type extends the interface. If not, the call gets skipped. This allows you to call the interface function on `UObject` and is not limited to only types of `ACarPawn` or `ABoatPawn`.
+When calling an interface function in C++, UE checks if the object implements the interface first. If not, the call is skipped — so you can pass any `UObject*` and call interface functions without type-checking.
 
 This also allows you to extend the interface inside Blueprint instead. For an example, you don't have to create the interface logic inside C++, but rather create the logic at Blueprint level instead.
 

@@ -241,7 +241,7 @@ typedef FPlatformTypes::TYPE_OF_NULLPTR	TYPE_OF_NULLPTR;
 
 String in programming languages are fundamental data types used to represent and manipulate sequences of characters, such as words, sentences, or even binary data. They are extensively used in various programming tasks, including input/output operations, text processing, data serialization, and more.
 
-In Unreal Engine, strings play a crucial role in handling text-based information within the game or application. Unreal Engine provides several string-related classes to cater to different use cases and requirements.
+Unreal Engine provides two main string types, each with different trade-offs:
 
 You can read more about [string handling from the docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/string-handling-in-unreal-engine).
 
@@ -2387,7 +2387,7 @@ _In a short summary, a pointer is like writing down the address of a building on
 
 Pointers are valuable tools in programming as they allow us to store memory addresses, enabling dynamic memory allocation and manipulation of data structures. By using pointers, we can create more flexible and efficient code that can adapt to changing data requirements during program execution.
 
-Additionally, pointers are essential in scenarios like data structures, linked lists, and passing data to functions by reference, providing a level of control and precision that enhances the capabilities of the program. However, **it's important to handle pointers with care**, as incorrect usage can lead to **memory leaks** or **segmentation faults**.
+Pointers are essential for data structures, linked lists, and passing data by reference. But **handle them carefully** — misuse causes **memory leaks** or **segmentation faults**.
 
 #### 🦴 Raw pointers
 

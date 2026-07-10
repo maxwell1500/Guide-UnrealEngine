@@ -2,7 +2,7 @@
 
 All logs will be saved at: `YourProjectName\Saved\Logs`.
 
-In order to view the log history inside the editor, you can access the window via: `Window -> Developer Tools -> Output Log`.
+To view the log history in the editor, open `Window -> Developer Tools -> Output Log`.
 
 You can also access the log history via console command, by typing: `showlog` into the console.
 
@@ -143,7 +143,7 @@ UE_LOG(LogTemp, Warning, TEXT("The Actor's name is: %s"), *YourActor->GetName())
 
 Sadly, `UE_LOG` does **NOT** support `bool` data type.
 
-In order to print a boolean with `UE_LOG`, you can use `%i` or `%d` to convert a `bool` (boolean) into a `int32` (integer).
+To print a boolean with `UE_LOG`, use `%i` or `%d` to convert it to an `int32`.
 
 Log to the console with `bool` as an argument:
 
@@ -191,14 +191,14 @@ Log to the console with `FVector` as an argument:
 ```cpp
 FVector MyVector = FVector::OneVector;
 
-// In order to log a FVector, you need to convert into a string.
+// FVector needs converting to a string first
 UE_LOG(LogTemp, Log, TEXT("The vector value is: %s"), *MyVector.ToString()); // The vector value is: (1, 1, 1)
 ```
 
 Log to the console with `FName` as an argument:
 
 ```cpp
-// In order to log a FName, you need to convert into a string.
+// FName needs converting to a string first
 UE_LOG(LogTemp, Log, TEXT("The name is: %s"), *MyCharacter->GetFName().ToString());
 ```
 
@@ -267,7 +267,7 @@ UE_LOGFMT(LogCore, Warning, "Loading '{Name}' failed with error {Error}", ("Erro
 
 ### Log to game-view
 
-Currently, we have only logged to the console. In order to display the console messages inside the game-view, we need to call `AddOnScreenDebugMessage()` function instead. You can access this function inside the global engine variable (`GEngine`).
+So far we've only logged to the console. To display messages on screen, use `GEngine->AddOnScreenDebugMessage()`.
 
 Here's an example:
 

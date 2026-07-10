@@ -164,7 +164,7 @@ int a = 5; // Compiled!
 
 #### Semicolons in C++
 
-In C++, a semicolon (<kbd>;</kbd>) is used to mark the end of a statement. It serves as a delimiter, indicating to the compiler that one statement has finished and another begins. The presence of semicolons allows the compiler to separate statements and interpret code correctly.
+In C++, a semicolon (`;`) marks the end of a statement. The compiler uses it to separate statements.
 
 The requirement for semicolons in C++ is a design choice that provides explicit statement termination. This approach allows for more fine-grained control over program execution and eliminates ambiguity.
 
@@ -728,7 +728,7 @@ switch (expression)
 
 * 2\. If a case matches the value of the expression, the code block associated with that case is executed. The execution then continues until a break statement is encountered, which exits the switch statement.
 
-* 3\. If none of the cases match the expression's value, the code block associated with the default case (optional) is executed. The default case serves as a fallback option when no matching cases are found.
+* 3\. If no case matches, the `default` block runs (if present).
 
 ### 🔁 Loops
 
@@ -881,7 +881,7 @@ const int immutableValue = 10; // Immutable variable
 
 ### 🪝 Try Catch
 
-In programming, `try-catch` is a mechanism used for error handling and exception handling. It allows you to write code that can handle potential errors or exceptions that may occur during the program's execution, preventing crashes or data corruption.
+`try-catch` handles runtime errors gracefully instead of crashing. Wrap risky code in `try`, catch specific exceptions in `catch`.
 
 In C++, the try and catch blocks are used for implementing this mechanism. Here's how it works:
 
@@ -948,7 +948,7 @@ DerivedClass* derivedPtr = dynamic_cast<DerivedClass*>(basePtr); // Dynamic cast
 
 #### Reinterpret Casting
 
-This is primarily used to convert one pointer or reference type to another, regardless of their unrelated types. It is a low-level and potentially unsafe casting operation that allows developers to treat the underlying binary representation of a pointer as a different type. Unlike `static_cast`, `reinterpret_cast` doesn't perform any type checking or conversions, and it's up to the programmer to ensure the correctness of the cast.
+Reinterprets the raw bits of one type as another. Dangerous — no type checking, no conversion. Use only when you absolutely need to treat memory as a different type.
 
 Example:
 
@@ -984,7 +984,7 @@ Using inline functions offers a good balance between performance and maintainabi
 
 ### 📇 Namespace
 
-In programming languages, a namespace is a feature that allows you to organize code elements (such as variables, functions, classes) into distinct named scopes to avoid name collisions and improve code organization.
+A namespace groups related code (variables, functions, classes) under a name to avoid collisions. `std::vector` lives in the `std` namespace.
 
 In C++, you can use namespaces to group related code together and avoid naming conflicts. Here's how you can define and use a namespace in C++:
 
@@ -1016,7 +1016,7 @@ Library2::Vector vec2;
 
 ### 🌐 Static members
 
-In programming languages, static members are class members (variables or functions) that belong to the class itself rather than individual objects of the class. They are shared among all instances (objects) of the class and are independent of any specific object's state.
+Static members belong to the class, not to individual objects. All instances share the same static variable. Static functions can't access non-static members.
 
 In C++, you can use the static keyword to define static members in a class. Here's how you can use static members in C++ code:
 
@@ -1081,7 +1081,7 @@ Player* player = GetPlayer(); // Good
 
 ### 🌱 Polymorphism (In Depth)
 
-The power of polymorphism lies in the ability to use a base class pointer or reference to refer to objects of derived classes. This allows you to write code that operates on the base class, without needing to know the specific derived class. During runtime, the appropriate version of the overridden method in the derived class will be invoked, based on the actual type of the object being referred to.
+Polymorphism lets you use a base class pointer or reference to work with any derived class. At runtime, the correct overridden method is called based on the actual object type.
 
 Polymorphism allows you to write more flexible and reusable code by treating objects based on their common behavior, rather than their specific type. It promotes code extensibility and enhances the ability to work with a variety of objects in a unified way.
 
@@ -1262,7 +1262,7 @@ Benefits of Recursion
 </td></tr></table>
 
 > [!WARNING]
-> While recursion can be powerful, it's essential to use it judiciously. Recursive solutions may consume more memory and time compared to iterative solutions for certain problems. Additionally, recursive functions can lead to stack overflow errors if not implemented correctly or when dealing with very large inputs.
+> Recursion is powerful but uses more memory than iteration. Watch out for stack overflows on deep recursion.
 
 ### ⚙️ Linker
 
@@ -1506,7 +1506,7 @@ int rightShift = a >> 1;    // Binary representation: 0000 0010 (2 in decimal)
 
 ### 💥 Stack vs Heap
 
-In programming languages, stack and heap are two different areas of memory used for [memory allocation](https://en.wikipedia.org/wiki/Memory_management). They serve distinct purposes and have different characteristics.
+The **stack** stores local variables and function call frames — fast allocation/deallocation, limited size. The **heap** is for dynamic memory (`new`/`delete`) — slower but much larger.
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/5OJRqkYbK-4/maxresdefault.jpg)](https://youtu.be/5OJRqkYbK-4)
 

@@ -21,7 +21,7 @@ UTextBlock* PlayerDisplayNameText;
 
 In this example, the `PlayerDisplayNameText` variable is declared as a `UTextBlock*` type, representing a text widget. The `meta=(BindWidget)` property indicates that this variable is bound to a widget created in the UMG editor.
 
-With this binding in place, you can now access and control all the properties and functions of the `PlayerDisplayNameText` widget directly from your C++ code. This allows you to manipulate the widget's appearance, handle user interactions, and update its content dynamically based on game logic or user input.
+Now you can access and control `PlayerDisplayNameText` directly from C++ — change its text, color, visibility, or bind events to it.
 
 Here's an example showcasing the usage of the widget:
 

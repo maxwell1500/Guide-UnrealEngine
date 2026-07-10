@@ -1785,7 +1785,7 @@ typedef FPlatformTypes::TYPE_OF_NULLPTR	TYPE_OF_NULLPTR;
 
 String in programming languages are fundamental data types used to represent and manipulate sequences of characters, such as words, sentences, or even binary data. They are extensively used in various programming tasks, including input/output operations, text processing, data serialization, and more.
 
-In Unreal Engine, strings play a crucial role in handling text-based information within the game or application. Unreal Engine provides several string-related classes to cater to different use cases and requirements.
+Unreal Engine provides two main string types, each with different trade-offs:
 
 You can read more about [string handling from the docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/StringHandling/).
 
@@ -5777,7 +5777,7 @@ Here is a list of common macros in Unreal Engine:
 
 -   `CONSTEXPR` - Declare a constant expression. It is used in conjunction with the `constexpr` keyword[^1] to specify that a function or variable can be evaluated at compile-time and treated as a constant expression.
 
--   `ABSTRACT` - Declare an abstract class. It indicates that a class cannot be instantiated directly and must be subclassed. An abstract class serves as a base class for other classes and provides a blueprint for their common functionality.
+-   `ABSTRACT` - Declare an abstract class — one that can't be instantiated directly and must be subclassed.
 
 -   `UPROPERTY()` - Defines the type and behavior of the property, as well as its metadata and display names.
 -   `UFUNCTION()` - Defines the parameters and return type of the function, as well as its behavior and metadata.
@@ -5785,7 +5785,7 @@ Here is a list of common macros in Unreal Engine:
 -   `USTRUCT()` - Defines the properties and behavior of the struct, including its fields, default values, and editor metadata.
 -   `UINTERFACE()` - Defines the values of the enumeration, as well as its metadata and display names.
 -   `UPARAM()` - Specify additional metadata for function parameters in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the category or tooltip for the parameter in the editor.
--   `UENUM()` - Define an enumeration that can be used in Unreal Engine classes. This allows developers to define a set of named constants that can be used in a type-safe way.
+-   `UENUM()` - Define an enumeration visible to the reflection system, enabling Blueprint access and serialization.
 -   `UMETA()` - Specify additional metadata for enumeration values in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the display name or tooltip for the value in the editor.
 
 -   `INLINE` - Maps to `inline` keyword[^1]. Suggestion to the compiler that a function should be inlined.
@@ -5819,7 +5819,7 @@ Difference between a macro and function then?
 
 All logs will be saved at: `YourProjectName\Saved\Logs`.
 
-In order to view the log history inside the editor, you can access the window via: `Window -> Developer Tools -> Output Log`.
+To view the log history in the editor, open `Window -> Developer Tools -> Output Log`.
 
 You can also access the log history via console command, by typing: `showlog` into the console.
 
@@ -5960,7 +5960,7 @@ UE_LOG(LogTemp, Warning, TEXT("The Actor's name is: %s"), *YourActor->GetName())
 
 Sadly, `UE_LOG` does **NOT** support `bool` data type.
 
-In order to print a boolean with `UE_LOG`, you can use `%i` or `%d` to convert a `bool` (boolean) into a `int32` (integer).
+To print a boolean with `UE_LOG`, use `%i` or `%d` to convert it to an `int32`.
 
 Log to the console with `bool` as an argument:
 
@@ -6368,7 +6368,7 @@ MyEvent.BindDynamic(this, &AMyActor::MyFunction, 100, true, TEXT("Hello, World!"
 
 Here is a list of binding functions for Non-Dynamic Single Delegate:
 
--   `Bind()` - Binds to an existing delegate object. This allows you to bind a delegate to an existing delegate, allowing for a more flexible way of binding delegates together.
+-   `Bind()` - Chains to another delegate. Useful for combining multiple delegates into one.
 
 -   `BindLambda()` - Binds a functor. This is generally used for lambda functions. The functor is stored by value, so make sure it's small and efficient to copy.
 
@@ -6378,11 +6378,11 @@ Here is a list of binding functions for Non-Dynamic Single Delegate:
 
 -   `BindSP()` - Binds a shared pointer-based member function delegate. Shared pointer delegates keep a weak reference to your object. You can use `ExecuteIfBound()` to call them.
 
--   `BindUFunction()` - Binds a `UFunction` delegate. This allows you to bind to a blueprint function or a function in a `UObject` subclass. When the delegate is executed, it will call the function on the object it was bound to at the time of binding. If the object is garbage collected, the delegate will not be executed. You can use `ExecuteIfBound()` to call the function if it's still valid.
+-   `BindUFunction()` - Binds a Blueprint-exposed (`UFUNCTION`) function. Safe — if the object is garbage collected, the delegate won't fire. Use `ExecuteIfBound()` to check validity before calling.
 
 -   `BindUObject()` - Binds a `UObject` member function delegate. `UObject` delegates keep a weak reference to the `UObject` you target. You can use `ExecuteIfBound()` to call them.
 
--   `BindWeakLambda()` - Binds a functor that keeps a weak reference to the object it's bound to. This allows you to bind a delegate to an object that may be garbage collected. When the delegate is executed, it will check if the object is still valid. If it is, it will call the functor. If it's not, the delegate will not be executed.
+-   `BindWeakLambda()` - Binds a lambda that keeps a weak reference to its captured object. If the object gets GC'd, the delegate silently does nothing.
 
 -   `BindThreadSafeSP()` - Binds a shared pointer-based member function delegate that is safe to call from any thread. This is similar to `BindSP()`, but it uses a thread-safe reference counting scheme.
 
@@ -6404,7 +6404,7 @@ And here is the list of binding functions for Non-Dynamic Multicast Delegate:
 
 -   `AddUFunction()` - Adds a UFunction delegate. The delegate will be executed when the `Broadcast()` function is called. The delegate will be invoked with the specified parameters.
 
--   `AddWeakLambda()` - Adds a functor that keeps a weak reference to the object it's bound to. This allows you to bind a delegate to an object that may be garbage collected. When the delegate is executed, it will check if the object is still valid. If it is, it will call the functor. If it's not, the delegate will not be executed. The delegate will be executed when the `Broadcast()` function is called. The delegate will be invoked with the specified parameters.
+-   `AddWeakLambda()` - Same as `BindWeakLambda()` but for multicast delegates. Silently skips if the object is garbage collected.
 
 -   `AddThreadSafeSP()` - Adds a shared pointer-based member function delegate that is safe to call from any thread. This is similar to `AddSP()`, but it uses a thread-safe reference counting scheme. The delegate will be executed when the `Broadcast()` function is called. The delegate will be invoked with the specified parameters.
 
@@ -6708,7 +6708,7 @@ Plugins can also be used to add support for third-party libraries and tools, suc
 
 ## 📝 Preprocessor
 
-In programming languages, including C++, the preprocessor is a component of the compiler that performs text manipulation before the actual compilation process. It operates on the source code and handles directives starting with a hash symbol <kbd>#</kbd>.
+The C++ preprocessor runs before compilation, handling `#include`, `#define`, `#if` directives and other text transformations.
 
 In C++, the preprocessor handles tasks such as macro expansion, file inclusion, and conditional compilation. It modifies the source code based on these directives before the code is compiled into machine-readable instructions.
 
@@ -8559,7 +8559,7 @@ A direct reference is an alias for another variable. Changes to the reference af
 
 Using direct references can be beneficial for performance in certain situations because it avoids creating unnecessary copies of data. When you pass large objects or structures as function arguments, using direct references instead of passing by value (copy) can save memory and processing time, especially for complex objects.
 
-Using the `const` qualifier in a direct reference serves as a safety mechanism to prevent accidental modifications to the referenced variable. When you declare a variable as const, it means that its value cannot be changed after initialization.
+A `const` reference prevents accidental modification of the original variable — its value can't be changed after initialization.
 
 In some cases, using `const` in direct references can also enable certain compiler optimizations, as it provides additional information to the compiler about the immutability of the referenced value.
 

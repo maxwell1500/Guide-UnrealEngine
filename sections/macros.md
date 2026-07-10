@@ -30,7 +30,7 @@ Here is a list of common macros in Unreal Engine:
 
 -   `CONSTEXPR` - Declare a constant expression. It is used in conjunction with the `constexpr` keyword[^1] to specify that a function or variable can be evaluated at compile-time and treated as a constant expression.
 
--   `ABSTRACT` - Declare an abstract class. It indicates that a class cannot be instantiated directly and must be subclassed. An abstract class serves as a base class for other classes and provides a blueprint for their common functionality.
+-   `ABSTRACT` - Declare an abstract class — one that can't be instantiated directly and must be subclassed.
 
 -   `UPROPERTY()` - Defines the type and behavior of the property, as well as its metadata and display names.
 -   `UFUNCTION()` - Defines the parameters and return type of the function, as well as its behavior and metadata.
@@ -38,7 +38,7 @@ Here is a list of common macros in Unreal Engine:
 -   `USTRUCT()` - Defines the properties and behavior of the struct, including its fields, default values, and editor metadata.
 -   `UINTERFACE()` - Defines the values of the enumeration, as well as its metadata and display names.
 -   `UPARAM()` - Specify additional metadata for function parameters in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the category or tooltip for the parameter in the editor.
--   `UENUM()` - Define an enumeration that can be used in Unreal Engine classes. This allows developers to define a set of named constants that can be used in a type-safe way.
+-   `UENUM()` - Define an enumeration visible to the reflection system, enabling Blueprint access and serialization.
 -   `UMETA()` - Specify additional metadata for enumeration values in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the display name or tooltip for the value in the editor.
 
 -   `INLINE` - Maps to `inline` keyword[^1]. Suggestion to the compiler that a function should be inlined.
