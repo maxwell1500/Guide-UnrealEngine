@@ -2,10 +2,6 @@
 
 ## 🏛 Create custom interface
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 Interface are very useful for handling functions in a generic way. It allows you to create a contract with specified functions, which a programmer can extend on top of a specified class.
 
 For an example, IVehicle can contain functions such as `Honk()` or `StallEngine()`. However, these functions can be implemented in a range of classes. Such as `ACarPawn` or `ABoatPawn`.

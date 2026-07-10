@@ -1,9 +1,5 @@
 ## 📛 Console Commands
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 * `stat fps`: Display FPS.
 * `stat unit`: Display frame time.
 * `stat game`: Display a general idea on how long the various gameplay ticks are taking.

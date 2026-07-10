@@ -1,9 +1,5 @@
 ## ⌛ Getting started with C++
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 Highly recommend taking a short class of native C++. Here is a video link to ~1h long [video tutorial from Mosh](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
 
 You can also watch a playlist from [GGameDev about getting started with Unreal Engine C++](https://youtube.com/playlist?list=PLaaDnVlfJwc4Lncf4XTYaTRG_osOk-T0N).
@@ -16,7 +12,7 @@ Using C++ with Unreal Engine unlocks the engine's full feature set, allowing dev
 
 Developing with C++ in Unreal Engine enables better debugging, profiling, and performance optimization through techniques such as multithreading and memory management. It also facilitates integration with third-party libraries, expanding the range of functionality and flexibility available to developers.
 
-You can read more about it on [their docs](https://docs.unrealengine.com/5.2/en-US/unreal-engine-programming-and-scripting/).
+You can read more about it on [their docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-programming-and-scripting/).
 
 To use C++ effectively in Unreal Engine, it is crucial to have a strong foundation in programming principles and understanding of Unreal Engine's architecture and conventions. Leveraging resources like the Unreal Engine documentation, community forums, and collaboration with other developers helps to gain knowledge and best practices.
 
@@ -24,27 +20,17 @@ To use C++ effectively in Unreal Engine, it is crucial to have a strong foundati
 
 ### 🌈 Integrated Development Environment
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
+An Integrated Development Environment (IDE) provides tools for writing, debugging, and managing code.
 
-An Integrated Development Environment (IDE) is a software application that provides comprehensive tools for writing, debugging, and managing code. IDEs offer a streamlined and feature-rich environment for software development, making it easier for developers to work on their projects efficiently.
+Popular IDEs for Unreal Engine C++ development:
 
-Popular IDEs used in Unreal Engine and C++ development include:
-
-* [Visual Studio](https://visualstudio.microsoft.com/): The Visual Studio IDE for Unreal Engine development. It offers a powerful set of C++ tools and seamless integration with Unreal Engine, providing a robust development environment. `Free`.
-
-* [Visual Studio Code (VSCode)](https://code.visualstudio.com/): Visual Studio Code is a lightweight, cross-platform code editor with a rich ecosystem of extensions, including ones for Unreal Engine development. `Free`.
-
-* [Rider](https://www.jetbrains.com/rider/): Rider is a popular IDE developed by JetBrains, designed for game development, and it offers solid integration with Unreal Engine projects. `Cost`.
+* [Visual Studio 2022](https://visualstudio.microsoft.com/) (recommended) or [Visual Studio 2026](https://visualstudio.microsoft.com/): Full C++ toolchain, .NET 10 support. `Free` for individual devs.
+* [Visual Studio Code](https://code.visualstudio.com/): Lightweight editor with UE extensions. `Free`.
+* [Rider](https://www.jetbrains.com/rider/): JetBrains IDE with deep UE integration. `Cost`.
 
 ### ⛏️ Tools to help your journey
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
-Here are some tools that can be integrated into your IDE's for better performance, debugging or writing good code practices.
+Tools that integrate into your IDE for better performance and debugging:
 
 * [Visual Assist](https://www.wholetomato.com/): A productivity tool for refactoring, reading, writing, navigating and generating C/C++/C# code. `Cost` and for `VS`.
 
@@ -52,28 +38,17 @@ Here are some tools that can be integrated into your IDE's for better performanc
 
 ### 🟢 Benefits of using C++ with Unreal Engine
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
-* High performance: C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
-
-* Integration with existing codebases: If you have existing C++ code that you want to integrate with your Unreal Engine project, using C++ allows you to do so more easily.
-
-* Access to low-level functionality: C++ gives you access to lower-level functionality than other programming languages, which can be especially useful in game development where fine-grained control over memory, data structures, and algorithms is often necessary.
-
-* Garbage Collection and Memory Management: While C++ demands manual memory management, Unreal Engine provides a [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)) that efficiently clears out `UObject` classes from memory. With the control over manual memory handling, you can precisely dictate when to allocate and deallocate memory as necessary.
+* **High performance**: C++ runs directly on the CPU/GPU, making it possible to achieve very high performance levels.
+* **Integration**: Easily integrate existing C++ codebases with UE projects.
+* **Low-level access**: Fine-grained control over memory, data structures, and algorithms.
+* **Garbage Collection**: UE provides a [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)) for UObject classes alongside manual memory management.
 
 ### 🔴 Drawbacks of using C++ with Unreal Engine
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
 
 * More prone to errors: C++ is a strongly typed language, requiring the precise use of semicolons, braces and accurate syntax to ensure successful compilation. Rectifying these issues can be time-consuming. On the contrary, the Blueprint's node-based graph system operates without the need for "correct" syntax, offering a more "forgiving" environment.
 
 * Tied to Unreal's API: Throughout the evolution of Unreal Engine, Epic Games may modify the [source code](https://en.wikipedia.org/wiki/Source_code), rendering certain functions and members as **obsolete**/**deprecated**. Consequently, Unreal might recommend the need to update the codebase with the latest [API](https://en.wikipedia.org/wiki/API) changes. Failure to do so can lead to compilation errors, in the future.
 
-* Updating your codebase: When working with C++ and Unreal Engine, your C++ code is compiled into a [.DLL](https://en.wikipedia.org/wiki/Dynamic-link_library) (in Windows OS) file that Unreal Engine can read and use within Blueprint graphs. However, this necessitates Unreal Engine to reload to incorporate your code changes. Epic Games has introduced [Hot Reload](https://unrealcommunity.wiki/live-compiling-in-unreal-projects-tp14jcgs), allowing for code reloading without editor restart, streamlining the development process. While Hot Reload often works for a while, it is unreliable and frequently causes blueprint corruption or other issues.
+* Updating your codebase: C++ code compiles into a [.DLL](https://en.wikipedia.org/wiki/Dynamic-link_library) that UE loads. Epic provides [Live Coding](https://dev.epicgames.com/documentation/en-us/unreal-engine/live-coding-in-unreal-engine) for iterating on C++ changes without restarting the editor. (Hot Reload was deprecated in UE 5.0 and removed in UE 5.8.)
 
 * Requires more storage: When working with C++ within Unreal Engine, it often involves using "Editor Symbols for debugging," consuming approximately 60 GB of storage. Similarly, if you opt to build Unreal Engine from its source code (on their github page), you'll require around 200 GB of storage space.

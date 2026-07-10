@@ -1,9 +1,5 @@
 ## 🎪 Architecture
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 ```mermaid
 graph TD;
     UObjectBase-->UObjectBaseUtility;
@@ -68,7 +64,7 @@ graph TD;
     UObject-->UActorComponent;
     UActorComponent-->UMovementComponent;
     UActorComponent-->USceneComponent;
-    USceneComponent-->UAudioComponnent;
+    USceneComponent-->UAudioComponent;
     USceneComponent-->UCameraComponent;
     USceneComponent-->ULightComponentBase;
     USceneComponent-->UPrimitiveComponent;
@@ -169,7 +165,7 @@ Unreal has too many classes, which would take a very long time to explain each o
 
     -   A SceneComponent has a transform and supports attachment, but has no rendering or collision capabilities.
     -   Useful as a 'dummy' component in the hierarchy to offset others.
-    -   It's used by components that need to know its place in the world to run the logic, i.e. `UAudioComponnent`, `UCameraComponent`.
+    -   It's used by components that need to know its place in the world to run the logic, i.e. `UAudioComponent`, `UCameraComponent`.
 
 -   [UPrimitiveComponent](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Components/UPrimitiveComponent) inherit `USceneComponent`
 
@@ -300,7 +296,7 @@ Unreal has too many classes, which would take a very long time to explain each o
 
 </details>
 
-You can read more about [Unreal Architecture at their docs](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/).
+You can read more about [Unreal Architecture at their docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/).
 
 And for more information about Unreal's Architecture. Then I highly recommend, you can watch [underscore about Unreal Engine Architecture](https://www.youtube.com/watch?v=QcXHEsR0xHI) video.
 

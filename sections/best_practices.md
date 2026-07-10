@@ -1,11 +1,5 @@
 ## 🐣 Tips and best practices
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
-Here's a video explaining some of the best practices with Unreal Engine and C++.
-
 There is a video about some of these best practices called [Best Practices (2019-2021) from Stephen Maloney](https://www.youtube.com/watch?v=g7WVBZZTRDk)
 
 In the video, there is also a [Google documentation](https://docs.google.com/document/d/1kIgOM7VONlPtx3WPiKdNVRYquX-GTduqSw0mU7on5h8) (if video wasn't enough) for more details about some of his tips and tricks.
@@ -387,11 +381,7 @@ void FMyTickableThing::Tick( float DeltaTime )
 
 ### 🔌 Direct references
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
-In C++, a direct reference is a reference variable that directly refers to the memory location of another variable. When you use a direct reference, you are essentially creating an alias or an alternative name for the original variable. This means any changes made to the reference will be reflected in the original variable, and vice versa.
+A direct reference is an alias for another variable. Changes made to the reference are reflected in the original variable, and vice versa.
 
 Using direct references can be beneficial for performance in certain situations because it avoids creating unnecessary copies of data. When you pass large objects or structures as function arguments, using direct references instead of passing by value (copy) can save memory and processing time, especially for complex objects.
 

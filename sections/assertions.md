@@ -1,12 +1,8 @@
 ## 🪨 Assertions
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 ![Assertions](static/img/Assertions.png)
 
-Assertions are a programming technique used to detect and report errors or unexpected behavior in code. In Unreal Engine, assert macros are provided to make it easier to add assertions to code and to customize the behavior of the engine when an assertion fails.
+Assertions detect and report errors or unexpected behavior at runtime. UE provides several assert macros to validate conditions during development.
 
 ### Check
 
@@ -151,7 +147,7 @@ void CleanupCharacters(int32 Count)
 
 ---
 
-You can read more about [Assertions from the docs](https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/).
+You can read more about [Assertions from the docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/asserts-in-unreal-engine/).
 
 You can also watch a video about it from [Sneaky Kitty Game Dev](https://www.youtube.com/watch?v=zGeJgI2xiT4).
 

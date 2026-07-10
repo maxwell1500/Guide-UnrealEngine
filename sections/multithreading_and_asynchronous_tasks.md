@@ -1,16 +1,12 @@
 ## 🧠 Multithreading and Asynchronous Tasks
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 The most common way for a game engine to run your gameplay, is simply with a while loop. This pattern is very simple to understand and execute consistently. However, this pattern does not generate the greatest performance benefits. To gain performance, usually you would rewrite your code to be multithreaded.
 
 You can read more about [Game Loop from Robert Nystrom](https://gameprogrammingpatterns.com/game-loop.html).
 
 Ayliroé wrote an awesome documentation on Unreal's multithreading and asynchronous tasks system, which you can read either from [Google Docs](https://docs.google.com/document/d/1uw9Dfui5ZepSrBpMc1DrxFOeRFnDu8ubzFse8Mr_s7E/) or from [Forum Post](https://forums.unrealengine.com/t/multithreading-and-performance-in-unreal/1216417/1).
 
-By the default, Unreal supports multithreading, but only makes partial use of it. While there are dedicated threads for audio, [render](https://docs.unrealengine.com/5.0/en-US/threaded-rendering-in-unreal-engine/) and stats, most operations are still done in the game thread, including EventTicks and Blueprints.
+By the default, Unreal supports multithreading, but only makes partial use of it. While there are dedicated threads for audio, [render](https://dev.epicgames.com/documentation/en-us/unreal-engine/threaded-rendering-in-unreal-engine/) and stats, most operations are still done in the game thread, including EventTicks and Blueprints.
 
 This is why doing expensive calculations in Blueprint will lead to loss of performance. That’s where threading comes in handy!
 
@@ -99,7 +95,7 @@ void FMyThread::Exit()
 
 void FMyThread::Stop()
 {
-    bIsRunning = true;
+    bIsRunning = false;
 }
 ```
 
@@ -111,7 +107,7 @@ auto* Thread = new FMyThread( /*Parameters*/ );
 
 ### Tasks
 
-[TaskGraph](https://docs.unrealengine.com/5.0/en-US/tasks-systems-in-unreal-engine/), is a job manager that tries to balance out workload along multiple preexisting threads. This is ideal to send packages of small operations, as it abstracts away from you the complexity of managing threads, and also supports defining dependencies between Tasks.
+[TaskGraph](https://dev.epicgames.com/documentation/en-us/unreal-engine/tasks-systems-in-unreal-engine/), is a job manager that tries to balance out workload along multiple preexisting threads. This is ideal to send packages of small operations, as it abstracts away from you the complexity of managing threads, and also supports defining dependencies between Tasks.
 
 Queuing Tasks will not cause performance concerns due to the threads being already running, but the system may also be less reactive as it has to find slots to fit the work in inside a limited pool, and sending long Tasks should be avoided to not clog-up threads. It may also sometimes decide to run Tasks directly in the game thread, depending on the setup.
 

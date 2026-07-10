@@ -2,17 +2,13 @@
 
 ## 🗑️ Garbage Collection
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
-Garbage Collection is an automatic memory management feature used in modern languages like C#[^12], Python[^11], and Javascript[^14], which automatically removes objects from memory when they are no longer in use.
+Garbage Collection automatically removes objects from memory when they are no longer in use — used by C#[^12], Python[^11], Javascript[^14], and Unreal Engine.
 
 In a garbage-collected environment, you can create objects, use them, and then set the variable pointing to them as null when done, and the garbage collector takes care of freeing up the memory. Unlike lower-level languages like C[^10] and C++, which require manual memory management, Unreal Engine has its own Garbage Collection system to simplify memory management for developers.
 
 You can read more about [Stack vs Heap](#-stack-vs-heap) section. Which tells more about how the memory is management in programming languages.
 
-You can also read more about [Unreal Object Handling on their docs](https://docs.unrealengine.com/5.2/en-US/unreal-object-handling-in-unreal-engine/).
+You can also read more about [Unreal Object Handling on their docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-object-handling-in-unreal-engine/).
 
 ### How does it work
 

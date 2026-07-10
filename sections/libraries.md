@@ -1,10 +1,6 @@
 ## 🏛️ Libraries
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
-Blueprint Function Libraries (`UBlueprintFunctionLibrary`) are a collection of static functions that provide utility functionality not tied to a particular gameplay object. These libraries can be grouped into logical function sets, e.g. AI Blueprint Library, or contain utility functions that provide access to many different functional areas, e.g. System Blueprint Library.
+Blueprint Function Libraries (`UBlueprintFunctionLibrary`) are collections of static functions providing utility functionality not tied to a particular gameplay object. These libraries can be grouped into logical function sets, e.g. AI Blueprint Library, or contain utility functions that provide access to many different functional areas, e.g. System Blueprint Library.
 
 ```cpp
 UCLASS()
@@ -43,7 +39,7 @@ bool UAnalyticsBlueprintLibrary::StartSession()
 }
 ```
 
-You can read more about [Blueprint Function Libraries here](https://docs.unrealengine.com/5.2/en-US/blueprint-function-libraries-in-unreal-engine/)!
+You can read more about [Blueprint Function Libraries here](https://dev.epicgames.com/documentation/en-us/unreal-engine/blueprint-function-libraries-in-unreal-engine/)!
 
 ### Kismet Library
 

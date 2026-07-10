@@ -1,9 +1,5 @@
 ## 🎨 Draw Debug Shapes
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 Include the header file:
 
 ```cpp

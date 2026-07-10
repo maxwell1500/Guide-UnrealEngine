@@ -1,9 +1,5 @@
 ## 🔗 Helpful Links
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 ### YouTube Videos
 
 | Author        | Title                                                                      | Length   | Link                                                   |

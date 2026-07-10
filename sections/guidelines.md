@@ -4,10 +4,6 @@ You can find more information about Unreal Engine's guideline, both for [inside 
 
 ### 🎳 Naming Convention
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 ![Naming Conventions](static/img/Naming_conventions.png)
 
 There is a github repo, which talks about Unreal's naming convention. The repo is very detailed and explains how you should name your assets, as well as your code. Repo is called [Unreal Engine's style guide by Michael Allar](https://github.com/Allar/ue5-style-guide).
@@ -59,10 +55,6 @@ bool IsTeaFresh(FTea Tea);
 ```
 
 #### 🎨 Abbreviations, Acronyms and Synonyms
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 <table><tr><td>
 
@@ -222,10 +214,10 @@ Misc
 | Prefix | Class        | Subclasses                                                            |
 | ------ | ------------ | --------------------------------------------------------------------- |
 | U      | `UObject`    | `UActorComponent`, `UPrimaryDataAsset`, `UEngine`, `UGameplayStatics` |
-| A      | `AActor`     | `APawn`, `ACharaacter`, `AController`, `AHUD`, `AGameMode`            |
+| A      | `AActor`     | `APawn`, `ACharacter`, `AController`, `AHUD`, `AGameMode`            |
 | F      | Struct       | `FHitResult`, `FVector`, `FRotator`, `FTableRowBase`                  |
 | E      | Enum         | `EEnvQueryStatus`, `EConstraintType`, `EEndPlayReason`                |
-| I      | Inteface     | `IInputDevice`, `IHapticDevice`, `ITargetPlatform`                    |
+| I      | Interface    | `IInputDevice`, `IHapticDevice`, `ITargetPlatform`                    |
 | T      | Template     | `TSubclassOf<T>`, `TArray<T>`, `TSet<T>`, `TMap<T>`, `TMultiMap<T>`   |
 | G      | Global Class | `GEngine`, `GConfig`, `GWorld`, `GEngineLoop`, `GIsEditor`            |
 

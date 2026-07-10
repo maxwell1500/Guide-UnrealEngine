@@ -21,22 +21,14 @@
 
 **Are you interested in creating games with Unreal Engine using C++?**
 
-_In this repo, we'll guide you through the basics of getting started with Unreal Engine and C++. We'll cover the fundamentals of C++ programming, such as data types and pointers, and show you how to use these concepts in the context of game development with Unreal Engine. We'll also introduce you to the Unreal Engine module system, which is an important aspect of organizing your game code into smaller, more manageable pieces._
-
-> [!IMPORTANT]
-> If you want to use another language for Unreal Engine, like C#, then highly recommend checking out this [repo by Oscar Olsson](https://github.com/UnrealSharp/UnrealSharp).
+This guide covers C++ fundamentals — data types, pointers, the Unreal Engine module system, and the game framework — in the context of game development. Examples target **UE 5.8**, the last planned UE5 release before UE6.
 
 > [!NOTE]
-> This repository was created in conjunction with [ChatGPT](https://en.wikipedia.org/wiki/ChatGPT) to assist in writing and formulating each sentence. While it provides valuable information, it may not be entirely accurate. If you detect any errors or false statements, please feel free to create a new [issue](https://github.com/MrRobinOfficial/Guide-UnrealEngine/issues/) to report them for further improvement and clarification.
+> This repository was originally created with assistance from [ChatGPT](https://en.wikipedia.org/wiki/ChatGPT). While it provides a broad overview, it may contain inaccuracies. If you find errors or outdated information, please create an [issue](https://github.com/maxwell1500/Guide-UnrealEngine/issues) or submit a [pull request](https://github.com/maxwell1500/Guide-UnrealEngine/pulls).
 >
-> You can also send a new [pull request](https://github.com/MrRobinOfficial/Guide-UnrealEngine/pulls) to make correct changes to codebase.
->
-> **Your contributions and feedback are appreciated!**
-
-> [!NOTE]
-> Examples and documentation are intended to work on **UE 5.0** version and upwards. Some code may or may not work on previous versions!
+> **Your contributions are appreciated!**
 
 > [!IMPORTANT]
-> If you want to see the newest changes, you can check out the [dev branch](https://github.com/MrRobinOfficial/Guide-UnrealEngine/tree/dev). However, be aware of experimental changes and work in progress text.
+> If you want to use another .NET language with Unreal Engine, check out [UnrealSharp](https://github.com/UnrealSharp/UnrealSharp).
 
 <<[toc_v2.md]

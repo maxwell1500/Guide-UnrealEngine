@@ -41,8 +41,8 @@ Here is a list of common macros in Unreal Engine:
 -   `UENUM()` - Define an enumeration that can be used in Unreal Engine classes. This allows developers to define a set of named constants that can be used in a type-safe way.
 -   `UMETA()` - Specify additional metadata for enumeration values in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the display name or tooltip for the value in the editor.
 
--   `INLINE` - Suggestion to the compiler that a function should be inlined, but the compiler is not required to honor it. (Replacement for `inline` keyword[^1])
--   `FORCEINLINE` - A stronger suggestion that the compiler should inline the function if possible, and it may even produce an error if the function cannot be inlined. (Replacement for `force_inline` keyword[^1])'
+-   `INLINE` - Maps to `inline` keyword[^1]. Suggestion to the compiler that a function should be inlined.
+-   `FORCEINLINE` - Maps to `__forceinline` on MSVC. Stronger inline suggestion; may produce an error if the function cannot be inlined.
 
 -   `UE_LOG` - Outputs the log message into the log file. The first input parameter it takes is the name of the logging category.
 

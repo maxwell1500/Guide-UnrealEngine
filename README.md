@@ -4,7 +4,7 @@
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mrrobinofficial/guide-unitysteamnetcodegameobjects/blob/HEAD/LICENSE.txt)
 ![GitHub Repo stars](https://img.shields.io/github/stars/MrRobinOfficial/Guide-UnrealEngine)
-![guide-status](https://img.shields.io/badge/guide_status-revision-91ff00)
+![guide-status](https://img.shields.io/badge/UE_Target-5.8-00b4ff)
 
 ![permitted-status](https://img.shields.io/badge/permitted_status-allow_to_use_for_tutorials_and_articles-4A5173)
 ![reading-time](https://img.shields.io/badge/reading_time-3,98_hours-blue)
@@ -34,10 +34,7 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
 > **Your contributions and feedback are appreciated!**
 
 > [!NOTE]
-> Examples and documentation are intended to work on **UE 5.0** version and upwards. Some code may or may not work on previous versions!
-
-> [!IMPORTANT]
-> If you want to see the newest changes, you can check out the [dev branch](https://github.com/MrRobinOfficial/Guide-UnrealEngine/tree/dev). However, be aware of experimental changes and work in progress text.
+> Examples and documentation target **UE 5.8**. Some code may not work on earlier versions.
 
 ## Table of contents
 
@@ -422,10 +419,6 @@ I am planning to make more plugins, which you can find me on [Github](https://gi
 
 ## 📛 Console Commands
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 * `stat fps`: Display FPS.
 * `stat unit`: Display frame time.
 * `stat game`: Display a general idea on how long the various gameplay ticks are taking.
@@ -439,10 +432,6 @@ This section was NOT written in conjunction with ChatGPT.
 Here is also a [website](https://pongrit.github.io/) by Pongrit, which showcase all of Unreal Engine's console commands.
 
 ## 📌 Shortcuts
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
 
 To change any of the shortcuts, you can access the keyboard shortcut settings via **Editor Preferences**, then under **General** select **Keyboard Shortcuts**.
 
@@ -517,10 +506,6 @@ Tools
 
 ## ⌛ Getting started with C++
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 Highly recommend taking a short class of native C++. Here is a video link to ~1h long [video tutorial from Mosh](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
 
 You can also watch a playlist from [GGameDev about getting started with Unreal Engine C++](https://youtube.com/playlist?list=PLaaDnVlfJwc4Lncf4XTYaTRG_osOk-T0N).
@@ -533,17 +518,13 @@ Using C++ with Unreal Engine unlocks the engine's full feature set, allowing dev
 
 Developing with C++ in Unreal Engine enables better debugging, profiling, and performance optimization through techniques such as multithreading and memory management. It also facilitates integration with third-party libraries, expanding the range of functionality and flexibility available to developers.
 
-You can read more about it on [their docs](https://docs.unrealengine.com/5.2/en-US/unreal-engine-programming-and-scripting/).
+You can read more about it on [their docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-programming-and-scripting/).
 
 To use C++ effectively in Unreal Engine, it is crucial to have a strong foundation in programming principles and understanding of Unreal Engine's architecture and conventions. Leveraging resources like the Unreal Engine documentation, community forums, and collaboration with other developers helps to gain knowledge and best practices.
 
 *By combining the power of C++ and Unreal Engine, developers can create immersive experiences and unlock the full potential of the engine's capabilities.*
 
 ### 🌈 Integrated Development Environment
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 An Integrated Development Environment (IDE) is a software application that provides comprehensive tools for writing, debugging, and managing code. IDEs offer a streamlined and feature-rich environment for software development, making it easier for developers to work on their projects efficiently.
 
@@ -557,10 +538,6 @@ Popular IDEs used in Unreal Engine and C++ development include:
 
 ### ⛏️ Tools to help your journey
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 Here are some tools that can be integrated into your IDE's for better performance, debugging or writing good code practices.
 
 * [Visual Assist](https://www.wholetomato.com/): A productivity tool for refactoring, reading, writing, navigating and generating C/C++/C# code. `Cost` and for `VS`.
@@ -568,10 +545,6 @@ Here are some tools that can be integrated into your IDE's for better performanc
 * [UnrealMacroGenerator](https://marketplace.visualstudio.com/items?itemName=Naotsun.Naotsun-UE-UMG): Provides a macro editor used by Unreal C ++ of Unreal Engine. You can create macros and edit already written macros. `Free` and for `VS`.
 
 ### 🟢 Benefits of using C++ with Unreal Engine
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 * High performance: C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
 
@@ -582,10 +555,6 @@ This section was written in conjunction with ChatGPT.
 * Garbage Collection and Memory Management: While C++ demands manual memory management, Unreal Engine provides a [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)) that efficiently clears out `UObject` classes from memory. With the control over manual memory handling, you can precisely dictate when to allocate and deallocate memory as necessary.
 
 ### 🔴 Drawbacks of using C++ with Unreal Engine
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
 
 * More prone to errors: C++ is a strongly typed language, requiring the precise use of semicolons, braces and accurate syntax to ensure successful compilation. Rectifying these issues can be time-consuming. On the contrary, the Blueprint's node-based graph system operates without the need for "correct" syntax, offering a more "forgiving" environment.
 
@@ -601,10 +570,6 @@ If you wish to extend your knowledge about C++ and general programming principle
 
 ## 🚧 Blueprint vs C++
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 [![Watch the video by Alex Forsythe](https://img.youtube.com/vi/VMZftEVDuCE/maxresdefault.jpg)](https://youtu.be/VMZftEVDuCE)
 
 **Choose C++** when you anticipate the need for interaction with other C++ code or require extensive control over low-level optimizations and memory management. C++ is well-suited for classes that require direct access to engine internals and efficient execution.
@@ -612,10 +577,6 @@ This section was written in conjunction with ChatGPT.
 **Use Blueprint** as an inherited class when you want to benefit from the visual scripting capabilities and quick prototyping offered by Blueprint, while still having the option to incorporate C++ code in the future. This allows for a flexible approach where you can leverage the power of Blueprint while having the ability to extend functionality with C++ when needed.
 
 ## 🎪 Architecture
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
 
 ```mermaid
 graph TD;
@@ -913,7 +874,7 @@ Unreal has too many classes, which would take a very long time to explain each o
 
 </details>
 
-You can read more about [Unreal Architecture at their docs](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/).
+You can read more about [Unreal Architecture at their docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/).
 
 And for more information about Unreal's Architecture. Then I highly recommend, you can watch [underscore about Unreal Engine Architecture](https://www.youtube.com/watch?v=QcXHEsR0xHI) video.
 
@@ -929,10 +890,6 @@ You can also watch [The Unreal Engine Game Framework: From int main() to BeginPl
 You can find more information about Unreal Engine's guideline, both for [inside the editor](https://dev.epicgames.com/documentation/en-us/unreal-engine/recommended-asset-naming-conventions-in-unreal-engine-projects) (asset creation), but also their [coding standard](https://dev.epicgames.com/documentation/en-us/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine).
 
 ### 🎳 Naming Convention
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 ![Naming Conventions](static/img/Naming_conventions.png)
 
@@ -985,10 +942,6 @@ bool IsTeaFresh(FTea Tea);
 ```
 
 #### 🎨 Abbreviations, Acronyms and Synonyms
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 <table><tr><td>
 
@@ -1202,10 +1155,6 @@ EThing MyProperty;
 ```
 
 ## 💎 Unreal Header Tool
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Unreal Header Tool (UHT[^2]) is a code generator and reflection system in Unreal Engine. It processes special macros and meta tags in C++ header files and generates additional code to support Unreal Engine's reflection system, which enables various engine features like Blueprint integration, serialization, networking, and more.
 
@@ -1611,10 +1560,6 @@ You can read more about [UMETA by BenUi](https://benui.ca/unreal/umeta/).
 
 ## 🧱 Data Types
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 ![Data types](static/img/Data_types.png)
 
 ### Characters
@@ -1686,7 +1631,7 @@ bool bIsDigit = FChar::IsDigit(MyChar); // false
 bool bIsDigit = FChar::IsAlpha(MyChar); // true
 ```
 
-You can read more about [TCHAR on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Misc/TChar/).
+You can read more about [TCHAR on Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Misc/TChar/).
 
 ### Booleans
 
@@ -1856,7 +1801,7 @@ String in programming languages are fundamental data types used to represent and
 
 In Unreal Engine, strings play a crucial role in handling text-based information within the game or application. Unreal Engine provides several string-related classes to cater to different use cases and requirements.
 
-You can read more about [string handling from the docs](https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/StringHandling/).
+You can read more about [string handling from the docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/StringHandling/).
 
 ### Text Macros
 
@@ -1892,13 +1837,9 @@ FName MyName = FName(TEXT("PlayerName"));
 
 #### FText
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 `FText` is a specialized string class designed for localization support in Unreal Engine. Because of this, `FText` are **immutable** string class. FText provides the ability to represent text in different languages and cultures, making it a crucial component for building multi-language games or applications.
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/ftext-in-unreal-engine/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/ftext-in-unreal-engine/).
 
 **Here's an example:**
 
@@ -2048,7 +1989,7 @@ Text.ReverseString(); // Output: "edcba"
 ### 🚀 Math Data Types
 
 > [!NOTE]
-> In Unreal Engine 5.0+, by default, all math related data types are using `double` as backend data type. This allows Unreal to support [large world coordinates (LWC)](https://docs.unrealengine.com/5.3/en-US/large-world-coordinates-in-unreal-engine-5/).
+> In Unreal Engine 5.0+, by default, all math related data types are using `double` as backend data type. This allows Unreal to support [large world coordinates (LWC)](https://dev.epicgames.com/documentation/en-us/unreal-engine/large-world-coordinates-in-unreal-engine-5/).
 
 #### Vector4
 
@@ -2530,17 +2471,13 @@ List of common colors of `FColor`:
 * `FColor::Silver`
 * `FColor::Emerald`
 
-You can read more about [linear color at Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Math/FLinearColor/).
+You can read more about [linear color at Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Math/FLinearColor/).
 
-You can also read more about [color at Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Math/FColor/).
+You can also read more about [color at Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Math/FColor/).
 
 ### 💐 Collections
 
 ![Collections](static/img/Collections.png)
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
 
 | Data Container | Description                                                                                                                                                                                                                                                     | Use Case                                                                                                                                                                                   |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3036,7 +2973,7 @@ Here is common functions:
 * `Algo::Reverse()` - Reverses a range.
 * `Algo::Transform()` - Applies a transform to a range and stores the results into a container.
 
-You can read more about Algo on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Algo/).
+You can read more about Algo on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Algo/).
 
 Here's an example of using them:
 
@@ -3173,7 +3110,7 @@ MyMultiMap.RemoveSingle(TEXT("X"), 10.0f);
 // MyMultiMap: { { TEXT("Z"), 0.0f }, { TEXT("X"), -10.0f } }
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TMultiMap/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TMultiMap/).
 
 > [!WARNING]
 > Unreal doesn't support `TMultiMap` with UHT[^2]. Meaning, you can't expose to Blueprint.
@@ -3233,7 +3170,7 @@ for (const FVector& Vec : StaticArray)
 }
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStaticArray/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TStaticArray/).
 
 > [!WARNING]
 > Unreal Engine doesn't support `TStaticArray` with UHT[^2]. Meaning, you can't expose to Blueprint. To use a static array with Blueprint, use `FixedSized` specifier for UPROPERTY on `TArray` property.
@@ -3266,7 +3203,7 @@ const uint16 Index = 10u;
 HashTable.Add(Hash, Index);
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/FHashTable/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/FHashTable/).
 
 #### TStaticHashTable
 
@@ -3297,7 +3234,7 @@ const uint16 Index = 10u;
 StaticHashTable.Add(Hash, Index);
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStaticHashTable/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TStaticHashTable/).
 
 #### TSortedMap
 
@@ -3348,7 +3285,7 @@ for (const TPair<FName, int32>& Element : MyMap)
 }
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TSortedMap/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TSortedMap/).
 
 #### TList
 
@@ -3459,7 +3396,7 @@ while (CurrentNode != nullptr)
 > [!NOTE]
 > As a rule of thumb, you should almost always use `TArray`, unless you have specific reasons to use a linked list.
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TList/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TList/).
 
 #### TLinkedList
 
@@ -3494,7 +3431,7 @@ for (TLinkedList<int32>::TIterator It(&HeadNode); It; It.Next())
 }
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TLinkedList/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TLinkedList/).
 
 #### TDoubleLinkedList
 
@@ -3581,7 +3518,7 @@ else
 }
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TDoubleLinkedList/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TDoubleLinkedList/).
 
 #### TQueue
 
@@ -3638,7 +3575,7 @@ while (!MyQueue.IsEmpty())
 }
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TQueue/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TQueue/).
 
 #### TArrayView
 
@@ -3646,7 +3583,7 @@ When you want to reuse an array without copying or referencing the base class, y
 
 A statically sized view of an array of typed elements. Designed to allow functions to take either a fixed C-style array or a `TArray` with an arbitrary allocator as an argument when the function neither adds nor removes elements.
 
-You can read more about from [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TArrayView/).
+You can read more about from [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TArrayView/).
 
 Here's an example:
 
@@ -3760,7 +3697,7 @@ MyString = TEXT("Modified String");
 UE_LOG(LogTemp, Log, TEXT("Copied StringView: %s"), *CopiedStringView);
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStringView/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TStringView/).
 
 #### String Builder
 
@@ -3851,7 +3788,7 @@ MessageBuilder << TEXTVIEW("Player's health: ") << FString::SanitizeFloat(Player
 return FString { MessageBuilder };
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStringBuilderBase/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TStringBuilderBase/).
 
 #### TEnumAsByte
 
@@ -3899,13 +3836,9 @@ UE_LOG(LogTemp, Log, TEXT("Integer value of the: %i"), IntVal);
 > [!NOTE]
 > That regular enums are supported by `UPROPERTY` and replaces the need of using `TEnumAsByte` anymore.
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TEnumAsByte/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TEnumAsByte/).
 
 ### 🧨 Value type vs Reference type
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Let's talk about what value type and reference types.
 
@@ -4002,10 +3935,6 @@ if (DamageHealth(PlayerHealth)) // Passing the `PlayerHealth` as a direct refere
 
 ### 👈 Pointers
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 ![Pointers](static/img/Pointers.png)
 
 And lastly, we have pointers. This section, will go over about raw pointers and smart pointers. If you have no clue about pointers, highly recommend watching [Cherno about pointers](https://www.youtube.com/watch?v=DTxHyVn0ODg).
@@ -4072,7 +4001,7 @@ In Unreal Engine, the Smart Pointer's library provides a set of template classes
 
 The key smart pointers in Unreal Engine's library include `TSharedPtr`, `TWeakPtr`, and `TUniquePtr`. They are designed to handle various ownership scenarios and provide a safer alternative to raw pointers.
 
-You can read more about [Unreal Smart Pointer Library on their docs](https://docs.unrealengine.com/5.2/en-US/smart-pointers-in-unreal-engine/).
+You can read more about [Unreal Smart Pointer Library on their docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/smart-pointers-in-unreal-engine/).
 
 ##### TSharedPtr
 
@@ -4876,10 +4805,6 @@ namespace MyNamespace
 
 ## 👷 Constructors, destructors and initialization
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 #### Constructors
 
 Constructors are special member functions in C++ that are automatically called when an object is created. They are used to initialize the object's data members and set up its initial state. Constructors have the same name as the class and can be overloaded to take different sets of parameters, allowing for object initialization in various ways.
@@ -5032,16 +4957,12 @@ In the last line, using brace initializer, the compiler will generate an error b
 
 ## 🏛 Create custom class
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 <figure>
     <img src="static/img/ActorLifeCycle.png" alt="Lifecycle breakdown" />
     <figcaption>Lifecycle breakdown</figcaption>
 </figure>
 
-You can read more about [Actor's lifecycle at Unreal's docs](https://docs.unrealengine.com/5.3/en-US/unreal-engine-actor-lifecycle/).
+You can read more about [Actor's lifecycle at Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-actor-lifecycle/).
 
 ### AActor
 
@@ -5432,10 +5353,6 @@ bool IsA(OtherClassType SomeBase) const;
 
 ## 🏛 Create custom interface
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 Interface are very useful for handling functions in a generic way. It allows you to create a contract with specified functions, which a programmer can extend on top of a specified class.
 
 For an example, IVehicle can contain functions such as `Honk()` or `StallEngine()`. However, these functions can be implemented in a range of classes. Such as `ACarPawn` or `ABoatPawn`.
@@ -5628,10 +5545,6 @@ For more information on weak pointers, you can read at [💾 Soft vs hard refere
 
 ## 🛸 Reflection System
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 Unreal Engine's reflection system is a powerful feature that allows objects and their properties to be accessed and modified at runtime. The reflection system works by storing information about each class and its members, such as properties and functions, in metadata that can be accessed at runtime. This metadata is generated automatically by the Unreal Header Tool (UHT[^2]) during compilation. With the help of `GENERATED_BODY()` macro and `[FileName].generated.h` header.
 
 The generated header file is typically included in the source file that defines the corresponding class or struct, and it is also included in any other source files that use that class or struct. This ensures that the metadata is available to the engine at compile-time and runtime.
@@ -5640,15 +5553,11 @@ The reflection system is also used in many other areas of the engine, such as se
 
 One of the key benefits of the header system is that it allows for very efficient compilation times. Because each C++ file has its own header file, changes to one file do not require recompilation of other files that depend on it. Instead, only the files that include the modified header file need to be recompiled.
 
-You can read more about [reflection system from their docs](https://docs.unrealengine.com/5.0/en-US/reflection-system-in-unreal-engine/).
+You can read more about [reflection system from their docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/reflection-system-in-unreal-engine/).
 
 <!-- prettier-ignore-start -->
 
 ## 🗑️ Garbage Collection
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Garbage Collection is an automatic memory management feature used in modern languages like C#[^12], Python[^11], and Javascript[^14], which automatically removes objects from memory when they are no longer in use.
 
@@ -5656,7 +5565,7 @@ In a garbage-collected environment, you can create objects, use them, and then s
 
 You can read more about [Stack vs Heap](#-stack-vs-heap) section. Which tells more about how the memory is management in programming languages.
 
-You can also read more about [Unreal Object Handling on their docs](https://docs.unrealengine.com/5.2/en-US/unreal-object-handling-in-unreal-engine/).
+You can also read more about [Unreal Object Handling on their docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-object-handling-in-unreal-engine/).
 
 ### How does it work
 
@@ -5737,10 +5646,6 @@ Should not be used for Garbage Collection checks, as on `UPROPERTY` pointers it 
 
 ## 💾 Soft vs hard references
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 ![Soft vs hard references](static/img/Soft_Hard_Refs.png)
 
 ### Soft References
@@ -5765,19 +5670,15 @@ In contrast, if a soft reference is used, the referenced asset may or may not be
 
 Using the appropriate combination of soft and hard references allows for efficient management of asset dependencies, optimizing memory usage, and providing flexibility in loading and unloading assets during runtime.
 
-[Reference Viewer](https://docs.unrealengine.com/5.2/en-US/finding-asset-references-in-unreal-engine/) is a tool inside the editor, which allows you to look at the reference chain with a particular asset. Both hard and soft references. This tool helps you to figure it out which is loading which and what chain dependencies it has.
+[Reference Viewer](https://dev.epicgames.com/documentation/en-us/unreal-engine/finding-asset-references-in-unreal-engine/) is a tool inside the editor, which allows you to look at the reference chain with a particular asset. Both hard and soft references. This tool helps you to figure it out which is loading which and what chain dependencies it has.
 
 [Size Map](https://dev.epicgames.com/community/learning/tutorials/r4y7/unreal-engine-size-map) is another tool inside the editor, which allows you to look at the total and independent size of different assets, which has been loaded by the main asset. For example, you can see how big the character [memory footprint](https://en.wikipedia.org/wiki/Memory_footprint) is (with all the textures and skeletal mesh).
 
 You can read more about soft and hard references in article called [Hard References & Reasons to Avoid Them by raharuu](https://raharuu.github.io/unreal/hard-references-reasons-avoid/).
 
-You can also read more about Unreal Engine docs about [Referencing Assets](https://docs.unrealengine.com/5.2/en-US/referencing-assets-in-unreal-engine/).
+You can also read more about Unreal Engine docs about [Referencing Assets](https://dev.epicgames.com/documentation/en-us/unreal-engine/referencing-assets-in-unreal-engine/).
 
 ## 🌍 Global Functions
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Global functions are functions that are defined outside of any class and are not tied to any specific object instance. They are accessible from any part of the codebase and can be used to perform tasks or calculations that do not require access to specific object properties or methods.
 
@@ -5801,10 +5702,6 @@ Global functions in Unreal Engine are commonly used for utility functions, helpe
 > The `StaticCast()` function is just forwarding the built-in cast operation from C++, which is called `static_cast()`. Which means, there is no saftey garunete with Unreal Engine `UObject`s.
 
 ## 🏛️ Libraries
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Blueprint Function Libraries (`UBlueprintFunctionLibrary`) are a collection of static functions that provide utility functionality not tied to a particular gameplay object. These libraries can be grouped into logical function sets, e.g. AI Blueprint Library, or contain utility functions that provide access to many different functional areas, e.g. System Blueprint Library.
 
@@ -5845,7 +5742,7 @@ bool UAnalyticsBlueprintLibrary::StartSession()
 }
 ```
 
-You can read more about [Blueprint Function Libraries here](https://docs.unrealengine.com/5.2/en-US/blueprint-function-libraries-in-unreal-engine/)!
+You can read more about [Blueprint Function Libraries here](https://dev.epicgames.com/documentation/en-us/unreal-engine/blueprint-function-libraries-in-unreal-engine/)!
 
 ### Kismet Library
 
@@ -5935,10 +5832,6 @@ Difference between a macro and function then?
 > While both macros[^4] and `FORCEINLINE` functions can be used to improve performance and reduce code repetition, `FORCEINLINE` functions are generally preferred over macros[^4] in Unreal Engine, as they offer type safety, scoping and visibility rules, and better debugging support.
 
 ## 📜 Logging
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
 
 All logs will be saved at: `YourProjectName\Saved\Logs`.
 
@@ -6242,10 +6135,6 @@ GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, FString::Printf(TEXT("So
 
 ## 🪨 Assertions
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 ![Assertions](static/img/Assertions.png)
 
 Assertions are a programming technique used to detect and report errors or unexpected behavior in code. In Unreal Engine, assert macros are provided to make it easier to add assertions to code and to customize the behavior of the engine when an assertion fails.
@@ -6393,7 +6282,7 @@ void CleanupCharacters(int32 Count)
 
 ---
 
-You can read more about [Assertions from the docs](https://docs.unrealengine.com/5.1/en-US/asserts-in-unreal-engine/).
+You can read more about [Assertions from the docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/asserts-in-unreal-engine/).
 
 You can also watch a video about it from [Sneaky Kitty Game Dev](https://www.youtube.com/watch?v=zGeJgI2xiT4).
 
@@ -6415,10 +6304,6 @@ You can also watch a video about it from [Sneaky Kitty Game Dev](https://www.you
 
 ## 🔔 Delegates
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 ![Delegates](static/img/Delegates.png)
 
 A delegate is essentially a type-safe function pointer that can be used to bind one or more functions to an event, and then trigger those functions when the event occurs.
@@ -6431,7 +6316,7 @@ Dynamic or non-dynamic essential means if we want to support binding functions i
 
 Then, we have multicast and single delegate. Multicast support multiple listener and execute them all at once. Whist the single delegate only support one listener at all time.
 
-You can read more about multicast delegates, at [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/multicast-delegates-in-unreal-engine/).
+You can read more about multicast delegates, at [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/multicast-delegates-in-unreal-engine/).
 
 ### Define a delegate type
 
@@ -6588,13 +6473,9 @@ Delegates can be used to trigger events in response to user input, game state ch
 
 ## 🧩 UMG
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 UMG (Unreal Motion Graphics) is a visual interface authoring tool in Unreal Engine that enables the creation of user interfaces (UI) and interactive elements for games and applications. It provides a user-friendly, node-based system for designing UI elements and connecting them to C++ code for functionality and interactivity.
 
-You can read more about from the [docs](https://docs.unrealengine.com/5.2/en-US/umg-ui-designer-for-unreal-engine/).
+You can read more about from the [docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/umg-ui-designer-for-unreal-engine/).
 
 There is also a video about [UMG Widgets with C++ by Lively Geek](https://www.youtube.com/watch?v=T7v3UnL6PNU).
 
@@ -6660,10 +6541,6 @@ UBUITween::Create( SomeWidget, 0.2f )
 ```
 
 ## 📚 Create custom module
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
 
 In Unreal Engine, a module is a way to organize game code into smaller pieces, similar to Unity's Assembly Definitions. By separating code into modules, you can reduce compile times and keep your code more organized.
 
@@ -6836,10 +6713,6 @@ _The best solution will depend on your specific situation and the complexity of 
 
 ## 💡 Create custom plugin
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 Plugins are a powerful feature of the Unreal Engine that allows developers to easily extend and customize the engine's functionality to fit their specific needs. A plugin is essentially a module that can be added to a Unreal Engine project to provide additional features, tools, and content. Unlike modules, plugins are designed to be self-contained and can be shared across multiple projects.
 
 When you create a plugin, you can define your own modules, content, and assets that can be loaded and used in your project. Plugins can include any number of modules, each with their own classes, assets, and functionality. This allows you to keep your code organized and separated, making it easier to manage and maintain.
@@ -6848,13 +6721,9 @@ When you create a plugin, you can define your own modules, content, and assets t
 
 Plugins can also be used to add support for third-party libraries and tools, such as physics engines or audio systems. This makes it easy to integrate these tools into your game and take advantage of their features without having to write custom code from scratch.
 
-*You can read more about plugins, <a href="https://docs.unrealengine.com/5.1/en-US/plugins-in-unreal-engine/" target="_blank">over here</a>!*
+*You can read more about plugins, <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/plugins-in-unreal-engine/" target="_blank">over here</a>!*
 
 ## 📝 Preprocessor
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 In programming languages, including C++, the preprocessor is a component of the compiler that performs text manipulation before the actual compilation process. It operates on the source code and handles directives starting with a hash symbol <kbd>#</kbd>.
 
@@ -7079,10 +6948,6 @@ float NewDistance = DistanceUnit.Value;
 ```
 
 ## 🎨 Draw Debug Shapes
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
 
 Include the header file:
 
@@ -7706,7 +7571,7 @@ If you want the elapsed and remaining time, you can access via `GetTimerElapsed(
 GetWorldTimerManager().GetTimerElapsed(this, &AUTWeapon::RefireCheckTimer);
 ```
 
-You can read more about [Gameplay Timers on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/gameplay-timers-in-unreal-engine/).
+You can read more about [Gameplay Timers on Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-timers-in-unreal-engine/).
 
 ## 🧵 Gameplay Tags
 
@@ -7812,17 +7677,13 @@ bool bHasAnyTag = Tags.HasAny(IgnoreTags, TEXT("MyTag"));
 
 ## 🧠 Multithreading and Asynchronous Tasks
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 The most common way for a game engine to run your gameplay, is simply with a while loop. This pattern is very simple to understand and execute consistently. However, this pattern does not generate the greatest performance benefits. To gain performance, usually you would rewrite your code to be multithreaded.
 
 You can read more about [Game Loop from Robert Nystrom](https://gameprogrammingpatterns.com/game-loop.html).
 
 Ayliroé wrote an awesome documentation on Unreal's multithreading and asynchronous tasks system, which you can read either from [Google Docs](https://docs.google.com/document/d/1uw9Dfui5ZepSrBpMc1DrxFOeRFnDu8ubzFse8Mr_s7E/) or from [Forum Post](https://forums.unrealengine.com/t/multithreading-and-performance-in-unreal/1216417/1).
 
-By the default, Unreal supports multithreading, but only makes partial use of it. While there are dedicated threads for audio, [render](https://docs.unrealengine.com/5.0/en-US/threaded-rendering-in-unreal-engine/) and stats, most operations are still done in the game thread, including EventTicks and Blueprints.
+By the default, Unreal supports multithreading, but only makes partial use of it. While there are dedicated threads for audio, [render](https://dev.epicgames.com/documentation/en-us/unreal-engine/threaded-rendering-in-unreal-engine/) and stats, most operations are still done in the game thread, including EventTicks and Blueprints.
 
 This is why doing expensive calculations in Blueprint will lead to loss of performance. That’s where threading comes in handy!
 
@@ -7923,7 +7784,7 @@ auto* Thread = new FMyThread( /*Parameters*/ );
 
 ### Tasks
 
-[TaskGraph](https://docs.unrealengine.com/5.0/en-US/tasks-systems-in-unreal-engine/), is a job manager that tries to balance out workload along multiple preexisting threads. This is ideal to send packages of small operations, as it abstracts away from you the complexity of managing threads, and also supports defining dependencies between Tasks.
+[TaskGraph](https://dev.epicgames.com/documentation/en-us/unreal-engine/tasks-systems-in-unreal-engine/), is a job manager that tries to balance out workload along multiple preexisting threads. This is ideal to send packages of small operations, as it abstracts away from you the complexity of managing threads, and also supports defining dependencies between Tasks.
 
 Queuing Tasks will not cause performance concerns due to the threads being already running, but the system may also be less reactive as it has to find slots to fit the work in inside a limited pool, and sending long Tasks should be avoided to not clog-up threads. It may also sometimes decide to run Tasks directly in the game thread, depending on the setup.
 
@@ -8001,10 +7862,6 @@ As said before, Ayliroé wrote an awesome documentation on Unreal's multithreadi
 
 ## 🎯 Extend Unreal Editor
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 You can find editor icons via this [github repo, made by EpicKiwi](https://github.com/EpicKiwi/unreal-engine-editor-icons).
 
 ### Slate
@@ -8018,10 +7875,6 @@ Lorem Ipsum
 ## ⚠️ Common Issues
 
 <!-- TODO: Add more errors examples -->
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
 
 ![Common Errors](static/img/Cpp_Errors.png)
 
@@ -8349,10 +8202,6 @@ public:
 ```
 
 ## 🐣 Tips and best practices
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Here's a video explaining some of the best practices with Unreal Engine and C++.
 
@@ -8737,10 +8586,6 @@ void FMyTickableThing::Tick( float DeltaTime )
 
 ### 🔌 Direct references
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 In C++, a direct reference is a reference variable that directly refers to the memory location of another variable. When you use a direct reference, you are essentially creating an alias or an alternative name for the original variable. This means any changes made to the reference will be reflected in the original variable, and vice versa.
 
 Using direct references can be beneficial for performance in certain situations because it avoids creating unnecessary copies of data. When you pass large objects or structures as function arguments, using direct references instead of passing by value (copy) can save memory and processing time, especially for complex objects.
@@ -8774,10 +8619,6 @@ f = 11; // COMPILER ERROR!!! Cannot modify const variable!!
 
 ## 🗝️ Deep dive
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 ### K2Node
 
 <!-- TODO: Write text here! -->
@@ -8786,15 +8627,11 @@ You can read more about [K2Node by Oscar Olsson](https://olssondev.github.io/202
 
 ### ➗ Math Expression Node
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 The Math Expression node acts like a collapsed graph. It is a single node that you can Double-click to open the sub-graph that makes up its functionality. Initially, the name/expression is blank. Whenever you rename the node, then the new expression is parsed and a new sub-graph is generated.
 
 ![Math Node Example](static/img/math_node_example.png)
 
-You can read more about math expression node at <a href="https://docs.unrealengine.com/5.2/en-US/math-expression-node-in-unreal-engine/" target="_blank">Unreal's docs</a>.
+You can read more about math expression node at <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/math-expression-node-in-unreal-engine/" target="_blank">Unreal's docs</a>.
 
 ### Call function in editor
 
@@ -8833,10 +8670,6 @@ $ ke * KillCharacter
 
 ### Renaming variables without breaking references
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 During development, there are occasions when you have to rename a property, function or a class. If you compile before changing the name in other location of your code, it can cause Unreal to no longer recognize existing Assets. And therefore replace with its default initialization value.
 
 To address this issue, Unreal Engine uses Core Redirects. Core Redirects should be configured in your project's `DefaultEngine.ini` file, or, in the case of a Plugin, the prefixed, self-named .ini file for that Plugin (for example, `BasePaper2D.ini` for the Engine's Paper2D Plugin, or `Default<GamePluginName>.ini` for a game Plugin).
@@ -8874,7 +8707,7 @@ Here's a full example of different use cases with redirects:
 +StructRedirects=(OldName="MyStruct",NewName="MyNewStruct")
 ```
 
-You can read more about on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/core-redirects-in-unreal-engine/).
+You can read more about on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/core-redirects-in-unreal-engine/).
 
 ---
 
@@ -9014,7 +8847,7 @@ if (IsValid(TimeCycle))
 }
 ```
 
-You can read more about [curves on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Engine/Curves/UCurveFloat/).
+You can read more about [curves on Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Curves/UCurveFloat/).
 
 ### HTTP requests
 
@@ -9160,7 +8993,7 @@ void YourClass::OnRequestCompleted(const FString& Result, bool bWasSuccessful)
 > [!TIP]
 > You can test out HTTP request via [Postman](https://www.postman.com/) with [Star Wars API](https://swapi.dev/) example.
 
-You can read more about [HTTP module on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/HTTP/FHttpModule/).
+You can read more about [HTTP module on Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/HTTP/FHttpModule/).
 
 ### Encryption and Decryption
 
@@ -9218,10 +9051,6 @@ FString YourClass::DecryptToString(FString EncryptedValue, FString EncryptionKey
 
 ## 🔗 Helpful Links
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 ### YouTube Videos
 
 | Author        | Title                                                                      | Length   | Link                                                   |
@@ -9274,7 +9103,7 @@ If you have any questions or issue, just write either to my [YouTube channel](ht
 ## 📍 Footnotes
 
 [^1]: Keyword, also known as a [Reserved word](https://en.wikipedia.org/wiki/Reserved_word).
-[^2]: The [Unreal Header Tool](https://docs.unrealengine.com/5.2/en-US/unreal-header-tool-for-unreal-engine/) (UHT) is a powerful tool for managing dependencies between C++ files in an Unreal Engine project. The header tool is designed to work with the [Unreal Build Tool](https://docs.unrealengine.com/5.2/en-US/unreal-build-tool-in-unreal-engine/) (UBT), which is responsible for compiling the engine and all its modules.
+[^2]: The [Unreal Header Tool](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-header-tool-for-unreal-engine/) (UHT) is a powerful tool for managing dependencies between C++ files in an Unreal Engine project. The header tool is designed to work with the [Unreal Build Tool](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-build-tool-in-unreal-engine/) (UBT), which is responsible for compiling the engine and all its modules.
 [^3]: `ASCII` or American Standard Code for Information Interchange. A character encoding standard for representing English (Latin) characters and symbols.
 [^4]: Macros in C++ are preprocessor directives that enable the definition of reusable code snippets through text replacement before compilation. Here is a [video about it](https://www.youtube.com/watch?v=j3mYki1SrKE).
 [^5]: GitHub is a web-based platform and version control repository that allows individuals and teams to collaborate on software development projects by providing a centralized location for code storage, version tracking, issue tracking, and collaboration features such as pull requests and code reviews. [Link to there site](https://github.com/).

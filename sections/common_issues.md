@@ -2,10 +2,6 @@
 
 <!-- TODO: Add more errors examples -->
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 ![Common Errors](static/img/Cpp_Errors.png)
 
 There are different types of errors and issue, that you **WILL** encounter as you get familiar with programming. There are four types of category for defining an error/issue.

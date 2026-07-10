@@ -2,10 +2,6 @@
 
 ## 🗝️ Deep dive
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 ### K2Node
 
 <!-- TODO: Write text here! -->
@@ -14,15 +10,11 @@ You can read more about [K2Node by Oscar Olsson](https://olssondev.github.io/202
 
 ### ➗ Math Expression Node
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 The Math Expression node acts like a collapsed graph. It is a single node that you can Double-click to open the sub-graph that makes up its functionality. Initially, the name/expression is blank. Whenever you rename the node, then the new expression is parsed and a new sub-graph is generated.
 
 ![Math Node Example](static/img/math_node_example.png)
 
-You can read more about math expression node at <a href="https://docs.unrealengine.com/5.2/en-US/math-expression-node-in-unreal-engine/" target="_blank">Unreal's docs</a>.
+You can read more about math expression node at <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/math-expression-node-in-unreal-engine/" target="_blank">Unreal's docs</a>.
 
 ### Call function in editor
 
@@ -61,10 +53,6 @@ $ ke * KillCharacter
 
 ### Renaming variables without breaking references
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 During development, there are occasions when you have to rename a property, function or a class. If you compile before changing the name in other location of your code, it can cause Unreal to no longer recognize existing Assets. And therefore replace with its default initialization value.
 
 To address this issue, Unreal Engine uses Core Redirects. Core Redirects should be configured in your project's `DefaultEngine.ini` file, or, in the case of a Plugin, the prefixed, self-named .ini file for that Plugin (for example, `BasePaper2D.ini` for the Engine's Paper2D Plugin, or `Default<GamePluginName>.ini` for a game Plugin).
@@ -102,7 +90,7 @@ Here's a full example of different use cases with redirects:
 +StructRedirects=(OldName="MyStruct",NewName="MyNewStruct")
 ```
 
-You can read more about on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/core-redirects-in-unreal-engine/).
+You can read more about on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/core-redirects-in-unreal-engine/).
 
 ---
 
@@ -242,7 +230,7 @@ if (IsValid(TimeCycle))
 }
 ```
 
-You can read more about [curves on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Engine/Curves/UCurveFloat/).
+You can read more about [curves on Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Curves/UCurveFloat/).
 
 ### HTTP requests
 
@@ -388,7 +376,7 @@ void YourClass::OnRequestCompleted(const FString& Result, bool bWasSuccessful)
 > [!TIP]
 > You can test out HTTP request via [Postman](https://www.postman.com/) with [Star Wars API](https://swapi.dev/) example.
 
-You can read more about [HTTP module on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/HTTP/FHttpModule/).
+You can read more about [HTTP module on Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/HTTP/FHttpModule/).
 
 ### Encryption and Decryption
 

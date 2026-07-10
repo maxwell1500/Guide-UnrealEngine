@@ -1,9 +1,5 @@
 ## 🔔 Delegates
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 ![Delegates](static/img/Delegates.png)
 
 A delegate is essentially a type-safe function pointer that can be used to bind one or more functions to an event, and then trigger those functions when the event occurs.
@@ -16,7 +12,7 @@ Dynamic or non-dynamic essential means if we want to support binding functions i
 
 Then, we have multicast and single delegate. Multicast support multiple listener and execute them all at once. Whist the single delegate only support one listener at all time.
 
-You can read more about multicast delegates, at [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/multicast-delegates-in-unreal-engine/).
+You can read more about multicast delegates, at [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/multicast-delegates-in-unreal-engine/).
 
 ### Define a delegate type
 

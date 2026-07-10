@@ -1,9 +1,5 @@
 ## 📜 Logging
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 All logs will be saved at: `YourProjectName\Saved\Logs`.
 
 In order to view the log history inside the editor, you can access the window via: `Window -> Developer Tools -> Output Log`.

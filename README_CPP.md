@@ -108,10 +108,6 @@
 
 ### ✨ Object-Oriented Programming
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 <details open>
   <summary>Click to expand</summary>
 
@@ -142,10 +138,6 @@ Polymorphism is often illustrated through inheritance, where you have a base cla
 </details>
 
 ### ⌨️ Syntax and Structure
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Syntax refers to the set of rules that define the structure, format and grammar of a programming language. It dictates how statements and expressions should be written to form valid code.
 
@@ -302,10 +294,6 @@ In general, you use double quotes for your own header files (which may be part o
 
 ### 🔥 Standard Library
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 The standard library in C++ is a collection of pre-defined classes and functions that provide a wide range of functionality for common tasks. It is a part of the [C++ Standard Template Library (STL)](https://en.wikipedia.org/wiki/Standard_Template_Library) and is officially known as the [C++ Standard Library](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library). The library is designed to be platform-independent and provides a standardized set of features that are supported across different C++ compilers and environments.
 
 The C++ Standard Library is organized into several header files, each of which contains declarations for specific classes and functions. Some of the key components of the standard library include containers (like vectors, lists, maps, etc.), algorithms (sorting, searching, etc.), iterators, input/output operations, strings, and more.
@@ -334,10 +322,6 @@ for (int num : numbers)
 ```
 
 ### 🔢 Data types
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 <table><tr><td>
 
@@ -472,10 +456,6 @@ double speedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a 
 
 ### 🙋‍♂️ Typedefs
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 In C++, the `typedef` keyword[^1] is used to create an **alias** or **alternative name** for existing data types. It provides a way to define a new name that can be used as a shorthand for the original type, improving code readability and maintainability.
 
 Here's an example:
@@ -490,10 +470,6 @@ myInt x = 5;  // Equivalent to: int x = 5;
 > UHT[^2] doesn't support typedefs. Meaning, you can't expose to Blueprint.
 
 ### 🍂 Members
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Members are variables or functions that are part of a class or object. They define the properties and behaviors of the class.
 
@@ -538,10 +514,6 @@ int Factorial(int n)
 ```
 
 ### 🧬 Classes
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Classes are the building blocks of object-oriented programming (OOP). They are a blueprint for creating objects, which are instances of a class. A class defines the structure and behavior of objects by specifying the members it contains.
 
@@ -618,10 +590,6 @@ In modern C++, the distinction between `class` and `struct` has become more a ma
 
 ### 💔 Accessibility
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 | Keyword	    | Access ability | Description                                                                                          |
 | ----------- | -------------- | ---------------------------------------------------------------------------------------------------- |
 | `public`    | All	           | Members and functions are accessible from anywhere, including outside the class.                     |
@@ -686,10 +654,6 @@ obj.privateFunction(); // Error!
 
 ### 🤔 If-statements
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 If-statement is a fundamental control structure that allows you to conditionally execute a block of code based on a specified condition.
 It provides a way to control the flow of execution in your program.
 
@@ -710,10 +674,6 @@ else
 
 ### 🔣 Comparisons and Boolean Operators
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 Here are some operations for creating conditions:
 
 * `==` 	- Equality check
@@ -727,10 +687,6 @@ Here are some operations for creating conditions:
 * `!` 	- Expression !A is 0 if A is nonzero, and is 1 if A is 0. Also called `NOT` operator.
 
 #### ❓ Conditional Expressions (Ternary operator)
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
 
 Conditional expressions in C++ are statements that evaluate a condition and return a value based on the result of the condition. They provide a concise way to express simple conditions and perform different actions or assignments based on the outcome.
 
@@ -747,10 +703,6 @@ int value = isDead ? 100 : -100; // condition ? value_if_true : value_if_false;
 * 3\. If the condition is false, the value or expression after the colon is returned as the result.
 
 ### 🔀 Switches
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 In C++, a switch statement is a control flow construct used to select one of many possible execution paths based on the value of a given expression. It provides an alternative to using multiple if-else statements when checking a variable against different values.
 
@@ -779,10 +731,6 @@ switch (expression)
 * 3\. If none of the cases match the expression's value, the code block associated with the default case (optional) is executed. The default case serves as a fallback option when no matching cases are found.
 
 ### 🔁 Loops
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Loops are essential constructs in programming languages that allow repetitive execution of a block of code based on a specified condition. They provide a way to automate tasks, process collections of data, and iterate over a sequence of elements.
 
@@ -868,10 +816,6 @@ In summary:
 
 ### 🦋 Immutable vs Mutable
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 The terms `immutable` and `mutable` refer to the state of an object or variable and whether it can be changed after its creation. Understanding the difference between `immutable` and `mutable` objects is essential in programming as it affects how data is manipulated and shared within the code.
 
 #### Mutable
@@ -937,10 +881,6 @@ const int immutableValue = 10; // Immutable variable
 
 ### 🪝 Try Catch
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 In programming, `try-catch` is a mechanism used for error handling and exception handling. It allows you to write code that can handle potential errors or exceptions that may occur during the program's execution, preventing crashes or data corruption.
 
 In C++, the try and catch blocks are used for implementing this mechanism. Here's how it works:
@@ -967,10 +907,6 @@ catch (const char* errorMessage)
 Using `try-catch` blocks allows you to handle exceptional situations gracefully, providing error messages to users or logging errors for debugging, instead of crashing or corrupting the program's data. It helps in making your programs more robust and user-friendly.
 
 ### 🪞 Casting
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Casting, in the context of programming languages, refers to the conversion of one data type into another. It allows you to change the interpretation or representation of a variable or object, which can be useful in various situations.
 
@@ -1022,10 +958,6 @@ result_type = reinterpret_cast<result_type>(expression);
 
 ### 🛼 Inlining
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 Inlining is a compiler optimization technique used to improve the performance of code by inserting the body of a function directly at the call site, eliminating the overhead of function calls. It reduces the execution time by avoiding the function call stack setup and cleanup.
 
 In C++, you can use the inline keyword to suggest to the compiler that a function should be inlined. For example:
@@ -1051,10 +983,6 @@ When choosing between using a macro or a function for inlining, it is generally 
 Using inline functions offers a good balance between performance and maintainability. They provide the benefits of inlining without sacrificing the advantages of type-checking and debugging support that functions offer. However, keep in mind that the inline keyword is just a hint to the compiler, and it may or may not `inline` the function depending on the specific context and compiler optimizations.
 
 ### 📇 Namespace
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 In programming languages, a namespace is a feature that allows you to organize code elements (such as variables, functions, classes) into distinct named scopes to avoid name collisions and improve code organization.
 
@@ -1087,10 +1015,6 @@ Library2::Vector vec2;
 > UHT[^2] doesn't support namespaces. Meaning, you can't expose to Blueprint.
 
 ### 🌐 Static members
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 In programming languages, static members are class members (variables or functions) that belong to the class itself rather than individual objects of the class. They are shared among all instances (objects) of the class and are independent of any specific object's state.
 
@@ -1127,10 +1051,6 @@ Static members are commonly used for class-level data and utility functions that
 
 ### `auto` keyword
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 In C++, the `auto` keyword is used for type inference, allowing the compiler to deduce the data type of a variable automatically based on its initialization value (similar to `var` keyword in C#[^12]). It was introduced in [C++11](https://en.wikipedia.org/wiki/C%2B%2B11) as part of the modern C++ features.
 
 Here's how you can use the `auto` keyword:
@@ -1160,10 +1080,6 @@ Player* player = GetPlayer(); // Good
 | Improves code readability in some cases       | Team coding standards and practices may not always favor using 'auto'             |
 
 ### 🌱 Polymorphism (In Depth)
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 The power of polymorphism lies in the ability to use a base class pointer or reference to refer to objects of derived classes. This allows you to write code that operates on the base class, without needing to know the specific derived class. During runtime, the appropriate version of the overridden method in the derived class will be invoked, based on the actual type of the object being referred to.
 
@@ -1298,10 +1214,6 @@ Using virtual functions, you can write code that works with objects based on the
 
 ### 🧙‍♂️ Generic Programming
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 Generic Programming is a programming paradigm that focuses on writing reusable code by abstracting away specific types and working with generic types that can be instantiated with various concrete types. It allows programmers to create functions, classes, and algorithms that can operate on different data types without requiring code duplication.
 
 In C++, the `template` keyword[^1] is used to implement generic programming through templates. Templates allow you to define functions or classes that can be instantiated with different types. They provide a powerful mechanism for code reuse and flexibility.
@@ -1353,10 +1265,6 @@ Benefits of Recursion
 > While recursion can be powerful, it's essential to use it judiciously. Recursive solutions may consume more memory and time compared to iterative solutions for certain problems. Additionally, recursive functions can lead to stack overflow errors if not implemented correctly or when dealing with very large inputs.
 
 ### ⚙️ Linker
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
 
 The [linker](https://en.wikipedia.org/wiki/Linker_(computing)) is a program that makes executable files for your project, in order to run the [.exe](https://en.wikipedia.org/wiki/.exe) file.
 
@@ -1470,10 +1378,6 @@ You can read more about it from [Microsoft Learn](https://learn.microsoft.com/en
 
 ### 🫀 Lambda
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 In C++, a lambda expression, often referred to as a lambda function or lambda, is an anonymous function that you can define inline. It provides a convenient way to create small, inline functions without the need for explicitly declaring a separate function.
 
 Here is a video by [The Cherno about Lambdas in C++](https://www.youtube.com/watch?v=mWgmBBz0y8c).
@@ -1513,10 +1417,6 @@ int result = sum(num1, num2);
 ```
 
 ### 🦾 Binary code
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Binary code is a system of representing data and instructions using a two-symbol system, typically `0` and `1`. It is the fundamental language that computers understand and use internally to process information. Each 0 or 1 is called a "**bit**" (short for binary digit), and a group of 8 bits is called a "**byte**".
 
@@ -1606,10 +1506,6 @@ int rightShift = a >> 1;    // Binary representation: 0000 0010 (2 in decimal)
 
 ### 💥 Stack vs Heap
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 In programming languages, stack and heap are two different areas of memory used for [memory allocation](https://en.wikipedia.org/wiki/Memory_management). They serve distinct purposes and have different characteristics.
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/5OJRqkYbK-4/maxresdefault.jpg)](https://youtu.be/5OJRqkYbK-4)
@@ -1653,10 +1549,6 @@ C++ provides features like dynamic memory allocation with `new` and `delete` ope
 | Risk of Overflow | May cause a stack overflow if too much memory is used, leading to program termination. | Generally less prone to overflow as it can grow dynamically, but can still cause out-of-memory errors if not managed properly. |
 
 ### Design Patterns And Principles
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Design patterns are reusable solutions to common programming problems that have been proven effective over time. They provide guidelines and templates for structuring code, promoting best practices, and improving software design.
 
@@ -1719,10 +1611,6 @@ The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a
 | MVC Pattern       | Model-View-Controller: Separates an application into three components - the model (data and business logic), the view (user interface), and the controller (manages user input and updates the model and view). | Structuring applications for better maintainability and scalability. |
 
 ### 💯 Structures
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/SCkbQSPH--A/maxresdefault.jpg)](https://youtu.be/SCkbQSPH--A)
 
@@ -1868,10 +1756,6 @@ int main()
 | Linked List      | A linear data structure where elements are stored in nodes, each containing a value and a reference to the next node. | Suitable when frequent insertion and deletion at any position are required.  |
 
 ### ⏰ Time Complexity
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Time complexity is a measure of how the runtime of an algorithm grows with the size of the input data. It helps us understand how efficient an algorithm is and how it will scale when dealing with larger datasets.
 
@@ -2106,7 +1990,7 @@ int main()
 ## 📍 Footnotes
 
 [^1]: Keyword, also known as a [Reserved word](https://en.wikipedia.org/wiki/Reserved_word).
-[^2]: The [Unreal Header Tool](https://docs.unrealengine.com/5.2/en-US/unreal-header-tool-for-unreal-engine/) (UHT) is a powerful tool for managing dependencies between C++ files in an Unreal Engine project. The header tool is designed to work with the [Unreal Build Tool](https://docs.unrealengine.com/5.2/en-US/unreal-build-tool-in-unreal-engine/) (UBT), which is responsible for compiling the engine and all its modules.
+[^2]: The [Unreal Header Tool](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-header-tool-for-unreal-engine/) (UHT) is a powerful tool for managing dependencies between C++ files in an Unreal Engine project. The header tool is designed to work with the [Unreal Build Tool](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-build-tool-in-unreal-engine/) (UBT), which is responsible for compiling the engine and all its modules.
 [^3]: `ASCII` or American Standard Code for Information Interchange. A character encoding standard for representing English (Latin) characters and symbols.
 [^4]: Macros in C++ are preprocessor directives that enable the definition of reusable code snippets through text replacement before compilation. Here is a [video about it](https://www.youtube.com/watch?v=j3mYki1SrKE).
 [^5]: GitHub is a web-based platform and version control repository that allows individuals and teams to collaborate on software development projects by providing a centralized location for code storage, version tracking, issue tracking, and collaboration features such as pull requests and code reviews. [Link to there site](https://github.com/).

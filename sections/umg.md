@@ -1,12 +1,8 @@
 ## 🧩 UMG
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
+UMG (Unreal Motion Graphics) is UE's visual UI authoring tool. It provides a node-based system for designing UI elements connected to C++ code.
 
-UMG (Unreal Motion Graphics) is a visual interface authoring tool in Unreal Engine that enables the creation of user interfaces (UI) and interactive elements for games and applications. It provides a user-friendly, node-based system for designing UI elements and connecting them to C++ code for functionality and interactivity.
-
-You can read more about from the [docs](https://docs.unrealengine.com/5.2/en-US/umg-ui-designer-for-unreal-engine/).
+You can read more about from the [docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/umg-ui-designer-for-unreal-engine/).
 
 There is also a video about [UMG Widgets with C++ by Lively Geek](https://www.youtube.com/watch?v=T7v3UnL6PNU).
 

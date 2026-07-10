@@ -62,10 +62,10 @@ constinit int sizeOfAnArray = getSizeOfAnArray();
 ```
 
 > [!WARNING]
-> The `consteval` and `constinit` keywords are only supported on C++ version 20. Meaning, if your compiler doesn't support, you can't use these keywords.
+> `consteval` and `constinit` require C++20, which UE 5.8 uses by default. Ensure your compiler supports them (MSVC 2022+ does).
 
 > [!NOTE]
-> Unreal Engine is now supporting [C++ version 20](https://dev.epicgames.com/documentation/en-us/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine#modernc++languagesyntax:~:text=Unreal%20Engine%20compiles%20with%20a%20language%20version%20of%20C%2B%2B20%20by%20default%20and%20requires%20a%20minimum%20version%20of%20C%2B%2B17%20to%20build.).
+> UE 5.8 compiles with **C++20** by default (minimum C++17).
 
 ```cpp
 // Example of using constinit keyword

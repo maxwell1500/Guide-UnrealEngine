@@ -1,15 +1,11 @@
 ## 🏛 Create custom class
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 <figure>
     <img src="static/img/ActorLifeCycle.png" alt="Lifecycle breakdown" />
     <figcaption>Lifecycle breakdown</figcaption>
 </figure>
 
-You can read more about [Actor's lifecycle at Unreal's docs](https://docs.unrealengine.com/5.3/en-US/unreal-engine-actor-lifecycle/).
+You can read more about [Actor's lifecycle at Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-actor-lifecycle/).
 
 ### AActor
 

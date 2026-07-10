@@ -1,10 +1,6 @@
 ## 📝 Preprocessor
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
-In programming languages, including C++, the preprocessor is a component of the compiler that performs text manipulation before the actual compilation process. It operates on the source code and handles directives starting with a hash symbol <kbd>#</kbd>.
+The preprocessor performs text manipulation before compilation. It handles directives starting with <kbd>#</kbd>, such as macro expansion, file inclusion, and conditional compilation.
 
 In C++, the preprocessor handles tasks such as macro expansion, file inclusion, and conditional compilation. It modifies the source code based on these directives before the code is compiled into machine-readable instructions.
 

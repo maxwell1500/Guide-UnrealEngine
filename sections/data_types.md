@@ -2,10 +2,6 @@
 
 ## 🧱 Data Types
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 ![Data types](static/img/Data_types.png)
 
 ### Characters
@@ -77,7 +73,7 @@ bool bIsDigit = FChar::IsDigit(MyChar); // false
 bool bIsDigit = FChar::IsAlpha(MyChar); // true
 ```
 
-You can read more about [TCHAR on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Misc/TChar/).
+You can read more about [TCHAR on Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Misc/TChar).
 
 ### Booleans
 
@@ -247,7 +243,7 @@ String in programming languages are fundamental data types used to represent and
 
 In Unreal Engine, strings play a crucial role in handling text-based information within the game or application. Unreal Engine provides several string-related classes to cater to different use cases and requirements.
 
-You can read more about [string handling from the docs](https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/StringHandling/).
+You can read more about [string handling from the docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/string-handling-in-unreal-engine).
 
 ### Text Macros
 
@@ -283,13 +279,9 @@ FName MyName = FName(TEXT("PlayerName"));
 
 #### FText
 
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
-
 `FText` is a specialized string class designed for localization support in Unreal Engine. Because of this, `FText` are **immutable** string class. FText provides the ability to represent text in different languages and cultures, making it a crucial component for building multi-language games or applications.
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/ftext-in-unreal-engine/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/ftext-in-unreal-engine/).
 
 **Here's an example:**
 
@@ -439,7 +431,7 @@ Text.ReverseString(); // Output: "edcba"
 ### 🚀 Math Data Types
 
 > [!NOTE]
-> In Unreal Engine 5.0+, by default, all math related data types are using `double` as backend data type. This allows Unreal to support [large world coordinates (LWC)](https://docs.unrealengine.com/5.3/en-US/large-world-coordinates-in-unreal-engine-5/).
+> In UE5, math types use `double` as the backend for [Large World Coordinates (LWC)](https://dev.epicgames.com/documentation/en-us/unreal-engine/large-world-coordinates-in-unreal-engine).
 
 #### Vector4
 
@@ -639,22 +631,22 @@ FUIntPoint UnsignedMaxPoint = FUIntPoint(255, 255);
 
 #### IntRect
 
-A struct representing a 2D integer rectangles, consisting of two IntPoint values for the `Min` and `Max` components.
+A struct representing a 2D integer rectangle, consisting of two IntPoint values for the `Min` and `Max` components.
 
 Declare and initialize a `FIntRect`:
 
 ```cpp
 FIntPoint MinPoint = FIntPoint(-127, -127);
 FIntPoint MaxPoint = FIntPoint(128, 128);
-FIntReact Rect = FIntRect(MinPoint, MaxPoint);
+FIntRect Rect = FIntRect(MinPoint, MaxPoint);
 ```
 
-Declare and initialize a `FUIntReact`:
+Declare and initialize a `FUIntRect`:
 
 ```cpp
 FUIntPoint UnsignedMinPoint = FUIntPoint(0, 0);
 FUIntPoint UnsignedMaxPoint = FUIntPoint(255, 255);
-FUIntReact UnsignedRect = FIntRect(UnsignedMinPoint, UnsignedMaxPoint);
+FUIntRect UnsignedRect = FUIntRect(UnsignedMinPoint, UnsignedMaxPoint);
 ```
 
 > [!NOTE]
@@ -742,7 +734,7 @@ Here's an example:
 ```cpp
 float X = 0.0f;
 float Y = 0.0f;
-float X = 0.0f;
+float Z = 0.0f;
 
 FPlane Plane = FVector(X, Y, Z);
 ```
@@ -921,17 +913,13 @@ List of common colors of `FColor`:
 * `FColor::Silver`
 * `FColor::Emerald`
 
-You can read more about [linear color at Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Math/FLinearColor/).
+You can read more about [linear color at Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Math/FLinearColor/).
 
-You can also read more about [color at Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Math/FColor/).
+You can also read more about [color at Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Math/FColor/).
 
 ### 💐 Collections
 
 ![Collections](static/img/Collections.png)
-
-<table><tr><td>
-This section was NOT written in conjunction with ChatGPT.
-</td></tr></table>
 
 | Data Container | Description                                                                                                                                                                                                                                                     | Use Case                                                                                                                                                                                   |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1427,7 +1415,7 @@ Here is common functions:
 * `Algo::Reverse()` - Reverses a range.
 * `Algo::Transform()` - Applies a transform to a range and stores the results into a container.
 
-You can read more about Algo on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Algo/).
+You can read more about Algo on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Algo/).
 
 Here's an example of using them:
 
@@ -1564,7 +1552,7 @@ MyMultiMap.RemoveSingle(TEXT("X"), 10.0f);
 // MyMultiMap: { { TEXT("Z"), 0.0f }, { TEXT("X"), -10.0f } }
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TMultiMap/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TMultiMap/).
 
 > [!WARNING]
 > Unreal doesn't support `TMultiMap` with UHT[^2]. Meaning, you can't expose to Blueprint.
@@ -1624,7 +1612,7 @@ for (const FVector& Vec : StaticArray)
 }
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStaticArray/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TStaticArray/).
 
 > [!WARNING]
 > Unreal Engine doesn't support `TStaticArray` with UHT[^2]. Meaning, you can't expose to Blueprint. To use a static array with Blueprint, use `FixedSized` specifier for UPROPERTY on `TArray` property.
@@ -1657,7 +1645,7 @@ const uint16 Index = 10u;
 HashTable.Add(Hash, Index);
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/FHashTable/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/FHashTable/).
 
 #### TStaticHashTable
 
@@ -1688,7 +1676,7 @@ const uint16 Index = 10u;
 StaticHashTable.Add(Hash, Index);
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStaticHashTable/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TStaticHashTable/).
 
 #### TSortedMap
 
@@ -1739,7 +1727,7 @@ for (const TPair<FName, int32>& Element : MyMap)
 }
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TSortedMap/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TSortedMap/).
 
 #### TList
 
@@ -1850,7 +1838,7 @@ while (CurrentNode != nullptr)
 > [!NOTE]
 > As a rule of thumb, you should almost always use `TArray`, unless you have specific reasons to use a linked list.
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TList/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TList/).
 
 #### TLinkedList
 
@@ -1885,7 +1873,7 @@ for (TLinkedList<int32>::TIterator It(&HeadNode); It; It.Next())
 }
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TLinkedList/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TLinkedList/).
 
 #### TDoubleLinkedList
 
@@ -1972,7 +1960,7 @@ else
 }
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TDoubleLinkedList/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TDoubleLinkedList/).
 
 #### TQueue
 
@@ -2029,7 +2017,7 @@ while (!MyQueue.IsEmpty())
 }
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TQueue/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TQueue/).
 
 #### TArrayView
 
@@ -2037,7 +2025,7 @@ When you want to reuse an array without copying or referencing the base class, y
 
 A statically sized view of an array of typed elements. Designed to allow functions to take either a fixed C-style array or a `TArray` with an arbitrary allocator as an argument when the function neither adds nor removes elements.
 
-You can read more about from [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TArrayView/).
+You can read more about from [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TArrayView/).
 
 Here's an example:
 
@@ -2151,7 +2139,7 @@ MyString = TEXT("Modified String");
 UE_LOG(LogTemp, Log, TEXT("Copied StringView: %s"), *CopiedStringView);
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStringView/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TStringView/).
 
 #### String Builder
 
@@ -2242,7 +2230,7 @@ MessageBuilder << TEXTVIEW("Player's health: ") << FString::SanitizeFloat(Player
 return FString { MessageBuilder };
 ```
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TStringBuilderBase/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TStringBuilderBase/).
 
 #### TEnumAsByte
 
@@ -2290,13 +2278,9 @@ UE_LOG(LogTemp, Log, TEXT("Integer value of the: %i"), IntVal);
 > [!NOTE]
 > That regular enums are supported by `UPROPERTY` and replaces the need of using `TEnumAsByte` anymore.
 
-You can read more about it on [Unreal's docs](https://docs.unrealengine.com/5.3/en-US/API/Runtime/Core/Containers/TEnumAsByte/).
+You can read more about it on [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Core/Containers/TEnumAsByte/).
 
 ### 🧨 Value type vs Reference type
-
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
 
 Let's talk about what value type and reference types.
 
@@ -2393,10 +2377,6 @@ if (DamageHealth(PlayerHealth)) // Passing the `PlayerHealth` as a direct refere
 
 ### 👈 Pointers
 
-<table><tr><td>
-This section was written in conjunction with ChatGPT.
-</td></tr></table>
-
 ![Pointers](static/img/Pointers.png)
 
 And lastly, we have pointers. This section, will go over about raw pointers and smart pointers. If you have no clue about pointers, highly recommend watching [Cherno about pointers](https://www.youtube.com/watch?v=DTxHyVn0ODg).
@@ -2463,7 +2443,7 @@ In Unreal Engine, the Smart Pointer's library provides a set of template classes
 
 The key smart pointers in Unreal Engine's library include `TSharedPtr`, `TWeakPtr`, and `TUniquePtr`. They are designed to handle various ownership scenarios and provide a safer alternative to raw pointers.
 
-You can read more about [Unreal Smart Pointer Library on their docs](https://docs.unrealengine.com/5.2/en-US/smart-pointers-in-unreal-engine/).
+You can read more about [Unreal Smart Pointer Library on their docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/smart-pointers-in-unreal-engine/).
 
 ##### TSharedPtr
 

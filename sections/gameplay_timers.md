@@ -111,4 +111,4 @@ If you want the elapsed and remaining time, you can access via `GetTimerElapsed(
 GetWorldTimerManager().GetTimerElapsed(this, &AUTWeapon::RefireCheckTimer);
 ```
 
-You can read more about [Gameplay Timers on Unreal's docs](https://docs.unrealengine.com/5.3/en-US/gameplay-timers-in-unreal-engine/).
+You can read more about [Gameplay Timers on Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-timers-in-unreal-engine/).
