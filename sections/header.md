@@ -2,18 +2,18 @@
 
 <div align="center">
 
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mrrobinofficial/guide-unitysteamnetcodegameobjects/blob/HEAD/LICENSE.txt)
-![GitHub Repo stars](https://img.shields.io/github/stars/MrRobinOfficial/Guide-UnrealEngine)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
+![GitHub Repo stars](https://img.shields.io/github/stars/maxwell1500/Guide-UnrealEngine)
 ![guide-status](https://img.shields.io/badge/guide_status-revision-91ff00)
 
 ![permitted-status](https://img.shields.io/badge/permitted_status-allow_to_use_for_tutorials_and_articles-4A5173)
 ![reading-time](https://img.shields.io/badge/reading_time-3,98_hours-blue)
 ![word-count](https://img.shields.io/badge/word_count-36,438-blue)
 
-![GitHub issues](https://img.shields.io/github/issues/MrRobinOfficial/Guide-UnrealEngine)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/MrRobinOfficial/Guide-UnrealEngine)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/MrRobinOfficial/Guide-UnrealEngine)
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/MrRobinOfficial/Guide-UnrealEngine)
+![GitHub issues](https://img.shields.io/github/issues/maxwell1500/Guide-UnrealEngine)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/maxwell1500/Guide-UnrealEngine)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/maxwell1500/Guide-UnrealEngine)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/maxwell1500/Guide-UnrealEngine)
 
 </div>
 

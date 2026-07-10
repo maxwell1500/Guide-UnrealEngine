@@ -123,7 +123,7 @@ AsyncTask(ENamedThreads::AnyHiPriThreadNormalTask, [this] ()
 });
 ```
 
-If you don't know about **lambda**, then highly recommend reading about it on this [section](https://github.com/MrRobinOfficial/Guide-UnrealEngine/#-lambda).
+If you don't know about **lambda**, then highly recommend reading about it on this [section](./README_CPP.md#-lambda).
 
 #### ParallelFor
 

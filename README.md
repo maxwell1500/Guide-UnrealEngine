@@ -27,11 +27,7 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
 > If you want to use another language for Unreal Engine, like C#, then highly recommend checking out this [repo by Oscar Olsson](https://github.com/UnrealSharp/UnrealSharp).
 
 > [!NOTE]
-> This repository was created in conjunction with [ChatGPT](https://en.wikipedia.org/wiki/ChatGPT) to assist in writing and formulating each sentence. While it provides valuable information, it may not be entirely accurate. If you detect any errors or false statements, please feel free to create a new [issue](https://github.com/MrRobinOfficial/Guide-UnrealEngine/issues/) to report them for further improvement and clarification.
->
-> You can also send a new [pull request](https://github.com/MrRobinOfficial/Guide-UnrealEngine/pulls) to make correct changes to codebase.
->
-> **Your contributions and feedback are appreciated!**
+> Found an error or want to improve something? [Open an issue](https://github.com/maxwell1500/Guide-UnrealEngine/issues) or [submit a PR](https://github.com/maxwell1500/Guide-UnrealEngine/pulls).
 
 > [!NOTE]
 > Examples and documentation target **UE 5.8**. Some code may not work on earlier versions.
@@ -566,7 +562,7 @@ Here are some tools that can be integrated into your IDE's for better performanc
 
 ## 🌍 Summary of C++ and Programming World
 
-If you wish to extend your knowledge about C++ and general programming principles and ideology, I highly recommend reading about this [section](https://github.com/MrRobinOfficial/Guide-UnrealEngine/blob/dev/README_CPP.md).
+If you wish to extend your knowledge about C++ and general programming principles and ideology, I highly recommend reading about this [section](./README_CPP.md).
 
 ## 🚧 Blueprint vs C++
 
