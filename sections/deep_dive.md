@@ -29,7 +29,7 @@ void DebugMessage();
 
 ### Call function via Console Commands
 
-In order to call a `UFUNCTION` inside the console command, you can use `Exec` specifier. This tells Unreal Engine to add the function into the console commands list.
+To expose a `UFUNCTION` to the console, add the `Exec` specifier. UE adds it to the console command list automatically.
 
 Here's an example:
 

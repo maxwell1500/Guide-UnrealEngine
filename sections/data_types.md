@@ -1296,7 +1296,7 @@ Array.Shrink();
 
 ---
 
-In order to remove an element without allowing the container to shrink, you can use these arguments:
+To remove an element without letting the container shrink, use:
 
 ```cpp
 #include "Containers/Array.h"
@@ -2197,7 +2197,7 @@ StringBuilder.Appendchar('d');
 // StringBuilder: { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd' }
 ```
 
-In order to get the string either call `ToString()` or `ToView()` functions:
+To get the string value, call `ToString()` or `ToView()`:
 
 ```cpp
 FString Str = StringBuilder.ToString();
@@ -2293,7 +2293,7 @@ int A = 69;
 int B = A; // A copy
 ```
 
-On the other hand, a reference type directly references the memory location of the variable. In this case, when variable B is initialized by variable A, B becomes a reference to the same memory location as A. Consequently, any changes made to B will also affect A since B essentially points to the same underlying value as A.
+On the other hand, a reference type directly references the memory location of the variable. In this case, when variable B is initialized by variable A, B becomes a reference to the same memory location as A. Any changes to B also affect A, since B points to the same memory as A.
 
 ```cpp
 int A = 69;

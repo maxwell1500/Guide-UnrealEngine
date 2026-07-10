@@ -315,7 +315,7 @@ When inlining functions, you have the option to force or give the decision up to
 To force an inline function, you must use `force_inline` keyword.
 
 > [!NOTE]
-> In Unreal Engine, it is more common to use a macro called `FORCEINLINE`, which is essentially expands to `force_inline` keyword.
+> In UE, `FORCEINLINE` is more common — it maps to `__forceinline` on MSVC.
 
 ```cpp
 inline int CalcNewHealth(int Health)

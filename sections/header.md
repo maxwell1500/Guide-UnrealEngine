@@ -19,16 +19,14 @@
 
 #
 
-**Are you interested in creating games with Unreal Engine using C++?**
+You want to make games with Unreal Engine, and you want to use C++ to do it. This guide covers the essentials — data types, the engine's class hierarchy, module system, and the game framework that ties it all together.
 
-This guide covers C++ fundamentals — data types, pointers, the Unreal Engine module system, and the game framework — in the context of game development. Examples target **UE 5.8**, the last planned UE5 release before UE6.
+Everything targets **UE 5.8** (the last planned UE5 release before UE6).
 
 > [!NOTE]
-> This repository was originally created with assistance from [ChatGPT](https://en.wikipedia.org/wiki/ChatGPT). While it provides a broad overview, it may contain inaccuracies. If you find errors or outdated information, please create an [issue](https://github.com/maxwell1500/Guide-UnrealEngine/issues) or submit a [pull request](https://github.com/maxwell1500/Guide-UnrealEngine/pulls).
->
-> **Your contributions are appreciated!**
+> Found something wrong? [Open an issue](https://github.com/maxwell1500/Guide-UnrealEngine/issues) or send a [PR](https://github.com/maxwell1500/Guide-UnrealEngine/pulls).
 
-> [!IMPORTANT]
-> If you want to use another .NET language with Unreal Engine, check out [UnrealSharp](https://github.com/UnrealSharp/UnrealSharp).
+> [!TIP]
+> Using C# instead? Check out [UnrealSharp](https://github.com/UnrealSharp/UnrealSharp).
 
 <<[toc_v2.md]

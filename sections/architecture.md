@@ -79,15 +79,11 @@ graph TD;
     UShapeComponent-->USphereComponent;
 ```
 
-When getting started with Unreal Engine and their workflow, it can be intimidating to a class, since there are so many and with different purpose. However, I would argue it too helps grow your skills and experience by learning Unreal's architecture.
+Unreal Engine has a lot of classes. Like, *a lot*. That diagram up there? That's just the important ones. When you're starting out, it's easy to feel lost.
 
-Not only do gain knowledge about Unreal, but also how a game engine could work under the hood. Compare to Unity, which is a [closed source](https://en.wikipedia.org/wiki/Proprietary_software) engine and their "architecture" is quite open to interpretation.
+Here's the thing though — Unreal's architecture tells you a story about how a game runs. It was originally built for multiplayer FPS games, which is why you see classes like `AGameState` (tracking match score) and `APlayerState` (tracking each player's health, name, etc.). But the same architecture works for any genre — singleplayer, co-op, MMO, whatever.
 
-Unreal Engine was also built for creating an FPS multiplayer game. You can find some classes, which were intentionally designed for that FPS game, such as `AGameState` and `APlayerState` classes. Which are classes that keep track of match points and health points.
-
-However, you can still use Unreal's architecture for different game genres. Unreal Engine works both for multiplayer and single player games.
-
-Unreal has too many classes, which would take a very long time to explain each one of them. However, there are a couple of important classes, that I should mention:
+Think of it as a hierarchy of responsibility:
 
 <details open>
   <summary>Click to expand</summary>
@@ -296,13 +292,11 @@ Unreal has too many classes, which would take a very long time to explain each o
 
 </details>
 
-You can read more about [Unreal Architecture at their docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/).
-
-And for more information about Unreal's Architecture. Then I highly recommend, you can watch [underscore about Unreal Engine Architecture](https://www.youtube.com/watch?v=QcXHEsR0xHI) video.
-
-You can also watch a video discussion about [Multiplayer Framework of Unreal Engine from Kekdot](https://www.youtube.com/watch?v=Hsr6mbNKBLU).
+**Want to go deeper?**
+- [Unreal Architecture docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/)
+- [underscore's UE Architecture video](https://www.youtube.com/watch?v=QcXHEsR0xHI)
+- [Kekdot's Multiplayer Framework discussion](https://www.youtube.com/watch?v=Hsr6mbNKBLU)
+- [Alex Forsythe: From int main() to BeginPlay](https://www.youtube.com/watch?v=IaU2Hue-ApI)
 
 > [!NOTE]
-> This architecture is based on a multiplayer game setup. However, if you are making a singleplayer game, then you can ignore some of classes. Mainly `APlayerState` and `AGameState` (as well as their base classes).
-
-You can also watch [The Unreal Engine Game Framework: From int main() to BeginPlay by Alex Forsythe](https://www.youtube.com/watch?v=IaU2Hue-ApI), which he talks how Unreal starts your game/editor from the source code. And how these classes work with each other.
+> The diagram assumes a multiplayer setup. If you're making a singleplayer game, you can ignore `APlayerState`, `AGameState`, and similar multiplayer-focused classes.

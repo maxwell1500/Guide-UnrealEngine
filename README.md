@@ -502,63 +502,47 @@ Tools
 
 ## ⌛ Getting started with C++
 
-Highly recommend taking a short class of native C++. Here is a video link to ~1h long [video tutorial from Mosh](https://www.youtube.com/watch?v=ZzaPdXTrSb8).
+New to C++? Start with this ~1 hour [crash course from Mosh](https://www.youtube.com/watch?v=ZzaPdXTrSb8). Already know the basics? Jump straight into UE-specific stuff with [GGameDev's playlist](https://youtube.com/playlist?list=PLaaDnVlfJwc4Lncf4XTYaTRG_osOk-T0N).
 
-You can also watch a playlist from [GGameDev about getting started with Unreal Engine C++](https://youtube.com/playlist?list=PLaaDnVlfJwc4Lncf4XTYaTRG_osOk-T0N).
+**Why C++ in Unreal?** Blueprints are great for prototyping, but C++ gives you:
+- Full control over memory, data structures, and algorithms
+- Direct access to engine internals (rendering, physics, networking, AI)
+- Better debugging and profiling
+- Integration with third-party C++ libraries
 
-C++ is a statically typed, compiled, general-purpose programming language that offers a combination of high-level and low-level features. It was developed by [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup) at Bell Labs in 1979 as an enhancement to the [C language](https://en.wikipedia.org/wiki/C_(programming_language)), originally named C[^10] with Classes and later renamed [C++](https://en.wikipedia.org/wiki/C%2B%2B) in 1983.
+> [!TIP]
+> If you're coming from Blueprints, think of C++ as the "unlock" — things you couldn't do or that ran slowly in BP become possible. The trade-off? You write more code and wait for compiles.
 
-You can read more about [C++ Language Reference from Microsoft Learn](https://learn.microsoft.com/en-us/cpp/cpp/cpp-language-reference?view=msvc-170).
+### 🌈 IDE Setup
 
-Using C++ with Unreal Engine unlocks the engine's full feature set, allowing developers to harness advanced graphics rendering, physics simulations, networking, and AI capabilities. C++ provides a level of control, customization, and performance optimization that complements visual scripting.
+You need somewhere to write code. Here are the options:
 
-Developing with C++ in Unreal Engine enables better debugging, profiling, and performance optimization through techniques such as multithreading and memory management. It also facilitates integration with third-party libraries, expanding the range of functionality and flexibility available to developers.
+| IDE | Cost | Best for |
+|-----|------|----------|
+| [Visual Studio 2022/2026](https://visualstudio.microsoft.com/) | Free (Community) | Full C++ toolchain, .NET 10, UE project integration |
+| [Visual Studio Code](https://code.visualstudio.com/) | Free | Lightweight editing with UE extensions |
+| [Rider](https://www.jetbrains.com/rider/) | Paid | Deep UE integration, refactoring tools |
 
-You can read more about it on [their docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-programming-and-scripting/).
+### ⛏️ IDE Add-ons
 
-To use C++ effectively in Unreal Engine, it is crucial to have a strong foundation in programming principles and understanding of Unreal Engine's architecture and conventions. Leveraging resources like the Unreal Engine documentation, community forums, and collaboration with other developers helps to gain knowledge and best practices.
+| Tool | Cost | What it does |
+|------|------|-------------|
+| [Visual Assist](https://www.wholetomato.com/) | Paid (VS only) | Refactoring, navigation, code generation for C/C++/C# |
+| [UnrealMacroGenerator](https://marketplace.visualstudio.com/items?itemName=Naotsun.Naotsun-UE-UMG) | Free (VS only) | Edit Unreal Header Tool macros without memorizing every specifier |
 
-*By combining the power of C++ and Unreal Engine, developers can create immersive experiences and unlock the full potential of the engine's capabilities.*
+### 🟢 Pros of C++ in UE
 
-### 🌈 Integrated Development Environment
+- **Performance** — runs on CPU/GPU directly. No interpreter overhead.
+- **Integration** — plug in existing C++ libraries (physics, networking, etc.)
+- **Control** — manage memory, choose data structures, optimize hot paths
+- **GC** — UE's garbage collector handles `UObject` cleanup, but you still manage non-UObject memory yourself
 
-An Integrated Development Environment (IDE) is a software application that provides comprehensive tools for writing, debugging, and managing code. IDEs offer a streamlined and feature-rich environment for software development, making it easier for developers to work on their projects efficiently.
+### 🔴 Cons of C++ in UE
 
-Popular IDEs used in Unreal Engine and C++ development include:
-
-* [Visual Studio](https://visualstudio.microsoft.com/): The Visual Studio IDE for Unreal Engine development. It offers a powerful set of C++ tools and seamless integration with Unreal Engine, providing a robust development environment. `Free`.
-
-* [Visual Studio Code (VSCode)](https://code.visualstudio.com/): Visual Studio Code is a lightweight, cross-platform code editor with a rich ecosystem of extensions, including ones for Unreal Engine development. `Free`.
-
-* [Rider](https://www.jetbrains.com/rider/): Rider is a popular IDE developed by JetBrains, designed for game development, and it offers solid integration with Unreal Engine projects. `Cost`.
-
-### ⛏️ Tools to help your journey
-
-Here are some tools that can be integrated into your IDE's for better performance, debugging or writing good code practices.
-
-* [Visual Assist](https://www.wholetomato.com/): A productivity tool for refactoring, reading, writing, navigating and generating C/C++/C# code. `Cost` and for `VS`.
-
-* [UnrealMacroGenerator](https://marketplace.visualstudio.com/items?itemName=Naotsun.Naotsun-UE-UMG): Provides a macro editor used by Unreal C ++ of Unreal Engine. You can create macros and edit already written macros. `Free` and for `VS`.
-
-### 🟢 Benefits of using C++ with Unreal Engine
-
-* High performance: C++ allows you to write code that can run directly on the CPU and GPU, making it possible to achieve very high performance levels in your game or application.
-
-* Integration with existing codebases: If you have existing C++ code that you want to integrate with your Unreal Engine project, using C++ allows you to do so more easily.
-
-* Access to low-level functionality: C++ gives you access to lower-level functionality than other programming languages, which can be especially useful in game development where fine-grained control over memory, data structures, and algorithms is often necessary.
-
-* Garbage Collection and Memory Management: While C++ demands manual memory management, Unreal Engine provides a [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)) that efficiently clears out `UObject` classes from memory. With the control over manual memory handling, you can precisely dictate when to allocate and deallocate memory as necessary.
-
-### 🔴 Drawbacks of using C++ with Unreal Engine
-
-* More prone to errors: C++ is a strongly typed language, requiring the precise use of semicolons, braces and accurate syntax to ensure successful compilation. Rectifying these issues can be time-consuming. On the contrary, the Blueprint's node-based graph system operates without the need for "correct" syntax, offering a more "forgiving" environment.
-
-* Tied to Unreal's API: Throughout the evolution of Unreal Engine, Epic Games may modify the [source code](https://en.wikipedia.org/wiki/Source_code), rendering certain functions and members as **obsolete**/**deprecated**. Consequently, Unreal might recommend the need to update the codebase with the latest [API](https://en.wikipedia.org/wiki/API) changes. Failure to do so can lead to compilation errors, in the future.
-
-* Updating your codebase: When working with C++ and Unreal Engine, your C++ code is compiled into a [.DLL](https://en.wikipedia.org/wiki/Dynamic-link_library) (in Windows OS) file that Unreal Engine can read and use within Blueprint graphs. However, this necessitates Unreal Engine to reload to incorporate your code changes. Epic Games has introduced [Hot Reload](https://unrealcommunity.wiki/live-compiling-in-unreal-projects-tp14jcgs), allowing for code reloading without editor restart, streamlining the development process. While Hot Reload often works for a while, it is unreliable and frequently causes blueprint corruption or other issues.
-
-* Requires more storage: When working with C++ within Unreal Engine, it often involves using "Editor Symbols for debugging," consuming approximately 60 GB of storage. Similarly, if you opt to build Unreal Engine from its source code (on their github page), you'll require around 200 GB of storage space.
+- **Strict syntax** — missing a semicolon or brace means a compile error. Blueprints don't have that problem.
+- **API churn** — Epic deprecates and removes APIs between versions. Code that compiled in UE 5.3 might not in 5.8.
+- **Compile times** — C++ compiles to a DLL that UE loads. [Live Coding](https://dev.epicgames.com/documentation/en-us/unreal-engine/live-coding-in-unreal-engine) helps iterate faster. (Hot Reload was removed in 5.8.)
+- **Disk space** — editor symbols for debugging take ~60 GB. Building UE from source takes ~200 GB.
 
 ## 🌍 Summary of C++ and Programming World
 
@@ -568,9 +552,21 @@ If you wish to extend your knowledge about C++ and general programming principle
 
 [![Watch the video by Alex Forsythe](https://img.youtube.com/vi/VMZftEVDuCE/maxresdefault.jpg)](https://youtu.be/VMZftEVDuCE)
 
-**Choose C++** when you anticipate the need for interaction with other C++ code or require extensive control over low-level optimizations and memory management. C++ is well-suited for classes that require direct access to engine internals and efficient execution.
+You don't have to pick one. Most UE projects use both. The trick is knowing *when* to use which.
 
-**Use Blueprint** as an inherited class when you want to benefit from the visual scripting capabilities and quick prototyping offered by Blueprint, while still having the option to incorporate C++ code in the future. This allows for a flexible approach where you can leverage the power of Blueprint while having the ability to extend functionality with C++ when needed.
+**Use C++ for:**
+- Core systems that need to be fast (movement, inventory, AI logic)
+- Code that other developers will use as APIs
+- Anything that touches engine internals (custom components, threading, editor tools)
+- Data structures and algorithms where performance matters
+
+**Use Blueprints for:**
+- Rapid prototyping — test an idea in minutes, not hours
+- Tweaking values and logic at runtime without recompiling
+- Designers and artists to wire up behavior without touching code
+- Event-driven glue logic (button presses → play animation → spawn VFX)
+
+**The ideal workflow:** write the heavy lifting in C++, expose the important functions and variables to Blueprint, then let designers wire them up. You get performance where it counts and flexibility where you need it.
 
 ## 🎪 Architecture
 
@@ -653,15 +649,11 @@ graph TD;
     UShapeComponent-->USphereComponent;
 ```
 
-When getting started with Unreal Engine and their workflow, it can be intimidating to a class, since there are so many and with different purpose. However, I would argue it too helps grow your skills and experience by learning Unreal's architecture.
+Unreal Engine has a lot of classes. Like, *a lot*. That diagram up there? That's just the important ones. When you're starting out, it's easy to feel lost.
 
-Not only do gain knowledge about Unreal, but also how a game engine could work under the hood. Compare to Unity, which is a [closed source](https://en.wikipedia.org/wiki/Proprietary_software) engine and their "architecture" is quite open to interpretation.
+Here's the thing though — Unreal's architecture tells you a story about how a game runs. It was originally built for multiplayer FPS games, which is why you see classes like `AGameState` (tracking match score) and `APlayerState` (tracking each player's health, name, etc.). But the same architecture works for any genre — singleplayer, co-op, MMO, whatever.
 
-Unreal Engine was also built for creating an FPS multiplayer game. You can find some classes, which were intentionally designed for that FPS game, such as `AGameState` and `APlayerState` classes. Which are classes that keep track of match points and health points.
-
-However, you can still use Unreal's architecture for different game genres. Unreal Engine works both for multiplayer and single player games.
-
-Unreal has too many classes, which would take a very long time to explain each one of them. However, there are a couple of important classes, that I should mention:
+Think of it as a hierarchy of responsibility:
 
 <details open>
   <summary>Click to expand</summary>
@@ -870,16 +862,14 @@ Unreal has too many classes, which would take a very long time to explain each o
 
 </details>
 
-You can read more about [Unreal Architecture at their docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/).
-
-And for more information about Unreal's Architecture. Then I highly recommend, you can watch [underscore about Unreal Engine Architecture](https://www.youtube.com/watch?v=QcXHEsR0xHI) video.
-
-You can also watch a video discussion about [Multiplayer Framework of Unreal Engine from Kekdot](https://www.youtube.com/watch?v=Hsr6mbNKBLU).
+**Want to go deeper?**
+- [Unreal Architecture docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/)
+- [underscore's UE Architecture video](https://www.youtube.com/watch?v=QcXHEsR0xHI)
+- [Kekdot's Multiplayer Framework discussion](https://www.youtube.com/watch?v=Hsr6mbNKBLU)
+- [Alex Forsythe: From int main() to BeginPlay](https://www.youtube.com/watch?v=IaU2Hue-ApI)
 
 > [!NOTE]
-> This architecture is based on a multiplayer game setup. However, if you are making a singleplayer game, then you can ignore some of classes. Mainly `APlayerState` and `AGameState` (as well as their base classes).
-
-You can also watch [The Unreal Engine Game Framework: From int main() to BeginPlay by Alex Forsythe](https://www.youtube.com/watch?v=IaU2Hue-ApI), which he talks how Unreal starts your game/editor from the source code. And how these classes work with each other.
+> The diagram assumes a multiplayer setup. If you're making a singleplayer game, you can ignore `APlayerState`, `AGameState`, and similar multiplayer-focused classes.
 
 ## ⚓ Guidelines
 
@@ -2850,7 +2840,7 @@ Array.Shrink();
 
 ---
 
-In order to remove an element without allowing the container to shrink, you can use these arguments:
+To remove an element without letting the container shrink, use:
 
 ```cpp
 #include "Containers/Array.h"
@@ -3751,7 +3741,7 @@ StringBuilder.Appendchar('d');
 // StringBuilder: { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd' }
 ```
 
-In order to get the string either call `ToString()` or `ToView()` functions:
+To get the string value, call `ToString()` or `ToView()`:
 
 ```cpp
 FString Str = StringBuilder.ToString();
@@ -3847,7 +3837,7 @@ int A = 69;
 int B = A; // A copy
 ```
 
-On the other hand, a reference type directly references the memory location of the variable. In this case, when variable B is initialized by variable A, B becomes a reference to the same memory location as A. Consequently, any changes made to B will also affect A since B essentially points to the same underlying value as A.
+A reference type directly references the memory location of the variable. When B is initialized from A, B points to the same memory as A — changes to B affect A and vice versa.
 
 ```cpp
 int A = 69;
@@ -3941,7 +3931,7 @@ _In a short summary, a pointer is like writing down the address of a building on
 
 Pointers are valuable tools in programming as they allow us to store memory addresses, enabling dynamic memory allocation and manipulation of data structures. By using pointers, we can create more flexible and efficient code that can adapt to changing data requirements during program execution.
 
-Additionally, pointers are essential in scenarios like data structures, linked lists, and passing data to functions by reference, providing a level of control and precision that enhances the capabilities of the program. However, **it's important to handle pointers with care**, as incorrect usage can lead to **memory leaks** or **segmentation faults**.
+Pointers are essential for data structures, linked lists, and passing data by reference. But **handle them with care** — misuse causes **memory leaks** or **segmentation faults**.
 
 #### 🦴 Raw pointers
 
@@ -4509,7 +4499,7 @@ When inlining functions, you have the option to force or give the decision up to
 To force an inline function, you must use `force_inline` keyword.
 
 > [!NOTE]
-> In Unreal Engine, it is more common to use a macro called `FORCEINLINE`, which is essentially expands to `force_inline` keyword.
+> In UE, `FORCEINLINE` is more common — it maps to `__forceinline` on MSVC.
 
 ```cpp
 inline int CalcNewHealth(int Health)
@@ -5349,13 +5339,11 @@ bool IsA(OtherClassType SomeBase) const;
 
 ## 🏛 Create custom interface
 
-Interface are very useful for handling functions in a generic way. It allows you to create a contract with specified functions, which a programmer can extend on top of a specified class.
+Interfaces define a contract — a set of functions that any class can implement. Think `IVehicle` with `Honk()` and `StallEngine()`. Both `ACarPawn` and `ABoatPawn` can implement it, each with different behavior.
 
-For an example, IVehicle can contain functions such as `Honk()` or `StallEngine()`. However, these functions can be implemented in a range of classes. Such as `ACarPawn` or `ABoatPawn`.
+When you call an interface function on a `UObject`, UE checks if that object implements the interface. If not, the call is skipped. This means you can write code against the interface without knowing the concrete type.
 
-When calling the interface function in C++, Unreal will check if the type extends the interface. If not, the call gets skipped. This allows you to call the interface function on `UObject` and is not limited to only types of `ACarPawn` or `ABoatPawn`.
-
-This also allows you to extend the interface inside Blueprint instead. For an example, you don't have to create the interface logic inside C++, but rather create the logic at Blueprint level instead.
+You can also implement interfaces in Blueprint — no C++ required for the logic side.
 
 You can read more about interfaces, at [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/interfaces-in-unreal-engine).
 
@@ -6020,14 +6008,14 @@ Log to the console with `FVector` as an argument:
 ```cpp
 FVector MyVector = FVector::OneVector;
 
-// In order to log a FVector, you need to convert into a string.
+// FVector needs converting to a string first
 UE_LOG(LogTemp, Log, TEXT("The vector value is: %s"), *MyVector.ToString()); // The vector value is: (1, 1, 1)
 ```
 
 Log to the console with `FName` as an argument:
 
 ```cpp
-// In order to log a FName, you need to convert into a string.
+// FName needs converting to a string first
 UE_LOG(LogTemp, Log, TEXT("The name is: %s"), *MyCharacter->GetFName().ToString());
 ```
 
@@ -6096,7 +6084,7 @@ UE_LOGFMT(LogCore, Warning, "Loading '{Name}' failed with error {Error}", ("Erro
 
 ### Log to game-view
 
-Currently, we have only logged to the console. In order to display the console messages inside the game-view, we need to call `AddOnScreenDebugMessage()` function instead. You can access this function inside the global engine variable (`GEngine`).
+To display messages on-screen instead of the console, call `GEngine->AddOnScreenDebugMessage()`.
 
 Here's an example:
 
@@ -6302,15 +6290,14 @@ You can also watch a video about it from [Sneaky Kitty Game Dev](https://www.you
 
 ![Delegates](static/img/Delegates.png)
 
-A delegate is essentially a type-safe function pointer that can be used to bind one or more functions to an event, and then trigger those functions when the event occurs.
+A delegate is a type-safe function pointer. You bind one or more functions to it, then call the delegate to trigger them all.
 
-In Blueprint, you might have encounter "**Event Dispatcher**", which under the hood is just multicast delegate.
+You've probably used **Event Dispatchers** in Blueprint — those are multicast delegates under the hood.
 
-There are three types of delegates, that Unreal uses. **Single**, **Multicast** and **Dynamic**.
+There are three axes of delegates:
 
-Dynamic or non-dynamic essential means if we want to support binding functions inside Blueprint via reflection system[^1], which tends to be slower in performance. And non-dynamic only support binding function inside C++ code.
-
-Then, we have multicast and single delegate. Multicast support multiple listener and execute them all at once. Whist the single delegate only support one listener at all time.
+- **Single** vs **Multicast** — Single supports one listener. Multicast supports many; when fired, all bound functions execute.
+- **Dynamic** vs **Non-dynamic** — Dynamic can be bound in Blueprint (via the reflection system[^1]), but is slower. Non-dynamic only works in C++ but is faster.
 
 You can read more about multicast delegates, at [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/multicast-delegates-in-unreal-engine/).
 
@@ -6490,7 +6477,7 @@ UTextBlock* PlayerDisplayNameText;
 
 In this example, the `PlayerDisplayNameText` variable is declared as a `UTextBlock*` type, representing a text widget. The `meta=(BindWidget)` property indicates that this variable is bound to a widget created in the UMG editor.
 
-With this binding in place, you can now access and control all the properties and functions of the `PlayerDisplayNameText` widget directly from your C++ code. This allows you to manipulate the widget's appearance, handle user interactions, and update its content dynamically based on game logic or user input.
+Now you can access and control `PlayerDisplayNameText` directly from C++ — change its text, color, visibility, or bind events to it.
 
 Here's an example showcasing the usage of the widget:
 
@@ -6709,9 +6696,9 @@ _The best solution will depend on your specific situation and the complexity of 
 
 ## 💡 Create custom plugin
 
-Plugins are a powerful feature of the Unreal Engine that allows developers to easily extend and customize the engine's functionality to fit their specific needs. A plugin is essentially a module that can be added to a Unreal Engine project to provide additional features, tools, and content. Unlike modules, plugins are designed to be self-contained and can be shared across multiple projects.
+Plugins extend the engine's functionality with self-contained modules, content, and assets that can be shared across projects. Unlike modules, plugins can be packaged and distributed — including on the Fab marketplace.
 
-When you create a plugin, you can define your own modules, content, and assets that can be loaded and used in your project. Plugins can include any number of modules, each with their own classes, assets, and functionality. This allows you to keep your code organized and separated, making it easier to manage and maintain.
+A plugin can contain multiple modules, each with its own classes and assets. This keeps your code organized and reusable across projects.
 
 **One of the biggest advantages of using plugins is that they can be shared with other developers, making it easy to create and distribute custom functionality to the Unreal Engine community. You can even sell your plugins on the Unreal Marketplace and earn revenue from your work.**
 
@@ -7687,7 +7674,7 @@ This is why doing expensive calculations in Blueprint will lead to loss of perfo
 
 Multithreading is the ability of a central processing unit (CPU) (or a single core in a multicore processor) to provide multiple threads of execution concurrently, supported by the operating system. In a multithreaded application, the threads share the resources of a single or multiple cores, which include the computing units, the CPU caches, and the translation lookaside buffer (TLB). This allows for faster speed of computation.
 
-In order to make your game ready for multithreaded, then you're to change your mindset as well. When splitting your code into multiple threads can create [race conditions](https://en.wikipedia.org/wiki/Race_condition), which is when two operations are happening at the same time, and is competing for which one will be the first to execute. This can lead to instability and can cause bugs.
+Threading adds complexity. You'll deal with [race conditions](https://en.wikipedia.org/wiki/Race_condition) (two threads fighting over the same data), [deadlocks](https://www.youtube.com/watch?v=oEbXlSH8hyE), and subtle bugs that are hard to reproduce. Only thread work that actually needs it.
 
 You can read more about [Multithreading from Vulkan Guide](https://vkguide.dev/docs/extra-chapter/multithreading/).
 
@@ -8039,7 +8026,7 @@ To solve this overflow issue, either use a bigger data type (`int64`). Or use un
 
 When you try to access an element of an array, which is outside of its bounds, the result will be an overflow.
 
-Unreal uses the `TArray` and `TArrayView` types for arrays, and it's important to be aware of their maximum size, when accessing their elements via `[]` square brackets operation (which will get the element via index).
+When accessing elements via `[]`, be aware of the array's bounds. Going out of bounds causes undefined behavior.
 
 For an example
 
@@ -8568,7 +8555,7 @@ void FMyTickableThing::Tick( float DeltaTime )
 
 ### 🔌 Direct references
 
-In C++, a direct reference is a reference variable that directly refers to the memory location of another variable. When you use a direct reference, you are essentially creating an alias or an alternative name for the original variable. This means any changes made to the reference will be reflected in the original variable, and vice versa.
+A direct reference is an alias for another variable. Changes to the reference affect the original, and vice versa.
 
 Using direct references can be beneficial for performance in certain situations because it avoids creating unnecessary copies of data. When you pass large objects or structures as function arguments, using direct references instead of passing by value (copy) can save memory and processing time, especially for complex objects.
 
@@ -8628,7 +8615,7 @@ void DebugMessage();
 
 ### Call function via Console Commands
 
-In order to call a `UFUNCTION` inside the console command, you can use `Exec` specifier. This tells Unreal Engine to add the function into the console commands list.
+To expose a `UFUNCTION` to the console, add the `Exec` specifier. UE adds it to the console command list automatically.
 
 Here's an example:
 

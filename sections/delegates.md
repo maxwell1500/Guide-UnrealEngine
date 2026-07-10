@@ -2,15 +2,15 @@
 
 ![Delegates](static/img/Delegates.png)
 
-A delegate is essentially a type-safe function pointer that can be used to bind one or more functions to an event, and then trigger those functions when the event occurs.
+A delegate is a type-safe function pointer. You bind one or more functions to it, then call the delegate to trigger them all.
 
-In Blueprint, you might have encounter "**Event Dispatcher**", which under the hood is just multicast delegate.
+You've probably used **Event Dispatchers** in Blueprint — those are multicast delegates under the hood.
 
 There are three types of delegates, that Unreal uses. **Single**, **Multicast** and **Dynamic**.
 
-Dynamic or non-dynamic essential means if we want to support binding functions inside Blueprint via reflection system[^1], which tends to be slower in performance. And non-dynamic only support binding function inside C++ code.
+**Dynamic** delegates can be bound in Blueprint (via the reflection system[^1]), but are slower. **Non-dynamic** delegates only work in C++ but are faster.
 
-Then, we have multicast and single delegate. Multicast support multiple listener and execute them all at once. Whist the single delegate only support one listener at all time.
+**Multicast** delegates support multiple listeners — when fired, all bound functions execute. **Single** delegates support only one listener at a time.
 
 You can read more about multicast delegates, at [Unreal's docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/multicast-delegates-in-unreal-engine/).
 

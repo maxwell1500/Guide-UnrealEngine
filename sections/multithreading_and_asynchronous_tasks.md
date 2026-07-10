@@ -1,26 +1,16 @@
 ## 🧠 Multithreading and Asynchronous Tasks
 
-The most common way for a game engine to run your gameplay, is simply with a while loop. This pattern is very simple to understand and execute consistently. However, this pattern does not generate the greatest performance benefits. To gain performance, usually you would rewrite your code to be multithreaded.
+A game engine runs on a game loop — a while loop that processes input, updates logic, and renders frames. Simple and predictable. But it doesn't use your CPU efficiently. That's where threads come in.
 
-You can read more about [Game Loop from Robert Nystrom](https://gameprogrammingpatterns.com/game-loop.html).
+UE dedicates separate threads for audio, [rendering](https://dev.epicgames.com/documentation/en-us/unreal-engine/threaded-rendering-in-unreal-engine/), and stats, but most gameplay code (EventTicks, Blueprints) still runs on the **game thread**. Expensive Blueprint logic will tank your framerate because it's all on one thread. Threading lets you offload that work.
 
-Ayliroé wrote an awesome documentation on Unreal's multithreading and asynchronous tasks system, which you can read either from [Google Docs](https://docs.google.com/document/d/1uw9Dfui5ZepSrBpMc1DrxFOeRFnDu8ubzFse8Mr_s7E/) or from [Forum Post](https://forums.unrealengine.com/t/multithreading-and-performance-in-unreal/1216417/1).
+> [!WARNING]
+> Threading adds complexity. You'll deal with [race conditions](https://en.wikipedia.org/wiki/Race_condition) (two threads fighting over the same data), [deadlocks](https://www.youtube.com/watch?v=oEbXlSH8hyE), and subtle bugs that are hard to reproduce. Only thread work that actually needs it.
 
-By the default, Unreal supports multithreading, but only makes partial use of it. While there are dedicated threads for audio, [render](https://dev.epicgames.com/documentation/en-us/unreal-engine/threaded-rendering-in-unreal-engine/) and stats, most operations are still done in the game thread, including EventTicks and Blueprints.
-
-This is why doing expensive calculations in Blueprint will lead to loss of performance. That’s where threading comes in handy!
-
-### Multithreading
-
-Multithreading is the ability of a central processing unit (CPU) (or a single core in a multicore processor) to provide multiple threads of execution concurrently, supported by the operating system. In a multithreaded application, the threads share the resources of a single or multiple cores, which include the computing units, the CPU caches, and the translation lookaside buffer (TLB). This allows for faster speed of computation.
-
-In order to make your game ready for multithreaded, then you're to change your mindset as well. When splitting your code into multiple threads can create [race conditions](https://en.wikipedia.org/wiki/Race_condition), which is when two operations are happening at the same time, and is competing for which one will be the first to execute. This can lead to instability and can cause bugs.
-
-You can read more about [Multithreading from Vulkan Guide](https://vkguide.dev/docs/extra-chapter/multithreading/).
-
-You can also watch a video from [Chris Kanich about deadlocks](https://www.youtube.com/watch?v=oEbXlSH8hyE).
-
-If you want to create multithreading inside Blueprint will minimal C++ code, then here is a [video from Project Ispheria](https://www.youtube.com/watch?v=0Yyh3oQgonI).
+**Resources:**
+- [Game Loop Patterns (Robert Nystrom)](https://gameprogrammingpatterns.com/game-loop.html)
+- [Ayliroé's UE Multithreading Guide](https://docs.google.com/document/d/1uw9Dfui5ZepSrBpMc1DrxFOeRFnDu8ubzFse8Mr_s7E/)
+- [Multithreading in Blueprint (Project Ispheria)](https://www.youtube.com/watch?v=0Yyh3oQgonI)
 
 ### Runnables
 
