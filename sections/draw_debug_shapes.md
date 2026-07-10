@@ -1,6 +1,6 @@
 ## 🎨 Draw Debug Shapes
 
-Include the header file:
+Include the header file (or use `#include "Engine/Engine.h"` in UE 5+):
 
 ```cpp
 #include "DrawDebugHelpers.h"

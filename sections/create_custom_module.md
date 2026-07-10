@@ -31,7 +31,7 @@ Working with modules can also help you stay focused on the specific functionalit
 
 All modules should be placed in the Source directory for either a plugin or project. The module's root folder should have the same name as the corresponding module.
 
-There should also be a _[ModuleName].Build.csfile_ for each module in its root folder, and its C++ code should be contained in **Private** and **Public** folders.
+There should also be a _[ModuleName].Build.cs_ file for each module in its root folder, and its C++ code should be contained in **Private** and **Public** folders.
 
 ![image](https://user-images.githubusercontent.com/61658252/236797649-1acb5aac-ab05-4676-86a4-959e443de404.png)
 

@@ -38,7 +38,7 @@ void BeginPlay();
  * Use this function to update your actor's state, like checking
  * whether it's colliding with something or not.
  *
- * NOTE; Try to avoid overusing Tick() function. Since, Unreal's core logic, is simply as runs for loop and calling each function for each lickable UObject. Which can be very expensive, with many and unnecessary update calls.
+ * NOTE; Avoid overusing Tick(). Unreal iterates all tickable UObjects each frame, which becomes expensive with many update calls.
  * Here are some tips to overcome this issue:
  *      - Change your workflow to an event based driven system. Either by using delegates or single call functions.
  *      - Change your tick interval to a slower interval. If you require for UObject to tick, but don't require updating a single frame (then this is a perfect fit).

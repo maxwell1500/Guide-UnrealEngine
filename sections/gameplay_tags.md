@@ -9,7 +9,7 @@ With Gameplay tags, you can define a tag tree structure where each tag can have 
 You can read more about [Gameplay Tags on Unreal's blog](https://www.unrealengine.com/es-ES/tech-blog/using-gameplay-tags-to-label-and-organize-your-content-in-ue4).
 
 > [!IMPORTANT]
-> In order to use Gameplay Tags in C++, you must include the module (`GameplayTags`) inside the build system.
+> To use Gameplay Tags in C++, add `"GameplayTags"` to `PublicDependencyModuleNames` in your `Build.cs` file.
 
 You can also watch this video by [LeafBranchGames to learn all about Gameplay Tags](https://www.youtube.com/watch?v=edJGE0aidZY).
 
@@ -79,7 +79,7 @@ UE_DEFINE_GAMEPLAY_TAG(TAG_AK47, "Weapon.Gun.Rifle.AK47");
 ```
 
 > [!NOTE]
-> To avoid having to to use both `UE_DECLARE_GAMEPLAY_TAG_EXTERN()` and `UE_DEFINE_GAMEPLAY_TAG`, you can instead use: `UE_DEFINE_GAMEPLAY_TAG_STATIC()`. However, this macro should only used in the declared implementation file.
+> To avoid using both `UE_DECLARE_GAMEPLAY_TAG_EXTERN()` and `UE_DEFINE_GAMEPLAY_TAG`, use `UE_DEFINE_GAMEPLAY_TAG_STATIC()` instead. However, this macro should only be used in the implementation file.
 
 ```cpp
 // .cpp

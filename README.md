@@ -401,7 +401,7 @@ And here is a full list of plugins that I discovered so far:
 -   [Chaos Vehicles](https://dev.epicgames.com/documentation/en-us/unreal-engine/vehicles-in-unreal-engine) made by Epic Games (Vehicle System).
 -   [Common UI](https://dev.epicgames.com/documentation/en-us/unreal-engine/common-ui-plugin-for-advanced-user-interfaces-in-unreal-engine) made by Epic Games. ​
 -   [Enhanced Input](https://dev.epicgames.com/documentation/en-us/unreal-engine/enhanced-input-in-unreal-engine) made by Epic Games.
--   [Sun Position Calculator](hhttps://dev.epicgames.com/documentation/en-us/unreal-engine/geographically-accurate-sun-positioning-tool-in-unreal-engine) made by Epic Games (Real-time sky).
+-   [Sun Position Calculator](https://dev.epicgames.com/documentation/en-us/unreal-engine/geographically-accurate-sun-positioning-tool-in-unreal-engine) made by Epic Games (Real-time sky).
 
 ### MrRobinOfficial's Plugins
 
@@ -1985,7 +1985,7 @@ Text.ReverseString(); // Output: "edcba"
 ### 🚀 Math Data Types
 
 > [!NOTE]
-> In Unreal Engine 5.0+, by default, all math related data types are using `double` as backend data type. This allows Unreal to support [large world coordinates (LWC)](https://dev.epicgames.com/documentation/en-us/unreal-engine/large-world-coordinates-in-unreal-engine-5/).
+> In UE5, math types use `double` as the backend for [Large World Coordinates (LWC)](https://dev.epicgames.com/documentation/en-us/unreal-engine/large-world-coordinates-in-unreal-engine).
 
 #### Vector4
 
@@ -2192,15 +2192,15 @@ Declare and initialize a `FIntRect`:
 ```cpp
 FIntPoint MinPoint = FIntPoint(-127, -127);
 FIntPoint MaxPoint = FIntPoint(128, 128);
-FIntReact Rect = FIntRect(MinPoint, MaxPoint);
+FIntRect Rect = FIntRect(MinPoint, MaxPoint);
 ```
 
-Declare and initialize a `FUIntReact`:
+Declare and initialize a `FUIntRect`:
 
 ```cpp
 FUIntPoint UnsignedMinPoint = FUIntPoint(0, 0);
 FUIntPoint UnsignedMaxPoint = FUIntPoint(255, 255);
-FUIntReact UnsignedRect = FIntRect(UnsignedMinPoint, UnsignedMaxPoint);
+FUIntRect UnsignedRect = FUIntRect(UnsignedMinPoint, UnsignedMaxPoint);
 ```
 
 > [!NOTE]
@@ -2288,7 +2288,7 @@ Here's an example:
 ```cpp
 float X = 0.0f;
 float Y = 0.0f;
-float X = 0.0f;
+float Z = 0.0f;
 
 FPlane Plane = FVector(X, Y, Z);
 ```
@@ -2296,7 +2296,7 @@ FPlane Plane = FVector(X, Y, Z);
 Here's another way to initialize `FPlane`:
 
 ```cpp
-FPlane Plane = FVector(FVector(0.0f, 0.0f, 0.0f));
+FPlane Plane = FVector(0.0f, 0.0f, 0.0f);
 ```
 
 > [!NOTE]
@@ -4256,7 +4256,7 @@ constinit int sizeOfAnArray = getSizeOfAnArray();
 ```
 
 > [!WARNING]
-> The `consteval` and `constinit` keywords are only supported on C++ version 20. Meaning, if your compiler doesn't support, you can't use these keywords.
+> `consteval` and `constinit` require C++20, which UE 5.8 uses by default. Ensure your compiler supports them (MSVC 2022+ does).
 
 > [!NOTE]
 > Unreal Engine is now supporting [C++ version 20](https://dev.epicgames.com/documentation/en-us/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine#modernc++languagesyntax:~:text=Unreal%20Engine%20compiles%20with%20a%20language%20version%20of%20C%2B%2B20%20by%20default%20and%20requires%20a%20minimum%20version%20of%20C%2B%2B17%20to%20build.).
@@ -4991,7 +4991,7 @@ void BeginPlay();
  * Use this function to update your actor's state, like checking
  * whether it's colliding with something or not.
  *
- * NOTE; Try to avoid overusing Tick() function. Since, Unreal's core logic, is simply as runs for loop and calling each function for each lickable UObject. Which can be very expensive, with many and unnecessary update calls.
+ * NOTE; Avoid overusing Tick(). Unreal iterates all tickable UObjects each frame, which becomes expensive with many update calls.
  * Here are some tips to overcome this issue:
  *      - Change your workflow to an event based driven system. Either by using delegates or single call functions.
  *      - Change your tick interval to a slower interval. If you require for UObject to tick, but don't require updating a single frame (then this is a perfect fit).
@@ -5800,8 +5800,8 @@ Here is a list of common macros in Unreal Engine:
 -   `UENUM()` - Define an enumeration that can be used in Unreal Engine classes. This allows developers to define a set of named constants that can be used in a type-safe way.
 -   `UMETA()` - Specify additional metadata for enumeration values in Unreal Engine. This metadata can be used for a variety of purposes, such as specifying the display name or tooltip for the value in the editor.
 
--   `INLINE` - Suggestion to the compiler that a function should be inlined, but the compiler is not required to honor it. (Replacement for `inline` keyword[^1])
--   `FORCEINLINE` - A stronger suggestion that the compiler should inline the function if possible, and it may even produce an error if the function cannot be inlined. (Replacement for `force_inline` keyword[^1])'
+-   `INLINE` - Maps to `inline` keyword[^1]. Suggestion to the compiler that a function should be inlined.
+-   `FORCEINLINE` - Maps to `__forceinline` on MSVC. Stronger inline suggestion; may produce an error if the function cannot be inlined.
 
 -   `UE_LOG` - Outputs the log message into the log file. The first input parameter it takes is the name of the logging category.
 
@@ -7391,7 +7391,7 @@ You can also watch a [video about it from Ryan Sweeney](https://www.youtube.com/
 When you find a plugin and trying to install it, you might find out that it doesn't support your current engine version.
 And the Unreal's marketplace won't let you download unless you have a version associated.
 
-One trick to avoid this, is to build the plugin manually and fixing compiling issues (header file missing or API changes). By installing the plugin with the access of the source code. Then by access the plugin with the UHT[^2] (Unreal Build Tool), you can then rebuild the plugin into a different engine version.
+One trick is to build the plugin manually from source, fixing any compilation issues (missing headers, API changes). Use the UAT (Unreal Automation Tool) to rebuild the plugin for a different engine version:
 
 Here is `.bat` file (**Windows Only**) to locate the current engine directory, and compile your custom made plugin into another engine version:
 
@@ -7580,7 +7580,7 @@ With Gameplay tags, you can define a tag tree structure where each tag can have 
 You can read more about [Gameplay Tags on Unreal's blog](https://www.unrealengine.com/es-ES/tech-blog/using-gameplay-tags-to-label-and-organize-your-content-in-ue4).
 
 > [!IMPORTANT]
-> In order to use Gameplay Tags in C++, you must include the module (`GameplayTags`) inside the build system.
+> To use Gameplay Tags in C++, add `"GameplayTags"` to `PublicDependencyModuleNames` in your `Build.cs` file.
 
 You can also watch this video by [LeafBranchGames to learn all about Gameplay Tags](https://www.youtube.com/watch?v=edJGE0aidZY).
 
@@ -7650,7 +7650,7 @@ UE_DEFINE_GAMEPLAY_TAG(TAG_AK47, "Weapon.Gun.Rifle.AK47");
 ```
 
 > [!NOTE]
-> To avoid having to to use both `UE_DECLARE_GAMEPLAY_TAG_EXTERN()` and `UE_DEFINE_GAMEPLAY_TAG`, you can instead use: `UE_DEFINE_GAMEPLAY_TAG_STATIC()`. However, this macro should only used in the declared implementation file.
+> To avoid using both `UE_DECLARE_GAMEPLAY_TAG_EXTERN()` and `UE_DEFINE_GAMEPLAY_TAG`, use `UE_DEFINE_GAMEPLAY_TAG_STATIC()` instead. However, this macro should only be used in the implementation file.
 
 ```cpp
 // .cpp
@@ -7768,7 +7768,7 @@ void FMyThread::Exit()
 
 void FMyThread::Stop()
 {
-    bIsRunning = true;
+    bIsRunning = false;
 }
 ```
 
@@ -7860,13 +7860,7 @@ As said before, Ayliroé wrote an awesome documentation on Unreal's multithreadi
 
 You can find editor icons via this [github repo, made by EpicKiwi](https://github.com/EpicKiwi/unreal-engine-editor-icons).
 
-### Slate
-
-Lorem Ipsum
-
-### Creating custom asset type
-
-Lorem Ipsum
+<!-- TODO: Fill in Slate and custom asset type sections -->
 
 ## ⚠️ Common Issues
 
@@ -7874,22 +7868,14 @@ Lorem Ipsum
 
 ![Common Errors](static/img/Cpp_Errors.png)
 
-There are different types of errors and issue, that you **WILL** encounter as you get familiar with programming. There are four types of category for defining an error/issue.
+There are four categories of programming errors:
 
--   Syntax - Violations of the programming language's grammar and structure rules. Every language has its own set of rules and guidelines to follow. For an example, the Python language doesn't use semicolons nor the curly braces for defining a code block.
+-   **Syntax** - Violations of language grammar rules (e.g., Python doesn't use semicolons or curly braces).
+-   **Linker** - Unresolved references or conflicts between modules. Usually gives minimal diagnostic info.
+-   **Runtime** - Errors that crash the program during execution. Resolvable with a [call stack](https://en.wikipedia.org/wiki/Call_stack) from a [crash reporter](https://en.wikipedia.org/wiki/Crash_reporter).
+-   **Semantic** - Code compiles but behaves incorrectly. Hardest to debug — requires understanding code logic.
 
--   Linker - Issues that arise during the linking phase, such as unresolved references or conflicts between modules or libraries. A linker issue can also be very complex and hard to resolve, as it doesn't give a lot of information for you as the developer.
-
--   Runtime - Errors that occur during program execution and cause the program to crash or behave unexpectedly. A runtime error can be resolved quite quickly, if you have access to crash reporter, which usually contains the [call stack](https://en.wikipedia.org/wiki/Call_stack) (which can pinpoint the exact function or code, which caused the crash).
-
--   Semantic - Logical errors that occur when the code is syntactically correct but does not behave as intended or expected. A semantic error can be the hardest error to resolve, since you need to understand the code logical rather than syntactically.
-
-The compiler will only give errors for **Syntax** and **Linker** issue. Compile error refers to a state when a [compiler](https://en.wikipedia.org/wiki/Compiler) fails to compile. Either due to errors in the code, or, more unusually, due to errors in the compiler itself.
-
-The runtime errors can be resolved with a [crash reporter](https://en.wikipedia.org/wiki/Crash_reporter). And semantic errors can be resolved by understanding the logical reasoning of the code.
-
-> [!TIP]
-> If you feel stuck or can't think straight, then take a couple of minutes or even hours to do something else. Either is going outside, playing video games, listening to music or watching a film or a video. This can help you brain and rethink and resolve the issue quicker.
+The compiler only reports **Syntax** and **Linker** errors. A [compiler](https://en.wikipedia.org/wiki/Compiler) fails when code violates these rules.
 
 You can find all the compiler errors at [Microsoft website](https://learn.microsoft.com/en-us/cpp/error-messages/compiler-errors-1/compiler-errors-c2000-c3999).
 
@@ -8993,18 +8979,16 @@ You can read more about [HTTP module on Unreal's docs](https://dev.epicgames.com
 
 ### Encryption and Decryption
 
-When working with encryption and decryption.
+Simple obfuscation using a character substitution key (not cryptographically secure):
 
 ```cpp
 // .h
 
-// Encrypts Int32 using a 10 digit Alpha-Numeric Key into an FString
 UFUNCTION(BlueprintCallable, Category = "Encryption")
-static FString EncryptInt32(int32 InInt, FString EncryptionKey);
+static FString EncryptString(const FString& Data, const FString& EncryptionKey);
 
-// Decrypts an encrypted FString back to Int32 using a 10 digit Alpha-Numeric Key
 UFUNCTION(BlueprintCallable, Category = "Encryption")
-static int32 DecryptToInt32(FString EncryptedValue, FString EncryptionKey);
+static FString DecryptToString(const FString& EncryptedValue, const FString& EncryptionKey);
 ```
 
 ```cpp
@@ -9012,33 +8996,34 @@ static int32 DecryptToInt32(FString EncryptedValue, FString EncryptionKey);
 
 #include "Kismet/KismetStringLibrary.h"
 
-FString YourClass::EncryptString(FString Data, FString EncryptionKey)
+FString UMyBlueprintFunctionLibrary::EncryptString(const FString& Data, const FString& EncryptionKey)
 {
     FString EncryptedValue;
 
-    TArray<TCHAR> ValueChars = Data.GetCharArray();
-    TArray<TCHAR> KeyChars = EncryptionKey.GetCharArray();
-
-    for (int32 i = 0; i < ValueChars.Num() -1; i++)
+    for (int32 i = 0; i < Data.Len(); i++)
     {
-        FString TempString;
-        TempString.AppendChar(ValueChars[i]);
-        EncryptedValue.AppendChar(KeyChars[UKismetStringLibrary::Conv_StringToInt(TempString)]);
+        FString CharAsString(1, &Data[i]);
+        int32 CharValue = FCString::Atoi(*CharAsString);
+        if (CharValue >= 0 && CharValue < EncryptionKey.Len())
+        {
+            EncryptedValue.AppendChar(EncryptionKey[CharValue]);
+        }
     }
 
     return EncryptedValue;
 }
 
-FString YourClass::DecryptToString(FString EncryptedValue, FString EncryptionKey)
+FString UMyBlueprintFunctionLibrary::DecryptToString(const FString& EncryptedValue, const FString& EncryptionKey)
 {
-    TArray<TCHAR> ValueChars = EncryptedValue.GetCharArray();
-    TArray<TCHAR> KeyChars = EncryptionKey.GetCharArray();
-
     FString OutString;
 
-    for (int32 i = 0; i < ValueChars.Num() -1; i++)
+    for (int32 i = 0; i < EncryptedValue.Len(); i++)
     {
-        OutString = (OutInt * 10) + KeyChars.Find(ValueChars[i]);
+        int32 Index = EncryptionKey.Find(EncryptedValue[i]);
+        if (Index != INDEX_NONE)
+        {
+            OutString.AppendChar(TEXT('0') + Index);
+        }
     }
 
     return OutString;

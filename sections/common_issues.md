@@ -4,22 +4,14 @@
 
 ![Common Errors](static/img/Cpp_Errors.png)
 
-There are different types of errors and issue, that you **WILL** encounter as you get familiar with programming. There are four types of category for defining an error/issue.
+There are four categories of programming errors:
 
--   Syntax - Violations of the programming language's grammar and structure rules. Every language has its own set of rules and guidelines to follow. For an example, the Python language doesn't use semicolons nor the curly braces for defining a code block.
+-   **Syntax** - Violations of language grammar rules (e.g., Python doesn't use semicolons or curly braces).
+-   **Linker** - Unresolved references or conflicts between modules. Usually gives minimal diagnostic info.
+-   **Runtime** - Errors that crash the program during execution. Resolvable with a [call stack](https://en.wikipedia.org/wiki/Call_stack) from a [crash reporter](https://en.wikipedia.org/wiki/Crash_reporter).
+-   **Semantic** - Code compiles but behaves incorrectly. Hardest to debug — requires understanding code logic.
 
--   Linker - Issues that arise during the linking phase, such as unresolved references or conflicts between modules or libraries. A linker issue can also be very complex and hard to resolve, as it doesn't give a lot of information for you as the developer.
-
--   Runtime - Errors that occur during program execution and cause the program to crash or behave unexpectedly. A runtime error can be resolved quite quickly, if you have access to crash reporter, which usually contains the [call stack](https://en.wikipedia.org/wiki/Call_stack) (which can pinpoint the exact function or code, which caused the crash).
-
--   Semantic - Logical errors that occur when the code is syntactically correct but does not behave as intended or expected. A semantic error can be the hardest error to resolve, since you need to understand the code logical rather than syntactically.
-
-The compiler will only give errors for **Syntax** and **Linker** issue. Compile error refers to a state when a [compiler](https://en.wikipedia.org/wiki/Compiler) fails to compile. Either due to errors in the code, or, more unusually, due to errors in the compiler itself.
-
-The runtime errors can be resolved with a [crash reporter](https://en.wikipedia.org/wiki/Crash_reporter). And semantic errors can be resolved by understanding the logical reasoning of the code.
-
-> [!TIP]
-> If you feel stuck or can't think straight, then take a couple of minutes or even hours to do something else. Either is going outside, playing video games, listening to music or watching a film or a video. This can help you brain and rethink and resolve the issue quicker.
+The compiler only reports **Syntax** and **Linker** errors. A [compiler](https://en.wikipedia.org/wiki/Compiler) fails when code violates these rules.
 
 You can find all the compiler errors at [Microsoft website](https://learn.microsoft.com/en-us/cpp/error-messages/compiler-errors-1/compiler-errors-c2000-c3999).
 

@@ -380,18 +380,16 @@ You can read more about [HTTP module on Unreal's docs](https://dev.epicgames.com
 
 ### Encryption and Decryption
 
-When working with encryption and decryption.
+Simple obfuscation using a character substitution key (not cryptographically secure):
 
 ```cpp
 // .h
 
-// Encrypts Int32 using a 10 digit Alpha-Numeric Key into an FString
 UFUNCTION(BlueprintCallable, Category = "Encryption")
-static FString EncryptInt32(int32 InInt, FString EncryptionKey);
+static FString EncryptString(const FString& Data, const FString& EncryptionKey);
 
-// Decrypts an encrypted FString back to Int32 using a 10 digit Alpha-Numeric Key
 UFUNCTION(BlueprintCallable, Category = "Encryption")
-static int32 DecryptToInt32(FString EncryptedValue, FString EncryptionKey);
+static FString DecryptToString(const FString& EncryptedValue, const FString& EncryptionKey);
 ```
 
 ```cpp
@@ -399,33 +397,34 @@ static int32 DecryptToInt32(FString EncryptedValue, FString EncryptionKey);
 
 #include "Kismet/KismetStringLibrary.h"
 
-FString YourClass::EncryptString(FString Data, FString EncryptionKey)
+FString UMyBlueprintFunctionLibrary::EncryptString(const FString& Data, const FString& EncryptionKey)
 {
     FString EncryptedValue;
 
-    TArray<TCHAR> ValueChars = Data.GetCharArray();
-    TArray<TCHAR> KeyChars = EncryptionKey.GetCharArray();
-
-    for (int32 i = 0; i < ValueChars.Num() -1; i++)
+    for (int32 i = 0; i < Data.Len(); i++)
     {
-        FString TempString;
-        TempString.AppendChar(ValueChars[i]);
-        EncryptedValue.AppendChar(KeyChars[UKismetStringLibrary::Conv_StringToInt(TempString)]);
+        FString CharAsString(1, &Data[i]);
+        int32 CharValue = FCString::Atoi(*CharAsString);
+        if (CharValue >= 0 && CharValue < EncryptionKey.Len())
+        {
+            EncryptedValue.AppendChar(EncryptionKey[CharValue]);
+        }
     }
 
     return EncryptedValue;
 }
 
-FString YourClass::DecryptToString(FString EncryptedValue, FString EncryptionKey)
+FString UMyBlueprintFunctionLibrary::DecryptToString(const FString& EncryptedValue, const FString& EncryptionKey)
 {
-    TArray<TCHAR> ValueChars = EncryptedValue.GetCharArray();
-    TArray<TCHAR> KeyChars = EncryptionKey.GetCharArray();
-
     FString OutString;
 
-    for (int32 i = 0; i < ValueChars.Num() -1; i++)
+    for (int32 i = 0; i < EncryptedValue.Len(); i++)
     {
-        OutString = (OutInt * 10) + KeyChars.Find(ValueChars[i]);
+        int32 Index = EncryptionKey.Find(EncryptedValue[i]);
+        if (Index != INDEX_NONE)
+        {
+            OutString.AppendChar(TEXT('0') + Index);
+        }
     }
 
     return OutString;
