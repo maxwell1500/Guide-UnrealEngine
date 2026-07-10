@@ -47,6 +47,7 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
   - [MrRobinOfficial's Plugins](#mrrobinofficials-plugins)
 - [📛 Console Commands](#-console-commands)
 - [📌 Shortcuts](#-shortcuts)
+- [🎮 Enhanced Input](#-enhanced-input)
 - [⌛ Getting started with C++](#-getting-started-with-c)
   - [🌈 Integrated Development Environment](#-integrated-development-environment)
   - [⛏️ Tools to help your journey](#-tools-to-help-your-journey)
@@ -174,6 +175,11 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
 - [🛸 Reflection System](#-reflection-system)
 - [🗑️ Garbage Collection](#-garbage-collection)
   - [How does it work](#how-does-it-work)
+- [🔄 Modern Actor Iteration](#-modern-actor-iteration)
+  - [TActorRange (UE5.1+)](#tactorrangue51)
+  - [TObjectIterator](#tobjectiterator)
+  - [Old-style ForEachActor (legacy)](#old-style-foreachactor-legacy)
+  - [Best Practices](#best-practices)
     - [Rules](#rules)
     - [Examples](#examples-7)
   - [Manual memory management](#manual-memory-management)
@@ -248,6 +254,20 @@ _In this repo, we'll guide you through the basics of getting started with Unreal
     - [AsyncTask](#asynctask)
     - [ParallelFor](#parallelfor)
     - [FNonAbandonableTask](#fnonabandonabletask)
+- [⏳ Async Loading & Asset Streaming](#-async-loading--asset-streaming)
+  - [FStreamableManager](#fstreamablemanager)
+  - [FStreamableHandle](#fstreamablehandle)
+  - [LoadObject (synchronous, but simple)](#loadobject-synchronous-but-simple)
+  - [Soft Object References + Async Loading](#soft-object-references--async-loading)
+  - [Loading Levels](#loading-levels)
+  - [Best Practices](#best-practices-1)
+- [🌳 PCG (Procedural Content Generation) Framework](#-pcg-procedural-content-generation-framework)
+  - [Core Concepts](#core-concepts)
+  - [Creating a PCG Graph](#creating-a-pcg-graph)
+  - [Using PCG in C++](#using-pcg-in-c)
+  - [Runtime Graph Modification](#runtime-graph-modification)
+  - [PCG Data Attributes](#pcg-data-attributes)
+  - [Best Practices](#best-practices-2)
 - [🎯 Extend Unreal Editor](#-extend-unreal-editor)
   - [Slate](#slate)
   - [Creating custom asset type](#creating-custom-asset-type)
@@ -499,6 +519,175 @@ Camera/transformation
 Tools
 
 -   <kbd>Ctrl + Shift + Comma</kbd>: GPU Visualizer
+
+---
+
+## 🎮 Enhanced Input
+
+The Enhanced Input system replaced the legacy input system (Action/Axis mappings) starting in UE4.27 and is the default in UE5. It provides a more flexible, asset-based approach to handling player input with support for runtime remapping, contextual inputs, and complex trigger chains.
+
+### Core Concepts
+
+Enhanced Input has four main building blocks:
+
+1. **Input Actions** — Data assets representing what the player can do (e.g., "Jump", "Fire Weapon"). Each action has a value type: `bool`, `float` (Axis1D), `FVector2D` (Axis2D), or `FVector` (Axis3D).
+
+2. **Input Mapping Contexts** — Collections of Input Actions mapped to specific triggers (keys, gamepad buttons, etc.). Contexts can be added/removed at runtime for different states (walking, driving, menu).
+
+3. **Input Triggers** — Rules that determine when an action fires (press, release, hold, double-tap, chord).
+
+4. **Input Modifiers** — Pre-processors that alter raw input values (dead zones, axis inversion, smoothing).
+
+### Binding in C++
+
+```cpp
+#include "InputAction.h"
+#include "InputMappingContext.h"
+#include "EnhancedInputSubsystems.h"
+#include "EnhancedInputComponent.h"
+
+// In your header:
+UPROPERTY(EditAnywhere, Category = "Input")
+UInputAction* JumpAction;
+
+UPROPERTY(EditAnywhere, Category = "Input")
+UInputAction* MoveAction;
+
+UPROPERTY(EditAnywhere, Category = "Input")
+UInputMappingContext* DefaultMappingContext;
+
+// In your .cpp:
+void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+    Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+    // Cast to Enhanced Input Component
+    UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(PlayerInputComponent);
+    if (EnhancedInput && JumpAction)
+    {
+        // Bind to the "Triggered" event (action completed)
+        EnhancedInput->BindAction(JumpAction, ETriggerEvent::Triggered, this, &AMyCharacter::OnJump);
+        
+        // Bind to Start/Completed events for continuous movement
+        EnhancedInput->BindAction(MoveAction, ETriggerEvent::Started, this, &AMyCharacter::OnMoveStarted);
+        EnhancedInput->BindAction(MoveAction, ETriggerEvent::Completed, this, &AMyCharacter::OnMoveCompleted);
+    }
+}
+
+void AMyCharacter::OnJump()
+{
+    Jump();
+}
+
+void AMyCharacter::OnMoveStarted(const FInputActionInstance& Instance)
+{
+    // Get the float or vector value from the action
+    FVector2D MovementValue = Instance.Value.Get<FVector2D>();
+    AddMovementInput(MovementValue.Rotate(0.f, GetControlRotation().Yaw).GetSafeNormal());
+}
+
+void AMyCharacter::OnMoveCompleted(const FInputActionInstance& Instance)
+{
+    // Player released the input
+}
+```
+
+### Adding Mapping Context at Runtime
+
+```cpp
+void AMyCharacter::BeginPlay()
+{
+    Super::BeginPlay();
+
+    if (APlayerController* PC = Cast<APlayerController>(GetController()))
+    {
+        if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PC->GetLocalPlayer()))
+        {
+            // Add mapping context with priority (higher = more important)
+            Subsystem->AddMappingContext(DefaultMappingContext, 0);
+        }
+    }
+}
+
+// Remove when needed (e.g., entering a vehicle)
+void AMyCharacter::EnterVehicle()
+{
+    if (APlayerController* PC = Cast<APlayerController>(GetController()))
+    {
+        if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PC->GetLocalPlayer()))
+        {
+            // Remove walking context, add vehicle context
+            Subsystem->RemoveMappingContext(DefaultMappingContext);
+            Subsystem->AddMappingContext(VehicleMappingContext, 0);
+        }
+    }
+}
+```
+
+### Trigger States
+
+Enhanced Input actions have four trigger states you can bind to:
+
+| State | When it fires |
+|-------|---------------|
+| `Started` | Input began (e.g., key pressed down) |
+| `Ongoing` | Input is being held/processed (fires every tick while active) |
+| `Triggered` | Input completed all trigger conditions (e.g., press-and-release) |
+| `Completed` | Input finished (e.g., key released) |
+| `Canceled` | Input was interrupted before completing |
+
+### Custom Input Modifiers
+
+Create a custom modifier by subclassing `UInputModifier`:
+
+```cpp
+UCLASS(NotBlueprintable, MinimalAPI)
+class UMyInputModifierDeadZone : public UInputModifier
+{
+    GENERATED_BODY()
+
+protected:
+    virtual FInputActionValue ModifyRaw_Implementation(
+        const UEnhancedPlayerInput* PlayerInput,
+        FInputActionValue CurrentValue,
+        float DeltaTime) override
+    {
+        // Apply dead zone to a 2D axis value
+        FVector2D Value = CurrentValue.Get<FVector2D>();
+        float DeadZoneRadius = 0.2f;
+        
+        if (Value.Size() < DeadZoneRadius)
+        {
+            return FInputActionValue(FVector2D::ZeroVector);
+        }
+        
+        return CurrentValue;
+    }
+
+    UPROPERTY(EditAnywhere, Category = "Settings")
+    float DeadZoneRadius = 0.2f;
+};
+```
+
+### Debug Commands
+
+Useful console commands for debugging input:
+
+- `showdebug enhancedinput` — Shows all active input action mappings
+- `showdebug devices` — Shows connected input devices
+- `Input.+key Gamepad_Left2D X=0.7 Y=0.5` — Inject input (simulate gamepad)
+- `Input.-key Gamepad_Left2D` — Stop injecting input
+
+### Best Practices
+
+- **Use Input Actions for what the player does**, not what they press. "Jump" is an action; "Spacebar" is a binding.
+- **Use Mapping Contexts to manage input states** — walking, driving, menu, paused. Add/remove them at runtime.
+- **Bind to specific trigger events** (`Started`, `Triggered`, `Completed`) instead of polling in Tick.
+- **Use priority** when adding multiple mapping contexts — higher priority contexts win when actions conflict.
+- **Use soft references** (`TSoftObjectPtr<UInputAction>`) for input assets to avoid loading them on startup.
+- **Create custom modifiers** for platform-specific behavior (dead zones, axis inversion, sensitivity curves).
+
+---
 
 ## ⌛ Getting started with C++
 
@@ -5628,6 +5817,97 @@ Should not be used for Garbage Collection checks, as on `UPROPERTY` pointers it 
 
 <!-- prettier-ignore-end -->
 
+---
+
+## 🔄 Modern Actor Iteration
+
+Iterating over actors in a world is a common task. UE5 introduced several modern approaches that are safer and more efficient than the old `ForEachActor` loop.
+
+### TActorRange (UE5.1+)
+
+The recommended way to iterate actors in UE5.1+ is `TActorRange`. It's a range-based for loop that works with any actor class:
+
+```cpp
+// Iterate all actors of a specific class
+for (AMyActor* Actor : TActorRange<AMyActor>(GetWorld()))
+{
+    // Do something with Actor
+}
+
+// Filter by a specific actor instance
+for (AMyActor* Actor : TActorRange<AMyActor>(GetWorld(), MySpecificActor))
+{
+    // Only matches MySpecificActor
+}
+
+// Iterate all actors in a level
+for (AActor* Actor : TActorRange<AActor>(GetWorld()))
+{
+    // Do something with any actor
+}
+```
+
+You can also filter by component:
+
+```cpp
+// Iterate all actors that have a specific component type
+for (AActor* Actor : TActorRange<AActor>(GetWorld(), FActorPredicateIncludeComponents<USceneComponent>{}))
+{
+    // Only actors with USceneComponent
+}
+```
+
+### TObjectIterator
+
+For iterating **all** objects of any class (not just actors), use `TObjectIterator`:
+
+```cpp
+// Iterate all UStaticMesh objects in the engine
+for (UStaticMesh* Mesh : TObjectIterator<UStaticMesh>())
+{
+    UE_LOG(LogTemp, Log, TEXT("Found mesh: %s"), *Mesh->GetName());
+}
+
+// Skip pending kill objects (objects marked for deletion)
+for (UStaticMesh* Mesh : TObjectIterator<UStaticMesh>(EObjectIteration::SkipPendingKill))
+{
+    // Safe — won't return objects being garbage collected
+}
+
+// Skip objects that are being loaded from disk
+for (UStaticMesh* Mesh : TObjectIterator<UStaticMesh>(EObjectIteration::SkipLoadingObjects))
+{
+    // Only fully loaded objects
+}
+```
+
+### Old-style ForEachActor (legacy)
+
+The old `TActorIterator` and `UGameplayStatics::GetAllActorsOfClass` still work but are less flexible:
+
+```cpp
+// Legacy — still works but TActorRange is preferred
+TActorIterator<AMyActor> It(GetWorld());
+while (It++)
+{
+    AMyActor* Actor = *It;
+}
+
+// Even older — spawns a TArray, uses more memory
+TArray<AMyActor*> Actors;
+UGameplayStatics::GetAllActorsOfClass(GetWorld(), AMyActor::StaticClass(), Actors);
+```
+
+### Best Practices
+
+- **Use `TActorRange`** for actor iteration — it's clean, efficient, and supports filtering.
+- **Always check `IsValid()`** when iterating actors that might be destroyed during the loop.
+- **Avoid `GetAllActorsOfClass`** in performance-critical code — it allocates a TArray every time.
+- **Use `TObjectIterator`** for engine-wide searches (all meshes, all materials, etc.).
+- **Skip pending kill objects** with `EObjectIteration::SkipPendingKill` to avoid crashes.
+
+---
+
 ## 💾 Soft vs hard references
 
 ![Soft vs hard references](static/img/Soft_Hard_Refs.png)
@@ -7842,6 +8122,253 @@ MyTask->StartBackgroundTask();
 ---
 
 As said before, Ayliroé wrote an awesome documentation on Unreal's multithreading and asynchronous tasks system, which you can read either from [Google Docs](https://docs.google.com/document/d/1uw9Dfui5ZepSrBpMc1DrxFOeRFnDu8ubzFse8Mr_s7E/) or from [Forum Post](https://forums.unrealengine.com/t/multithreading-and-performance-in-unreal/1216417/1).
+
+---
+
+## ⏳ Async Loading & Asset Streaming
+
+Loading assets synchronously blocks the game thread. UE provides several systems for loading assets asynchronously to keep the game running smoothly.
+
+### FStreamableManager
+
+The `FStreamableManager` is the modern way to load assets asynchronously in UE5:
+
+```cpp
+#include "Engine/StreamableManager.h"
+
+// Get the streamable manager from the world
+FStreamableManager& StreamableManager = UGameplayStatics::GetStreamableManager();
+
+// Async load a single asset
+FSoftObjectPath AssetPath(TEXT("/Game/MyAssets/MyMesh.MyMesh"));
+StreamableManager.RequestAsyncLoad(
+    AssetPath,
+    FStreamableDelegate::CreateLambda([this]()
+    {
+        // Called when loading is complete
+        UE_LOG(LogTemp, Log, TEXT("Asset loaded!"));
+    })
+);
+
+// Get the loaded object (call after RequestAsyncLoad completes)
+UStaticMesh* Mesh = Cast<UStaticMesh>(AssetPath.ResolveObject());
+```
+
+### FStreamableHandle
+
+For more control, use `FStreamableHandle`:
+
+```cpp
+// Request async load and keep a handle
+FStreamableHandle* Handle = StreamableManager.RequestAsyncLoad(
+    AssetPath,
+    FStreamableDelegate::CreateWeakLambda(this, [this]()
+    {
+        // Loading complete — do something
+    }),
+    FStreamableManager::DefaultAsyncLoadPriority
+);
+
+// Check progress
+float Progress = Handle->GetProgress(); // 0.0 to 1.0
+
+// Cancel the load if needed
+Handle->CancelHandle();
+
+// Force synchronous wait (blocks until loaded)
+Handle->WaitForCompletion();
+```
+
+### LoadObject (synchronous, but simple)
+
+For quick loads where blocking is acceptable:
+
+```cpp
+// Synchronous load — blocks until complete
+UStaticMesh* Mesh = LoadObject<UStaticMesh>(nullptr, TEXT("/Game/MyAssets/MyMesh.MyMesh"));
+
+// Check if load succeeded
+if (Mesh && !Mesh->IsPendingInitialization())
+{
+    // Safe to use
+}
+```
+
+### Soft Object References + Async Loading
+
+Soft references pair naturally with async loading:
+
+```cpp
+UPROPERTY()
+TSoftObjectPtr<UStaticMesh> SoftMesh;
+
+// In a function:
+void MyActor::LoadMeshAsync()
+{
+    FStreamableManager& Streamable = UGameplayStatics::GetStreamableManager();
+    
+    Streamable.RequestAsyncLoad(
+        SoftMesh.ToSoftObjectPath(),
+        FStreamableDelegate::CreateWeakLambda(this, [this]()
+        {
+            // Mesh is now loaded — get the hard reference
+            UStaticMesh* LoadedMesh = SoftMesh.Get();
+            if (LoadedMesh)
+            {
+                // Use it
+            }
+        })
+    );
+}
+
+// Or load synchronously when you need it immediately:
+UStaticMesh* MyActor::GetLoadedMesh()
+{
+    if (SoftMesh.IsNull()) return nullptr;
+    
+    FStreamableManager& Streamable = UGameplayStatics::GetStreamableManager();
+    return Cast<UStaticMesh>(Streamable.LoadSynchronous(SoftMesh.ToSoftObjectPath()));
+}
+```
+
+### Loading Levels
+
+For streaming levels asynchronously:
+
+```cpp
+// Async load a level
+UGameplayStatics::LoadStreamLevel(GetWorld(), TEXT("Level_MyLevel"), false, true);
+
+// The level is now loading in the background. Check progress:
+UWorld* LoadedWorld = UGameplayStatics::GetLoadedStreamLevel(GetWorld(), TEXT("Level_MyLevel"));
+if (LoadedWorld)
+{
+    // Level is ready — transition to it
+    UGameplayStatics::OpenLevel(GetWorld(), TEXT("Level_MyLevel"));
+}
+```
+
+### Best Practices
+
+- **Use `FStreamableManager`** for asset loading — it handles reference counting and can load multiple assets in parallel.
+- **Use soft references** (`TSoftObjectPtr`) to store asset paths without loading them immediately.
+- **Always check if the loaded object is valid** before using it — async loads can fail.
+- **Don't block the game thread** for large assets — use `RequestAsyncLoad` with callbacks.
+- **Use `LoadSynchronous`** only when you need an asset immediately and can afford to wait.
+- **Unload unused assets** by letting soft references go out of scope or calling `StreamableManager.Unload()`.
+
+---
+
+## 🌳 PCG (Procedural Content Generation) Framework
+
+The PCG Framework is UE5's built-in system for procedural generation. It uses a node-based graph editor to define rules for spawning, filtering, and attributing content across levels and worlds.
+
+### Core Concepts
+
+PCG works with three main components:
+
+1. **PCG Graph** — A node-based definition of procedural rules (where to spawn, what to spawn, how to filter).
+2. **PCG Component** — An actor component that executes a PCG graph at runtime or in the editor.
+3. **PCG Data** — The data structures that flow through the graph (spawned actors, points, attributes).
+
+### Creating a PCG Graph
+
+In the Content Browser:
+1. Right-click → **PCG** → **PCG Graph**
+2. Open the graph in the PCG Graph Editor
+3. Add nodes for:
+   - **Data Source** — where to generate points (grid, scatter, along spline, etc.)
+   - **Filter** — remove or keep certain points (by distance, by tag, by attribute)
+   - **Spawner** — spawn actors at the remaining points
+   - **Attribution** — assign properties to generated points (scale, rotation, material variant)
+
+### Using PCG in C++
+
+```cpp
+#include "PCGComponent.h"
+#include "PCGGraph.h"
+
+// In your header:
+UPROPERTY(EditAnywhere, Category = "PCG")
+TSoftObjectPtr<UPCGGraph> PCGGraphAsset;
+
+// In your .cpp:
+void AMyPCGActor::BeginPlay()
+{
+    Super::BeginPlay();
+
+    if (UPCGComponent* PCGComponent = FindComponentByClass<UPCGComponent>())
+    {
+        // Set the graph to execute
+        if (!PCGGraphAsset.IsNull())
+        {
+            UPGC* Graph = Cast<UPGC>(PCGGraphAsset.LoadSynchronous());
+            if (Graph)
+            {
+                PCGComponent->SetGraph(Graph);
+            }
+        }
+
+        // Execute the graph
+        PCGComponent->Execute();
+    }
+}
+```
+
+### PCG Component Setup
+
+Add a `UPCGComponent` to any actor:
+
+```cpp
+// Add this to your actor's BeginPlay or constructor
+UPCGComponent* PCG = CreateDefaultSubobject<UPCGComponent>(TEXT("PCG"));
+PCG->SetupAttachment(RootComponent);
+```
+
+### Runtime Graph Modification
+
+You can modify PCG graphs at runtime for dynamic generation:
+
+```cpp
+void AMyPCGActor::RegenerateAtLocation(FVector NewLocation)
+{
+    if (UPCGComponent* PCGComponent = FindComponentByClass<UPCGComponent>())
+    {
+        // Modify graph parameters before re-executing
+        if (UPCGContext* Context = PCGComponent->GetCurrentContext())
+        {
+            // Update spawn location or other parameters
+            Context->SetInputValue(TEXT("SpawnLocation"), NewLocation);
+        }
+
+        // Re-execute the graph
+        PCGComponent->Execute();
+    }
+}
+```
+
+### PCG Data Attributes
+
+PCG graphs pass data through **contexts** — collections of named values. Common attributes:
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `Location` | `FVector` | Spawn position |
+| `Rotation` | `FRotator` | Spawn rotation |
+| `Scale` | `float` | Spawn scale multiplier |
+| `Tags` | `FPCGTag` | Tags for filtering and grouping |
+| `Color` | `FLinearColor` | Per-instance color |
+
+### Best Practices
+
+- **Use PCG for world-scale generation** — terrain features, vegetation, buildings, props. Not for gameplay logic.
+- **Run PCG in the editor** for level design, then bake results into the level for runtime.
+- **Use runtime PCG** for dynamic worlds (roguelike levels, terrain deformation).
+- **Cache loaded graphs** — don't call `LoadSynchronous()` every frame.
+- **Use tags** (`FPCGTag`) to group and filter generated content efficiently.
+- **Profile PCG execution** — complex graphs with many nodes can be slow. Use the PCG Editor's profiling tools.
+
+---
 
 ## 🎯 Extend Unreal Editor
 

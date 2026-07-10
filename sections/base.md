@@ -8,6 +8,8 @@
 
 <<[shortcuts.md]
 
+<<[enhanced_input.md]
+
 <<[getting_started_with_cpp.md]
 
 ## 🌍 Summary of C++ and Programming World
@@ -32,9 +34,13 @@ If you wish to extend your knowledge about C++ and general programming principle
 
 <<[create_custom_interface.md]
 
+<<[modern_iteration.md]
+
 <<[reflection_system.md]
 
 <<[garbage_collection.md]
+
+<<[gc_root_management.md]
 
 <<[soft_vs_hard_references.md]
 
@@ -69,6 +75,10 @@ If you wish to extend your knowledge about C++ and general programming principle
 <<[gameplay_tags.md]
 
 <<[multithreading_and_asynchronous_tasks.md]
+
+<<[async_loading.md]
+
+<<[pcg_framework.md]
 
 <<[extend_unreal_editor.md]
 
