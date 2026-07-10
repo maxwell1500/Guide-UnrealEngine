@@ -111,29 +111,39 @@
 <details open>
   <summary>Click to expand</summary>
 
-Object-Oriented Programming (**OOP**) is a programming paradigm that organizes code around objects, which are instances of classes. It focuses on the concept of objects, their properties (attributes), and behaviors (methods), allowing for modular, reusable, and structured code design.
+Object-Oriented Programming (**OOP**) organizes code around **objects** — bundles of data (attributes) and the functions that work with that data (methods). Think of a game character: it has properties like `Health`, `Position`, and `Speed`, plus behaviors like `TakeDamage()`, `Move()`, and `Attack()`. OOP keeps all of this together in one place instead of scattering it across unrelated functions.
 
 #### Encapsulation
 
-Encapsulation is the practice of bundling data and the methods that operate on that data within a single unit, which is typically a class. It promotes data hiding and information hiding, ensuring that the internal state and implementation details of an object are not directly accessible from outside the object. Encapsulation helps achieve data integrity, security, and abstraction by controlling access through well-defined interfaces.
+Encapsulation bundles data (variables) and the functions that operate on that data into one unit — a class. Think of it like a car dashboard: you interact with buttons and gauges (the public interface), but you don't need to know how the engine's fuel injection system works internally. The engine encapsulates its complexity behind a simple interface.
+
+In code, this means you put your data as `private` and expose only the functions that should be used to modify it. This prevents other code from putting your object into an invalid state.
 
 #### Data Hiding
 
-Data hiding is a principle closely related to encapsulation. It involves concealing the internal implementation details of an object and exposing only the necessary information through well-defined interfaces. By hiding implementation details, the object's data is protected and can only be accessed or modified through controlled methods. This enhances data security, code maintainability, and reduces the risk of unintended modifications or access to critical data.
+Data hiding is a direct consequence of encapsulation — it means keeping your class's internal data private so external code can't read or modify it directly. Instead, they must go through your public methods, which can validate input and enforce rules.
+
+Example: If a `Health` variable were public, someone could set it to `-9999` or `1000000`. By making it private and providing `TakeDamage(amount)` and `Heal(amount)` functions, you control what values are valid and can trigger side effects (like playing a damage animation) every time health changes.
 
 #### Inheritance
 
 ![Inheritance](static/img/Inheritance.png)
 
-Inheritance is a mechanism in OOP that allows new classes (derived classes or subclasses) to inherit properties and behaviors from existing classes (base classes or superclasses). Inheritance promotes code reuse, as derived classes can inherit and extend the functionality of their base classes. The derived classes can add new attributes and behaviors or override existing ones to customize the behavior of inherited members. Inheritance facilitates code organization, modularity, and the creation of hierarchical relationships between classes.
+Inheritance lets a new class (derived class) reuse code from an existing class (base class). Think of it like family traits: a child inherits eye color and hair type from their parents, but can also have unique features of their own.
+
+In code, you might have a base class `ACharacter` with common properties like `Health`, `Speed`, and `Position`. Then `APawn`, `APlayerCharacter`, and `ANPC` all inherit those properties automatically — you don't rewrite them. Each derived class can add its own stuff (like `Weapon` for `APlayerCharacter`) or override existing behavior (like how `ANPC` handles damage differently from `APlayerCharacter`).
+
+In Unreal Engine, inheritance is everywhere: every Actor, Component, and GameMode in your project inherits from a base class provided by the engine.
 
 #### Polymorphism
 
 ![Polymorphism](static/img/Polymorphism.png)
 
-Polymorphism is a fundamental concept in object-oriented programming (OOP) that allows objects of different classes to be treated as objects of a common base class. It enables you to write code that can work with objects of multiple types in a uniform manner.
+Polymorphism lets you treat derived class objects through a common base class pointer or reference. Derived classes override base methods, and the correct version is called at runtime (via `virtual` functions).
 
-Polymorphism is often illustrated through inheritance, where you have a base class and multiple derived classes that inherit from it. The derived classes can override or extend the behavior of the base class's methods, while still adhering to the common interface.
+Think of a universal remote: it has buttons labeled "Volume Up," "Volume Down," and "Power." These buttons work on your TV, stereo, and soundbar — even though each device implements those buttons differently. You don't need a different remote for each device. That's polymorphism: one interface (`Remote`), many implementations (`TV`, `Stereo`, `Soundbar`).
+
+In Unreal, this is how you can loop through all Actors in a level and call `Tick()` on each one without knowing their specific types — they all inherit from `AActor`, which has a virtual `Tick()` function.
 
 </details>
 
@@ -141,13 +151,13 @@ Polymorphism is often illustrated through inheritance, where you have a base cla
 
 Syntax refers to the set of rules that define the structure, format and grammar of a programming language. It dictates how statements and expressions should be written to form valid code.
 
-C++ follows a structured syntax that includes elements such as keywords[^1], identifiers, operators and control structures. The syntax is designed to provide precise instructions to the compiler on how to interpret and execute the code.
+C++ follows a structured syntax that includes elements such as keywords[^1], identifiers, operators and control structures. Think of syntax like grammar in English: just as "the cat sat" makes sense but "sat the cat on" doesn't, C++ has strict rules about how code must be written for the compiler to understand it.
 
 #### Weak vs Strong typing
 
-Weak and strong typing refer to different approaches in how programming languages handle data types and type safety.
+Type safety determines how strictly a language prevents you from treating data as a type it isn't.
 
-In C++, the language is considered strongly typed, as it requires explicit type conversions and does not perform implicit type coercion without the programmer's explicit instruction (except number data types). C++ enforces strong typing to ensure type safety and minimize potential errors.
+C++ is **strongly typed**: you can't accidentally treat an `int` as a `float` or a pointer as an integer without explicitly telling the compiler to do so. This catches bugs at compile time instead of letting them crash your game at runtime.
 
 Weak Typing (Python[^11] code):
 
@@ -164,11 +174,14 @@ int a = 5; // Compiled!
 
 #### Semicolons in C++
 
-In C++, a semicolon (`;`) marks the end of a statement. The compiler uses it to separate statements.
+A semicolon (`;`) marks the end of a statement. Think of it like a period at the end of a sentence — without it, the compiler doesn't know where one statement ends and the next begins.
 
-The requirement for semicolons in C++ is a design choice that provides explicit statement termination. This approach allows for more fine-grained control over program execution and eliminates ambiguity.
+```cpp
+int a = 5; // Compiled!
+int b = 5  // Error! Semicolon missing.
+```
 
-In contrast, languages like Python[^11] use indentation to define blocks of code, eliminating the need for explicit statement termination with semicolons.
+Languages like Python[^11] use newlines and indentation instead, but C++ requires explicit semicolons because it allows multiple statements on one line and gives you more control over formatting.
 
 ```cpp
 int a = 5; // Compiled!
@@ -177,9 +190,9 @@ int b = 5 // Error! Semicolon missing.
 
 #### Curly Braces in C++
 
-C++ uses curly braces (<kbd>{}</kbd>) as block delimiters to enclose multiple statements or define the body of control structures, functions, and classes. The use of curly braces provides a clear and explicit way to define the boundaries of code blocks (also know as a **scope**).
+Curly braces (<kbd>{}</kbd>) define **blocks of code** — the body of functions, classes, if-statements, loops, and namespaces. Everything inside braces shares the same **scope**: variables declared inside are invisible outside.
 
-Curly braces help define the scope of variables and maintain code readability. They ensure that statements within the braces are treated as a single unit, making it easier to understand the flow and logic of the program.
+Think of braces like a room in a house: people (variables) inside the room can see each other, but people in the hallway can't.
 
 ```cpp
 class Car
@@ -206,7 +219,7 @@ void MyFunction()
 
 #### Comments in C++
 
-Both single-line and multi-line comments are helpful for adding explanatory notes, documenting code, or temporarily disabling sections of code during debugging or development. They enhance code readability, facilitate collaboration, and provide valuable information to developers maintaining the codebase.
+Comments are ignored by the compiler — they're for humans only. Use them to explain *why* you did something, not *what* the code does (good code should be self-explanatory).
 
 ##### Single-line comments
 
@@ -233,29 +246,26 @@ Multi-line comments can span multiple lines and are used for more extensive comm
 
 #### Headers vs source files
 
-In C++, header files and source files are two types of files used to organize and manage code in a C++ program.
+Think of a header file as a **menu** at a restaurant — it tells you what's available (function names, class structures). The source file is the **kitchen** — where the actual cooking happens.
 
 <table><tr><td>
 
-Header Files (.h)
+Header Files (.h / .hpp)
 
-* Header files contain declarations of classes, functions, variables, and other elements that are used in the program.
-* They provide interfaces to the functionality implemented in the corresponding source files.
-* Header files are included in source files using `#include` directives to make the declarations visible to the compiler during the compilation process.
-
----
+* Contain: declarations (function prototypes, class definitions, type aliases)
+* Told the compiler: "these things exist"
+* Included by other files via `#include`
 
 Source Files (.cpp)
 
-* Source files contain the actual implementations of the functions and classes declared in the header files.
-* They define how the functions and classes behave and provide the logic for the program's functionality.
-* Source files are compiled to object files and then linked together to create the final executable.
+* Contain: implementations (actual function bodies, class method definitions)
+* Compiled into object files (.obj), then linked into your executable
 
 ---
 
-Reason for Separate Header and Source Files
+Why Separate Them?
 
-The separation of header and source files is a design choice that promotes modularity and improves build efficiency in C++. By keeping declarations in header files and implementations in source files, the compiler can easily check for correctness and compile only the necessary code, reducing build times and preventing redundant compilation.
+Separation keeps builds fast. When you change a function's implementation, only that `.cpp` file needs recompiling. Other files that `#include` the header don't need to touch — they already know the interface hasn't changed.
 
 ---
 
@@ -271,7 +281,7 @@ In modern programming, the choice of using single file extensions or separate he
 
 #### Includes
 
-In C++, the `include` directive is used to bring external code (headers or libraries) into your source code. It allows you to access the declarations and definitions present in those files.
+The `#include` directive copies the contents of a header file directly into your source file at compile time. It's like pasting a recipe into your cookbook — now you have access to those function declarations.
 
 The `include` directive is typically written as:
 
@@ -294,7 +304,9 @@ In general, you use double quotes for your own header files (which may be part o
 
 ### 🔥 Standard Library
 
-The standard library in C++ is a collection of pre-defined classes and functions that provide a wide range of functionality for common tasks. It is a part of the [C++ Standard Template Library (STL)](https://en.wikipedia.org/wiki/Standard_Template_Library) and is officially known as the [C++ Standard Library](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library). The library is designed to be platform-independent and provides a standardized set of features that are supported across different C++ compilers and environments.
+The standard library in C++ is a collection of pre-built tools — classes, functions, and utilities — that handle common tasks so you don't have to write them from scratch. It's part of the [C++ Standard Template Library (STL)](https://en.wikipedia.org/wiki/Standard_Template_Library) and is officially known as the [C++ Standard Library](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library).
+
+Think of it like a toolbox: instead of building your own hammer, screwdriver, and wrench for every project, you grab them from the box. The standard library gives you ready-made containers (`std::vector`, `std::map`), algorithms (`std::sort`, `std::find`), string handling, I/O operations, and more. It works the same way on Windows, Mac, or Linux — that's what "platform-independent" means.
 
 The C++ Standard Library is organized into several header files, each of which contains declarations for specific classes and functions. Some of the key components of the standard library include containers (like vectors, lists, maps, etc.), algorithms (sorting, searching, etc.), iterators, input/output operations, strings, and more.
 
@@ -456,14 +468,18 @@ double speedInMetersPerSecond = 5.5; // C++ never uses a literal for defining a 
 
 ### 🙋‍♂️ Typedefs
 
-In C++, the `typedef` keyword[^1] is used to create an **alias** or **alternative name** for existing data types. It provides a way to define a new name that can be used as a shorthand for the original type, improving code readability and maintainability.
-
-Here's an example:
+A `typedef` creates an alias — a new name for an existing type. It's like giving your friend a nickname: everyone still knows them by their real name, but calling them "Tex" is faster to say.
 
 ```cpp
 typedef int myInt; // Declare our alias for custom type
 
 myInt x = 5;  // Equivalent to: int x = 5;
+```
+
+**Modern C++ (C++11 and later)** prefers the `using` keyword instead of `typedef`. It does the same thing but reads more naturally:
+
+```cpp
+using myInt = int; // Same result, clearer syntax
 ```
 
 > [!WARNING]
@@ -547,8 +563,9 @@ private:
 
 #### Structs
 
-In C++, a `struct` is a user-defined data type that allows you to group multiple variables of different data types under a single name.
-It is similar to a `class`, but with some key differences.
+A `struct` groups multiple variables of different types under one name — like a record or a form. Think of a player stats card: it holds `Name`, `Score`, `Level`, and `Health` all in one package.
+
+It's similar to a `class`, but with one key difference: **struct members are public by default**, while class members are private by default. Use `struct` for simple data containers (like `FVector` or `FColor` in Unreal) and `class` when you need encapsulation and complex behavior.
 
 **Usage of `struct` in C++**
 - Structs are used to create lightweight data structures to hold related data elements.
@@ -654,8 +671,22 @@ obj.privateFunction(); // Error!
 
 ### 🤔 If-statements
 
-If-statement is a fundamental control structure that allows you to conditionally execute a block of code based on a specified condition.
-It provides a way to control the flow of execution in your program.
+An if-statement lets your code make decisions: "if this is true, do that." It's the simplest way to control what your program does based on conditions — like checking if a player has enough health before letting them attack.
+
+```cpp
+if (condition)
+{
+    // Code to be executed if the condition is true
+}
+else if (secondCondition)
+{
+    // Code to be executed if the secondCondition is true, but condition was false
+}
+else
+{
+    // Code to be executed if the condition and secondCondition is both false
+}
+```
 
 ```cpp
 if (condition)
@@ -732,11 +763,11 @@ switch (expression)
 
 ### 🔁 Loops
 
-Loops are essential constructs in programming languages that allow repetitive execution of a block of code based on a specified condition. They provide a way to automate tasks, process collections of data, and iterate over a sequence of elements.
+Loops execute a block of code repeatedly while a condition is true. C++ provides three loop types:
 
 #### ♾️ While Loop
 
-While loop are used when the number of iterations is uncertain but depends on a condition. The loop continues as long as the specified condition remains true. It evaluates the condition before each iteration, and if it becomes false, the loop terminates.
+**While loop** — runs while a condition is true. Evaluates before each iteration.
 
 Here's an example of finding the first power of 2 greater than 100:
 
@@ -755,7 +786,7 @@ std::cout << "First power of 2 greater than 100: " << num << std::endl;
 
 #### 🔃 Do-While Loop
 
-A do-while loop is a control flow structure in programming that executes a block of code at least once, and then repeats the execution as long as a specified condition remains true. It is similar to the while loop, but with the condition checked at the end of each iteration.
+**Do-while loop** — like `while` but checks the condition *after* running the block. Guarantees at least one execution.
 
 Here's an example of printing numbers from 1 to 5 using a do-while loop:
 
@@ -773,7 +804,7 @@ do
 
 #### 🔂 For Loop
 
-For loop are used when you know the number of iterations in advance. They consist of an initialization, a condition for continuation, and an iteration statement. The loop iterates over a range of values or a collection, incrementing or decrementing a counter variable with each iteration.
+**For loop** — use when you know the iteration count upfront. Combines initialization, condition, and update in one line.
 
 Here's an example of printing numbers from 1 to 5:
 
@@ -788,7 +819,7 @@ for (int i = 1; i <= 5; i++)
 
 #### 🗂️ Foreach Loop
 
-Foreach loop are designed to iterate over collections or sequences of elements. They automatically handle the iteration logic, allowing you to process each element without managing an explicit index or counter. The loop iterates over each element in the collection until all elements have been processed.
+**Range-based for loop** — iterates over any collection (array, vector, etc.) without manual indexing. Cleanest syntax for simple iteration.
 
 Here's an example of printing each character of a string:
 
@@ -816,13 +847,11 @@ In summary:
 
 ### 🦋 Immutable vs Mutable
 
-The terms `immutable` and `mutable` refer to the state of an object or variable and whether it can be changed after its creation. Understanding the difference between `immutable` and `mutable` objects is essential in programming as it affects how data is manipulated and shared within the code.
+`Mutable` variables can be changed after creation. `Immutable` (via `const`) cannot — their value is fixed at initialization.
 
 #### Mutable
 
-In C++, the `mutable` keyword is used to modify the behavior of a class member when the class itself is declared as `const`. When a class member is marked as mutable, it can be modified even when the object is considered constant.
-
-When you declare a class member as `const`, it means that the member cannot be modified once the object is created. However, there are scenarios where you may want to allow certain members to be modified even in a `const` object. This is where the `mutable` keyword comes into play. By using `mutable` keyword, you can change a `const` class member and alter the value.
+The `mutable` keyword lets a class member change even when the object is `const`. Useful for caches, locks, or counters that don't affect logical state.
 
 Usage of `mutable` for variables:
 
@@ -849,18 +878,21 @@ private:
 };
 ```
 
-When to use `mutable` keyword:
+When to use `mutable`:
+- Caching computed results
+- Thread-safe counters (e.g., reference counts)
+- Lazy initialization inside `const` methods
 
-The mutable keyword is used in situations where a class member maintains a state that should be allowed to change even in a const object. Common use cases for mutable include caching and lazily initializing data. By making certain members mutable, you can improve performance in specific scenarios without sacrificing the const-correctness of your class.
+Don't overuse it — only for members that don't affect the object's logical state.
 
 > [!WARNING]
-> While `mutable` can be useful, it should be used judiciously. Modifying mutable members inside `const` functions can lead to unexpected behavior and make the code harder to reason about. Ensure that the state being modified using `mutable` doesn't affect the logical constness of the class or lead to thread-safety issues.
+> Don't overuse `mutable` — modifying members inside `const` methods can make code harder to reason about and cause thread-safety issues.
 
 #### Immutable
 
-When a member variable is declared as `const`, it means that its value cannot be changed after it is initialized. This makes the member immutable, and any attempt to modify its value will result in a compilation error.
+A `const` member variable can't be changed after initialization. Any attempt to modify it causes a compilation error.
 
-The `const` keyword is used in C++ to declare a constant variable, which means its value cannot be changed once it is assigned. When applied to member functions, it indicates that the function will not modify the state of the object it is called on (i.e., it won't modify member variables unless they are explicitly marked as `mutable`). This allows the compiler to enforce immutability and provides additional safety guarantees in the code.
+The `const` keyword declares a constant variable — its value can't be changed after assignment. On member functions, it means the function won't modify the object's state (except `mutable` members). The compiler enforces this.
 
 Usage of `const` for variables:
 
@@ -883,11 +915,11 @@ const int immutableValue = 10; // Immutable variable
 
 `try-catch` handles runtime errors gracefully instead of crashing. Wrap risky code in `try`, catch specific exceptions in `catch`.
 
-In C++, the try and catch blocks are used for implementing this mechanism. Here's how it works:
+How it works:
 
-1\. `try`: You place the code that might throw an exception inside a `try` block. If an exception occurs within this block, the program will immediately jump to the nearest matching `catch` block.
+1\. Wrap risky code in a `try` block. If an exception occurs, execution jumps to the nearest matching `catch`.
 
-2\. `catch`: The `catch` block is used to catch and handle the exceptions thrown in the `try` block. It specifies the type of exception it can catch. If an exception of that type is thrown, the code within the `catch` block will be executed.
+2\. The `catch` block specifies which exception type it handles. Only matching exceptions are caught.
 
 Here's a simple example in C++:
 
@@ -904,15 +936,15 @@ catch (const char* errorMessage)
 }
 ```
 
-Using `try-catch` blocks allows you to handle exceptional situations gracefully, providing error messages to users or logging errors for debugging, instead of crashing or corrupting the program's data. It helps in making your programs more robust and user-friendly.
+Using `try-catch` blocks handles exceptional situations gracefully — provides error messages or logs for debugging instead of crashing. Makes your programs more robust and user-friendly.
 
 ### 🪞 Casting
 
-Casting, in the context of programming languages, refers to the conversion of one data type into another. It allows you to change the interpretation or representation of a variable or object, which can be useful in various situations.
+Casting converts one data type into another — changing how the compiler interprets the underlying bits. You'll use casting when you need to pass data between types that don't naturally match.
 
 #### Static casting
 
-This is the most basic and straightforward form of casting. It is performed using the (type) syntax and works for converting between related types, like integer to float or vice versa. However, it may not be safe in some situations, so you need to be cautious when using it.
+The most basic cast. Converts between related types (int ↔ float, base ↔ derived). Safe for numeric conversions, but doesn't check at runtime — if you cast a `float` to an `int`, you lose the decimal part silently.
 
 Example:
 
@@ -923,7 +955,7 @@ double num2 = static_cast<double>(num1); // Static cast from int to double
 
 #### Const casting
 
-This is used to add or remove the const qualifier from a variable. It allows you to modify the constness of a variable.
+Adds or removes `const` from a variable. Rarely needed — prefer `const_cast` only when interfacing with legacy APIs that weren't written with `const` correctness in mind.
 
 Example:
 
@@ -934,7 +966,7 @@ const_cast<int&>(x) = 10; // Const cast to remove const and modify the value of 
 
 #### Dynamic casting
 
-This is primarily used for casting pointers or references to objects in a class hierarchy. It is particularly useful when working with polymorphic classes. Dynamic casting checks the validity of the cast at runtime and returns a null pointer if the cast is not valid.
+Casts pointers/references within a class hierarchy. Only works with polymorphic classes (has virtual functions). Returns `nullptr` on failure — safe for downcasts.
 
 Example:
 
@@ -945,6 +977,8 @@ class DerivedClass : public BaseClass { /* ... */ };
 BaseClass* basePtr = new DerivedClass;
 DerivedClass* derivedPtr = dynamic_cast<DerivedClass*>(basePtr); // Dynamic cast from BaseClass to DerivedClass
 ```
+
+In Unreal Engine, `dynamic_cast` is rarely needed because the engine's reflection system (`Cast<U>()`) handles type checking more safely.
 
 #### Reinterpret Casting
 
@@ -958,7 +992,7 @@ result_type = reinterpret_cast<result_type>(expression);
 
 ### 🛼 Inlining
 
-Inlining is a compiler optimization technique used to improve the performance of code by inserting the body of a function directly at the call site, eliminating the overhead of function calls. It reduces the execution time by avoiding the function call stack setup and cleanup.
+Inlining replaces a function call with the function's body — eliminates call overhead (stack setup/cleanup). The compiler decides whether to actually inline; `inline` is just a hint.
 
 In C++, you can use the inline keyword to suggest to the compiler that a function should be inlined. For example:
 
@@ -966,9 +1000,7 @@ In C++, you can use the inline keyword to suggest to the compiler that a functio
 inline int Add(int a, int b) { return a + b; }
 ```
 
-The `inline` keyword is a hint to the compiler, and the actual decision of whether to inline a function is made by the compiler. It might choose not to inline a function if it is too large or too complex.
-
-The `__forceinline` keyword is used to force the compiler to inline a function, regardless of its size or complexity. It overrides the compiler's normal inlining heuristics and ensures that the function is always inlined wherever it is called.
+`inline` is a hint — the compiler may ignore it for large/complex functions. `__forceinline` forces it (but can bloat code size).
 
 Here's an example of how `__forceinline` can be used:
 
@@ -976,11 +1008,9 @@ Here's an example of how `__forceinline` can be used:
 __forceinline int Multiply(int a, int b) { return a * b; }
 ```
 
----
+In Unreal Engine, the engine uses `FORCEINLINE` (which maps to `__forceinline` on MSVC) for performance-critical functions like vector math operations. Inlining small, frequently-called functions eliminates function call overhead — this is why your game runs at 60fps instead of 30fps.
 
-When choosing between using a macro or a function for inlining, it is generally recommended to use functions with the `inline` keyword. Functions are more type-safe and have better debugging support compared to macros. Macros are simple textual replacements and can lead to unexpected behavior or issues if not used carefully.
-
-Using inline functions offers a good balance between performance and maintainability. They provide the benefits of inlining without sacrificing the advantages of type-checking and debugging support that functions offer. However, keep in mind that the inline keyword is just a hint to the compiler, and it may or may not `inline` the function depending on the specific context and compiler optimizations.
+Prefer `inline` functions over macros — type-safe, debuggable, no surprise substitutions. The compiler still decides whether to actually inline.
 
 ### 📇 Namespace
 
@@ -998,9 +1028,7 @@ namespace MyNamespace
 int result = MyNamespace::add(3, 5);
 ```
 
-Namespaces are particularly helpful when you are working with multiple libraries or modules, each with its own set of classes and functions. By placing them in separate namespaces, you can avoid naming conflicts when using elements from different libraries.
-
-For example, consider two libraries that both define a class called Vector. Without namespaces, including both libraries in the same project could lead to naming conflicts. However, by placing each Vector class in its own namespace, such as `Library1::Vector` and `Library2::Vector`, you can use them without conflicts.
+Namespaces prevent naming collisions between libraries or modules. Two libraries can both define `Vector` as `Library1::Vector` and `Library2::Vector` without conflicts.
 
 ```cpp
 #include <Library1/Vector.h>
@@ -1038,7 +1066,9 @@ void MyClass::staticFunction()
 }
 ```
 
-Static variables and functions are accessed using the class name followed by the scope resolution operator `::`. Since static members are shared across all instances of the class, they do not require an object to be accessed.
+Access static members with `ClassName::MemberName` — no object needed. They're shared across all instances, so there's only one copy in memory.
+
+Unreal example: `GEngine` is a global pointer (similar concept), and `UWorld::GetWorld()` is a static function that returns the current world instance.
 
 Here's how you can use static members in your code:
 
@@ -1051,19 +1081,15 @@ Static members are commonly used for class-level data and utility functions that
 
 ### `auto` keyword
 
-In C++, the `auto` keyword is used for type inference, allowing the compiler to deduce the data type of a variable automatically based on its initialization value (similar to `var` keyword in C#[^12]). It was introduced in [C++11](https://en.wikipedia.org/wiki/C%2B%2B11) as part of the modern C++ features.
-
-Here's how you can use the `auto` keyword:
+`auto` tells the compiler: "figure out the type for me." It was introduced in C++11 and works like `var` in C#[^12].
 
 ```cpp
-auto variable = 42; // Compiler will deduce the type of 'variable' as int
-auto name = "John"; // Compiler will deduce the type of 'name' as const char*
-auto pi = 3.14; // Compiler will deduce the type of 'pi' as double
+auto variable = 42; // Compiler deduces int
+auto name = "John"; // Compiler deduces const char*
+auto pi = 3.14; // Compiler deduces double
 ```
 
-The `auto` keyword is especially useful when dealing with complex data types or when the type is long and cumbersome to write explicitly. It can also simplify code maintenance since you don't need to update the type declaration if the initialization value changes.
-
-Using the `auto` keyword for return function values can be a double-edged sword. While it can make the code more concise and reduce the need to explicitly specify return types, it can also make the code less readable and harder to understand, especially when the function's logic is complex.
+Use `auto` for long, cumbersome types (like iterators or template expressions). Avoid it when the type isn't obvious from the right side — `Player* player = GetPlayer();` is clearer than `auto player = GetPlayer();`.
 
 ```cpp
 auto player = GetPlayer(); // Bad
@@ -1083,13 +1109,11 @@ Player* player = GetPlayer(); // Good
 
 Polymorphism lets you use a base class pointer or reference to work with any derived class. At runtime, the correct overridden method is called based on the actual object type.
 
-Polymorphism allows you to write more flexible and reusable code by treating objects based on their common behavior, rather than their specific type. It promotes code extensibility and enhances the ability to work with a variety of objects in a unified way.
+This means you can write code that works with any derived type without knowing the specifics — just program to the interface.
 
 ##### Operator Overloading
 
-In C++, operators are symbols or keywords[^1] used to perform various operations on data, such as arithmetic operations, logical operations, assignment, comparison, and more. They enable concise and expressive manipulation of variables and values.
-
-Operator Overloading is a feature in C++ that allows you to redefine the behavior of an operator for user-defined types. It enables you to provide a specific implementation for an operator based on the operands' types, allowing custom operations to be performed.
+Operator overloading lets you redefine what operators like `+`, `-`, `==`, and `>=` do when used with your own classes. Without it, you'd need to write `vector1.Add(vector2)` instead of `vector1 + vector2`.
 
 Here's an example of overloading the greater-than-or-equal-to `>=` operator in C++:
 
@@ -1108,15 +1132,11 @@ public:
 };
 ```
 
-By overloading operators, you can define custom behavior for how objects of a class interact with the corresponding operator. This provides flexibility and allows you to use familiar syntax and semantics for user-defined types, making the code more intuitive and expressive.
-
-Operator overloading is not limited to comparison operators; you can also overload arithmetic operators `+`, `-`, `*` and `/` assignment operators `=`, logical operators `&&`, `||`, and more. Overloading operators helps create more natural and concise code, improves code readability, and enhances the usability of user-defined types.
+You can overload arithmetic operators (`+`, `-`, `*`, `/`), comparison operators (`==`, `<`, `>=`), assignment (`=`), and more. In Unreal Engine, this is used everywhere: `FVector + FVector`, `FColor * 0.5f`, `AActor == nullptr` — all operator overloading.
 
 ##### Function Overloading
 
-Function overloading is a feature in C++ that allows you to define multiple functions with the same name but different parameters.
-
-It enables you to create functions that perform similar operations but on **different data types** or with **different parameter sets**.
+Function overloading lets you define multiple functions with the same name but different parameters. The compiler picks the right one based on what you pass in.
 
 ```cpp
 void TakeDamage(int DamageAmount)
@@ -1135,36 +1155,25 @@ void TakeDamage(double DamageAmount)
 }
 ```
 
-When you call an overloaded function, the compiler determines the appropriate function to invoke based on the arguments passed.
-
 ```cpp
-TakeDamage(10); // Calling function with integer parameter
-TakeDamage(11.1f); // Calling function with float parameter
-TakeDamage(12.25052651); // Calling function with double parameter
+TakeDamage(10); // Calls the int version
+TakeDamage(11.1f); // Calls the float version
+TakeDamage(12.25052651); // Calls the double version
 ```
 
-With function overloading, it provides several benefits, including:
-
-<table><tr><td>
-
-* Code Reusability: Overloading allows you to reuse a function name and provide multiple implementations for different scenarios, reducing code duplication.
-
-* Readability and Intuitive API: By using the same function name for similar operations, code becomes more readable and intuitive to understand.
-
-* Compile-Time Dispatch: The appropriate overloaded function is determined at compile-time based on the arguments, resulting in efficient and optimized code execution.
-
-</td></tr></table>
+Benefits:
+* Reuse a familiar function name (`TakeDamage`) instead of inventing three different names
+* The compiler picks the right version at compile-time — no performance cost
+* Cleaner, more intuitive API
 
 > [!WARNING]
 > UHT[^2] doesn't support function overloading. Meaning, you can't expose to Blueprint.
 
 ##### Virtual functions
 
-In object-oriented programming (OOP), a virtual function is a function declared in a base class that can be overridden in derived classes. It allows you to provide a common interface in the base class while allowing different implementations in the derived classes.
+A virtual function is a function in a base class that can be overridden by derived classes. Without `virtual`, calling the function through a base class pointer always runs the base class version — even if the object is actually a derived type. With `virtual`, the derived class's version runs instead. This is how Blueprint functions override their C++ equivalents in Unreal.
 
-When a function is declared as `virtual` in the base class, it indicates that the function can be overridden by derived classes. This means that the derived class can provide its own implementation of the function, tailored to its specific needs.
-
-Here's an example in C++ to illustrate the concept of virtual functions:
+Here's an example:
 
 ```cpp
 class Shape
@@ -1195,11 +1204,9 @@ public:
 };
 ```
 
-The key aspect of the virtual function is that the appropriate implementation to be executed is determined at runtime, based on the actual type of the object being referred to. This is called dynamic dispatch or late binding.
+When you call `Draw()` through a `Shape*` pointer, the correct version runs based on what the object actually is. This is called **dynamic dispatch** (or late binding).
 
-Virtual functions are useful when you want to define a common interface in a base class but allow derived classes to provide their own implementations based on their specific behaviors. It enables polymorphism, allowing objects of different derived classes to be treated uniformly through a base class pointer or reference.
-
-Using virtual functions, you can write code that works with objects based on their common interface, without needing to know their specific types. This promotes code extensibility and flexibility, as new derived classes can be added without modifying the existing code that uses the base class interface.
+In Unreal Engine, virtual functions power the Blueprint system: when you override `BeginPlay()` or `Tick()` in a Blueprint, you're overriding a virtual C++ function.
 
 | Keyword used | Matching virtual function in base class | Result                   |
 |--------------|-----------------------------------------|--------------------------|
@@ -1214,9 +1221,11 @@ Using virtual functions, you can write code that works with objects based on the
 
 ### 🧙‍♂️ Generic Programming
 
-Generic Programming is a programming paradigm that focuses on writing reusable code by abstracting away specific types and working with generic types that can be instantiated with various concrete types. It allows programmers to create functions, classes, and algorithms that can operate on different data types without requiring code duplication.
+Generic programming lets you write code that works with any type — no need to rewrite the same logic for `int`, `float`, `FVector`, etc. In C++, this is done with **templates**.
 
-In C++, the `template` keyword[^1] is used to implement generic programming through templates. Templates allow you to define functions or classes that can be instantiated with different types. They provide a powerful mechanism for code reuse and flexibility.
+Think of a template like a cookie cutter: the cutter (template) defines the shape, but you can use it to make cookies from any dough (type). The compiler generates a version of your function or class for each type you use it with.
+
+In C++, the `template` keyword[^1] implements this. Templates let you define functions or classes that work with any type — the compiler fills in the details when you use them.
 
 Here is a video about [templates in C++ by Cazz](https://www.youtube.com/watch?v=p3OQDb4nWfg)
 
@@ -1253,11 +1262,9 @@ int factorial(int n)
 
 Benefits of Recursion
 
-* Simplicity: Recursive solutions can often be more straightforward and easier to understand for certain problems, especially those that have a recursive nature.
-
-* Elegant Code: Recursive code can lead to more elegant and concise solutions for problems that have repetitive or nested structures.
-
-* Divide and Conquer: Recursive algorithms often break a complex problem into smaller, more manageable subproblems, making it easier to solve.
+* **Simplicity**: Some problems (tree traversal, factorial, Fibonacci) are naturally recursive and cleaner to write recursively
+* **Divide and Conquer**: Algorithms like merge sort and quicksort break problems into smaller pieces elegantly
+* **No manual stack needed**: The call stack handles the bookkeeping for you
 
 </td></tr></table>
 
@@ -1266,9 +1273,9 @@ Benefits of Recursion
 
 ### ⚙️ Linker
 
-The [linker](https://en.wikipedia.org/wiki/Linker_(computing)) is a program that makes executable files for your project, in order to run the [.exe](https://en.wikipedia.org/wiki/.exe) file.
+The [linker](https://en.wikipedia.org/wiki/Linker_(computing)) combines all your compiled `.cpp` files (and any external libraries) into one executable or library. Think of it like a puzzle assembler: each `.cpp` file is a completed section of the puzzle, and the linker snaps them together.
 
-The linker's job is to resolve undefined symbols. If the linker cannot resolve the issue, it then gives you a linkage error, and you have to resolve it instead.
+The linker's main job is to resolve "undefined symbols" — when one file calls a function defined in another file, the linker connects them. If it can't find a function or variable, you get a linker error (usually "unresolved external symbol").
 
 You can also flag the linker to export some extra debugging files or so called [.pdb](https://devblogs.microsoft.com/cppblog/whats-inside-a-pdb-file/) (Program Debug Database) file. These files can be helpful for other programmers, as they contain extra information (such as comments and other debugging information).
 
@@ -1288,12 +1295,12 @@ File extensions
 
 </td></tr></table>
 
-When you compile, you have the options to compile the source code into a [.lib](https://en.wikipedia.org/wiki/Static_library) file. The .lib file can then be read by the linker, which include all files, when executing a compilation.
+When you compile, the source code becomes a [.lib](https://en.wikipedia.org/wiki/Static_library) file that gets baked directly into your `.exe`. The linker copies all the library code into your executable at build time.
 
 > [!NOTE]
-> Because static library is merged into .exe file, it increases the final size of .exe file.
+> Because the static library is merged into the `.exe`, it increases the final file size.
 
-**Use static library if you want to access content statically and have compiling errors to ensure that the code can be executed.**
+Use static libraries when you want everything bundled together — no dependency management needed, and compile-time errors catch issues early.
 
 #### Dynamic Library
 
@@ -1311,9 +1318,9 @@ File extensions
 
 [![Watch the video by James McNellis from CppCon 2017](https://img.youtube.com/vi/JPQWQfDhICA/maxresdefault.jpg)](https://youtu.be/JPQWQfDhICA)
 
-When you compile, you have the options to compile the source code into a [.dll](https://en.wikipedia.org/wiki/Dynamic-link_library) file. The .dll file can then be read by the .exe file at runtime.
+When you compile, the source code becomes a [.dll](https://en.wikipedia.org/wiki/Dynamic-link_library) file that loads at runtime. Your `.exe` doesn't include the DLL code — it just knows where to find it when needed.
 
-There are major problems when developing a project that uses .dll files. Not only, do you have to make sure that all the files are correct versions but also exists and can be executed correctly.
+This creates management headaches: you need to make sure the right DLL version is present, in the right location, and compatible with your executable. This problem is so common it has a name: [DLL Hell](https://en.wikipedia.org/wiki/DLL_Hell).
 
 <table><tr><td>
 
@@ -1378,7 +1385,9 @@ You can read more about it from [Microsoft Learn](https://learn.microsoft.com/en
 
 ### 🫀 Lambda
 
-In C++, a lambda expression, often referred to as a lambda function or lambda, is an anonymous function that you can define inline. It provides a convenient way to create small, inline functions without the need for explicitly declaring a separate function.
+A lambda is an anonymous (nameless) function you write inline where you use it — no need to define a separate function first. Think of it like writing a quick note instead of drafting a full letter.
+
+Common in Unreal Engine for delegate bindings, array algorithms, and event handlers:
 
 Here is a video by [The Cherno about Lambdas in C++](https://www.youtube.com/watch?v=mWgmBBz0y8c).
 
@@ -1418,33 +1427,29 @@ int result = sum(num1, num2);
 
 ### 🦾 Binary code
 
-Binary code is a system of representing data and instructions using a two-symbol system, typically `0` and `1`. It is the fundamental language that computers understand and use internally to process information. Each 0 or 1 is called a "**bit**" (short for binary digit), and a group of 8 bits is called a "**byte**".
+Binary is how computers store everything — numbers, text, images, game states. It uses only two symbols: `0` and `1`. Each digit is a **bit** (binary digit), and 8 bits make a **byte**.
+
+You'll encounter binary when working with bitwise operators (see below) or debugging memory issues in Unreal Engine.
 
 #### Logic gates
 
-Logic gates are fundamental building blocks of digital circuits, responsible for performing logical operations on binary inputs to produce binary outputs. These gates form the basis of digital systems, including computers and other electronic devices. Each logic gate implements a specific Boolean function, which takes one or more binary inputs and produces an output based on a defined truth table.
+Logic gates are the building blocks of digital circuits. They take binary inputs and produce a binary output based on a simple rule. You'll use these concepts when working with bitwise operators in C++.
 
-There are several types of logic gates, each representing a different fundamental logical operation:
-
-1. **AND Gate:** This gate produces an output of 1 (or "high") only when both of its input signals are 1. Otherwise, the output is 0 (or "low"). It behaves like the logical "AND" operation.
-
-2. **OR Gate:** The OR gate produces an output of 1 if at least one of its input signals is 1. It produces an output of 0 only when both inputs are 0. It behaves like the logical "OR" operation.
-
-3. **NOT Gate:** Also known as an inverter, this gate has a single input and produces the opposite value as its output. If the input is 1, the output is 0, and vice versa. It behaves like the logical "NOT" operation.
-
-4. **NAND Gate:** The NAND gate is a combination of an AND gate followed by a NOT gate. It produces the opposite output of an AND gate: it gives a 0 output when both inputs are 1, and a 1 output otherwise.
-
-5. **NOR Gate:** Similar to the NAND gate, the NOR gate combines an OR gate with a NOT gate. It produces the opposite output of an OR gate: it gives a 1 output only when both inputs are 0.
-
-6. **XOR Gate:** The XOR (exclusive OR) gate produces a 1 output when the number of 1 inputs is odd. If the number of 1 inputs is even, the output is 0.
-
-7. **XNOR Gate:** The XNOR (exclusive NOR) gate is the complement of the XOR gate. It produces a 1 output when the number of 1 inputs is even, and a 0 output otherwise.
+| Gate | Rule | Real-world analogy |
+|------|------|-------------------|
+| **AND** | Output is 1 only if both inputs are 1 | Both switches must be ON for the light to turn on |
+| **OR** | Output is 1 if at least one input is 1 | Either switch can turn the light on |
+| **NOT** | Flips the input (1→0, 0→1) | A toggle that reverses the state |
+| **NAND** | AND followed by NOT | Opposite of AND |
+| **NOR** | OR followed by NOT | Opposite of OR |
+| **XOR** | Output is 1 if inputs are different | Two switches that turn light on only when one is ON and the other is OFF |
+| **XNOR** | Output is 1 if inputs are the same | Opposite of XOR |
 
 #### Hexadecimal
 
-Hexadecimal (hex) is a base-16 numbering system that is commonly used in computers to represent and manipulate binary data in a more human-readable and compact format. In the hexadecimal system, each digit represents a value from 0 to 15, making it a convenient way to represent binary data.
+Hexadecimal (hex) is a base-16 numbering system — it uses digits 0-9 and letters A-F (representing 10-15). It's a compact way to write binary data that humans can read. One hex digit = 4 bits, so two hex digits = one byte.
 
-In the decimal (base-10) numbering system, we use ten symbols (0 to 9) to represent numbers. Similarly, in hexadecimal, we use sixteen symbols (0 to 9 and A to F) to represent values. The symbols A to F represent the decimal values 10 to 15, respectively.
+In Unreal Engine, you'll see hex everywhere: memory addresses (`0x00A3F2C1`), color values (`0xFF884422` for ARGB), and GUIDs.
 
 Here is a comparison of decimal and hexadecimal representations:
 
@@ -1471,9 +1476,9 @@ As an example, `255` in hexadecimal would be `FF`.
 
 #### Bitwise Operators
 
-Bitwise Operators in C++ are used to perform bitwise operations on individual bits of data type. These operators directly manipulate the binary representation of data type at the bit level.
+Bitwise operators manipulate individual bits of data. They're fast because they work directly on the CPU's binary representation — no loops, no function calls.
 
-Bitwise operations can bring performance benefits in certain situations because they operate at a low level, dealing directly with binary representations. This can make certain operations faster and more memory-efficient compared to other higher-level approaches.
+You'll use them in Unreal Engine for: flag-based settings (like `EFastArraySerializerItem::bHasChanged`), color channel manipulation, and performance-critical code.
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/igIjGxF2J-w/maxresdefault.jpg)](https://youtu.be/igIjGxF2J-w)
 
@@ -1510,28 +1515,27 @@ The **stack** stores local variables and function call frames — fast allocatio
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/5OJRqkYbK-4/maxresdefault.jpg)](https://youtu.be/5OJRqkYbK-4)
 
-In C++, you have the flexibility to choose between stack and heap memory allocation based on your program's requirements. Stack memory is typically used for most local variables and function calls, providing automatic memory management and efficient access. On the other hand, heap memory is used when dynamic memory allocation is needed, allowing you to control the lifetime of objects and manage more extensive data structures.
+Choose stack for local variables and function calls (automatic, fast). Choose heap for dynamic data that needs to outlive its scope (`new`/`delete`).
 
-C++ provides features like dynamic memory allocation with `new` and `delete` operators, allowing you to allocate memory on the heap explicitly. However, it is important to manage heap memory carefully to avoid memory leaks and unnecessary memory consumption.
+C++ provides `new` and `delete` operators for explicit heap allocation. Manage it carefully — leaks and dangling pointers are the main risks.
 
 #### Stack Memory Allocation
 
-* Stack memory is a region of memory used for automatic memory allocation.
-* It is managed by the compiler and follows a "last-in, first-out" (LIFO) data structure.
-* Stack memory is typically used for storing local variables, function call frames, and other short-lived data.
-* Memory allocation and deallocation in the stack are handled implicitly by the compiler.
-* Stack memory is fast and efficient but limited in size.
-* Variables allocated on the stack have automatic storage duration and are deallocated automatically when they go out of scope.
+Stack memory is automatic — the compiler handles it. When a function is called, its local variables go on the stack. When the function returns, they're gone. It's fast because the CPU just moves a pointer up and down.
+
+* Used for: local variables, function parameters, return addresses
+* Lifetime: tied to the scope (function, block) where it's declared
+* Size: limited (usually 1-8 MB per thread)
+* Unreal example: `int Health = 100;` inside a function lives on the stack
 
 #### Heap Memory Allocation
 
-* Heap memory is a region of memory used for dynamic memory allocation.
-* It allows for manual control over memory allocation and deallocation.
-* Memory on the heap can be allocated and deallocated at runtime using functions like `new` and `delete` in C++.
-* Heap memory is typically used for storing objects with longer lifetimes or for data structures that need dynamic resizing.
-* Memory allocated on the heap needs to be explicitly deallocated to avoid memory leaks.
-* Heap memory is slower than stack memory due to dynamic allocation and deallocation operations.
-* The size of heap memory is typically much larger than the stack, but its allocation and deallocation require manual management.
+Heap memory is manual — you request it with `new` and return it with `delete`. It lives in a large pool of available RAM and outlives the function that created it.
+
+* Used for: data that needs to outlive a function, large arrays, dynamically sized collections
+* Lifetime: until you explicitly free it (or the program exits)
+* Size: limited only by available RAM
+* Unreal example: `new TArray<FVector>()` allocates on the heap
 
 ---
 
@@ -1540,61 +1544,64 @@ C++ provides features like dynamic memory allocation with `new` and `delete` ope
 
 | Aspect           | Stack                                    | Heap                                        |
 |------------------|------------------------------------------|---------------------------------------------|
-| Memory Location  | Located in the system's RAM, typically in a contiguous block. | Located in a different part of memory, often called the "free store." |
-| Memory Management| Automatically managed by the compiler or runtime system using Last-In-First-Out (LIFO) order. | Requires manual management, using dynamic memory allocation and deallocation (e.g., `new` and `delete` in C++). |
-| Memory Size      | Fixed size, limited by the stack's size. | Dynamic size, limited by the available memory of the system. |
-| Allocation Speed | Faster, as memory allocation and deallocation is done by adjusting the stack pointer. | Slower, as memory allocation requires searching for a suitable free block in the heap. |
-| Deallocation     | Automatically deallocated when the function or scope it belongs to exits. | Must be explicitly deallocated to avoid memory leaks. |
-| Use Cases        | Best suited for managing local variables and function call frames. | Used for data structures that need to exist beyond the scope of a function or when the memory size is not known at compile time. |
-| Risk of Overflow | May cause a stack overflow if too much memory is used, leading to program termination. | Generally less prone to overflow as it can grow dynamically, but can still cause out-of-memory errors if not managed properly. |
+| Memory Location  | Contiguous block in RAM                  | Scattered "free store" region               |
+| Memory Management| Automatic (LIFO, compiler-managed)       | Manual (`new`/`delete`)                     |
+| Memory Size      | Fixed, limited by stack size             | Dynamic, limited by available RAM           |
+| Allocation Speed | Fast (just adjust the stack pointer)     | Slow (searches for free blocks)             |
+| Deallocation     | Automatic on scope exit                  | Must be explicit, or risk leaks             |
+| Use Cases        | Local variables, function call frames    | Data structures needing dynamic sizing or longer lifetime |
+| Risk of Overflow | Stack overflow if too deep/nested        | Out-of-memory if not freed properly         |
 
 ### Design Patterns And Principles
 
-Design patterns are reusable solutions to common programming problems that have been proven effective over time. They provide guidelines and templates for structuring code, promoting best practices, and improving software design.
+Design patterns are proven solutions to recurring problems. They provide templates for structuring code — not copy-paste code, but blueprints for good design.
 
 [![Watch the video by Fireship](https://img.youtube.com/vi/tv-_1er1mWI/maxresdefault.jpg)](https://youtu.be/tv-_1er1mWI)
 
-Here are a few notable design patterns:
-
 #### SOLID Principle
 
-`SOLID` or Single responsibility principle, Open-closed principle, Liskov substitution principle, Interface segregation principle, and Dependency inversion principle. SOLID is a mnemonic acronym for five design principles designed to make software designs more flexible, understandable, and maintainable.
+Five principles that make code more flexible and maintainable:
+- **S**ingle Responsibility — one reason to change
+- **O**pen/Closed — open for extension, closed for modification
+- **L**iskov Substitution — subclasses must not break base class contracts
+- **I**nterface Segregation — many small interfaces > one fat one
+- **D**ependency Inversion — depend on abstractions, not concretions
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/kF7rQmSRlq0/maxresdefault.jpg)](https://youtu.be/kF7rQmSRlq0)
 
 #### KISS (Keep It Simple, Stupid)
 
-The [KISS principle](https://en.wikipedia.org/wiki/KISS_principle) emphasizes simplicity and avoiding unnecessary complexity in software design. It encourages keeping code, algorithms, and systems as simple as possible to enhance readability, maintainability, and reduce the likelihood of errors.
+Keep it simple. Avoid unnecessary complexity — the simplest solution that works is usually the best.
 
 [![Watch the video by Smok Code](https://img.youtube.com/vi/bEG94zyZlX0/maxresdefault.jpg)](https://youtu.be/bEG94zyZlX0)
 
 #### Singleton
 
-The [Singleton pattern](https://en.wikipedia.org/wiki/Singleton_pattern) ensures that only one instance of a class is created and provides a global point of access to that instance. It is useful in scenarios where you need to control access to a shared resource or want to limit the instantiation of a class to a single object.
+Guarantees exactly one instance of a class, with global access. Useful for shared resources (e.g., game state managers). In Unreal, prefer `UWorld::GetGameInstance()` or subsystems over manual singletons.
 
 [![Watch the video by Web Dev Simplified](https://img.youtube.com/vi/sJ-c3BA-Ypo/maxresdefault.jpg)](https://youtu.be/sJ-c3BA-Ypo)
 
 #### Observer
 
-The [Observer](https://en.wikipedia.org/wiki/Observer_pattern) pattern establishes a one-to-many dependency between objects. It allows multiple observer objects (listeners) to be notified and updated automatically when the observed object (subject) undergoes a change in state. This pattern is widely used in event-driven systems or scenarios requiring loose coupling between objects.
+One-to-many dependency: when the subject changes, all observers are notified. Unreal's delegates and `UObject` property change notifications are built on this idea.
 
 [![Watch the video by Derek Banas](https://img.youtube.com/vi/wiQdrH2YpT4/maxresdefault.jpg)](https://youtu.be/wiQdrH2YpT4)
 
 #### Factory
 
-The [Factory pattern](https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)) provides an interface for creating objects without exposing the creation logic to the client. It centralizes object creation, allowing clients to use the factory interface to create objects based on specific criteria or conditions. This pattern promotes flexibility, decoupling, and abstraction in object creation.
+Creates objects without exposing the construction logic. Use `UFactory` subclasses in Unreal for editor-level object creation, or simple static factory methods for C++ classes.
 
 [![Watch the video by CppNuts](https://img.youtube.com/vi/XyNWEWUSa5E/maxresdefault.jpg)](https://youtu.be/XyNWEWUSa5E)
 
 #### Strategy
 
-The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a family of algorithms and encapsulates each algorithm as a separate class. It allows clients to dynamically choose and switch between different algorithms at runtime. This pattern enables code reuse, promotes separation of concerns, and facilitates the "Open-Closed Principle" by allowing new algorithms to be added without modifying existing code.
+Swappable algorithms behind a common interface. Pick the right behavior at runtime instead of nested `if/else` or `switch` statements.
 
 [![Watch the video by Derek Banas](https://img.youtube.com/vi/-NCgRD9-C6o/maxresdefault.jpg)](https://youtu.be/-NCgRD9-C6o)
 
 #### MVC (Model-View-Controller)
 
-[MVC is an architectural design pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) commonly used in user interface development. It separates an application into three interconnected components: the Model (data and business logic), the View (presentation and user interface), and the Controller (handles user input and updates the model). MVC promotes code organization, maintainability, and modularity.
+Separates data (Model), UI (View), and input handling (Controller). Less relevant in Unreal — UMG handles views directly, and game logic lives in Actors/Controllers rather than a strict MVC split.
 
 [![Watch the video by Web Dev Simplified](https://img.youtube.com/vi/DUg2SWWK18I/maxresdefault.jpg)](https://youtu.be/DUg2SWWK18I)
 
@@ -1602,13 +1609,13 @@ The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a
 
 | Pattern/Principle | Description                                                                           | Use Case                                                 |
 |-------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------|
-| SOLID Principles  | A set of five principles: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion. | Designing maintainable, scalable, and flexible code.    |
-| KISS Principle    | "Keep It Simple, Stupid" - Encourages simplicity and avoiding unnecessary complexity in code. | Writing code that is easy to understand and maintain.   |
-| Singleton Pattern | Ensures a class has only one instance and provides a global point of access to that instance. | Managing shared resources or configurations.             |
-| Observer Pattern  | Defines a one-to-many dependency between objects, so that when one object changes state, all its dependents are notified and updated automatically. | Implementing event handling and decoupling components.   |
-| Factory Pattern   | A creational pattern that provides an interface for creating objects, but allows subclasses to alter the type of objects that will be created. | Creating objects without specifying the exact class.     |
-| Strategy Pattern  | Allows selecting an algorithm or behavior during runtime by encapsulating each behavior in separate classes and making them interchangeable. | Implementing different algorithms for the same task.     |
-| MVC Pattern       | Model-View-Controller: Separates an application into three components - the model (data and business logic), the view (user interface), and the controller (manages user input and updates the model and view). | Structuring applications for better maintainability and scalability. |
+| SOLID Principles  | Five principles for clean, maintainable design                                        | Any codebase that needs to scale                        |
+| KISS Principle    | Simplicity over cleverness                                                            | Everyday coding                                         |
+| Singleton Pattern | One instance, global access                                                           | Game state, config managers                             |
+| Observer Pattern  | Notify listeners when state changes                                                   | Events, delegates, property notifications               |
+| Factory Pattern   | Create objects without exposing construction logic                                    | Polymorphic object creation                             |
+| Strategy Pattern  | Swappable algorithms behind a common interface                                        | AI behaviors, movement types, combat styles             |
+| MVC Pattern       | Separates data, UI, and input handling                                              | Web/UI apps (less relevant in Unreal)                     |
 
 ### 💯 Structures
 
@@ -1616,7 +1623,7 @@ The [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) defines a
 
 #### Array
 
-An array is a collection of elements stored in contiguous memory locations. It allows accessing elements using an index, making it efficient for random access. However, its size is fixed during initialization.
+A fixed-size collection stored in contiguous memory. Fast random access by index, but can't resize after creation.
 
 Here's an example:
 
@@ -1629,7 +1636,7 @@ std::array<int, 5> myArray = {1, 2, 3, 4, 5};
 
 #### List
 
-A list is a linear data structure that supports fast insertion and deletion at any position. It does not provide random access but is efficient for frequent insertions and removals.
+Doubly-linked list — fast insert/delete anywhere, but no random access (O(n) traversal). Rarely used in Unreal code; prefer `TArray` or `TList`.
 
 Here's an example:
 
@@ -1645,7 +1652,7 @@ myList.push_front(0);
 
 #### Queue
 
-A queue is a linear data structure that follows the First-In-First-Out (FIFO) principle. Elements are added to the back (enqueue) and removed from the front (dequeue).
+FIFO collection — add at the back, remove from the front. Useful for task queues, event processing. Unreal has `TQueue` for thread-safe variants.
 
 Here's an example:
 
@@ -1662,7 +1669,7 @@ myQueue.push(3);
 
 #### Hash Set (Lookup table)
 
-A hash set is a collection of unique elements, and it uses hashing to achieve fast insertion, deletion, and lookup operations.
+Unique elements with O(1) average lookup/insert/delete via hashing. Unreal's `TSet` is the equivalent.
 
 Here's an example:
 
@@ -1677,7 +1684,7 @@ myHashSet.insert(6);
 
 #### Dictionary (Map)
 
-A dictionary, also known as a map, is a collection of key-value pairs, where each key is unique. It provides fast access to values based on their keys.
+Key-value pairs with unique keys. O(1) average lookup. Unreal's `TMap` is the equivalent; use `TSet` for keys-only.
 
 Here's an example:
 
@@ -1694,7 +1701,7 @@ myDictionary["orange"] = 8;
 
 #### Linked List
 
-A linked list is a linear data structure where elements (nodes) are connected via pointers. It supports efficient insertion and deletion but requires more memory compared to arrays.
+Nodes linked by pointers — O(1) insert/delete if you have the node, but no random access. More memory per element (stored pointers). Unreal has `TList` for this.
 
 > [!NOTE]
 > Linked list structure doesn't exist in C++ standard library.
@@ -1749,15 +1756,15 @@ int main()
 
 | Data Structure   | Description                                                                                              | Use Case                                                             |
 |------------------|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
-| Array            | A fixed-size collection of elements of the same data type stored in contiguous memory locations.        | Used when the size is known at compile time and constant-time access is required.  |
-| List             | A dynamic collection of elements, usually implemented as a doubly-linked list or dynamic array.         | Suitable when the size is unknown or frequently changes, offering efficient insertion and deletion. |
-| Hash Set         | A collection of unique elements, stored in a hash table based on their hash codes.                      | Ideal for maintaining a set of distinct items and performing fast membership checks.   |
-| Dictionary       | Also known as a hash map, it stores key-value pairs and allows fast lookup of values based on keys.     | Used when quick access to data based on keys is required, e.g., in associative arrays. |
-| Linked List      | A linear data structure where elements are stored in nodes, each containing a value and a reference to the next node. | Suitable when frequent insertion and deletion at any position are required.  |
+| Array            | Fixed-size, contiguous memory                                                                            | Known size, fast random access                                      |
+| List             | Doubly-linked, O(1) insert/delete anywhere                                                                | Frequent insertions/deletions                                       |
+| Hash Set         | Unique elements, O(1) lookup via hash                                                                    | Membership checks, deduplication                                    |
+| Dictionary       | Key-value pairs, O(1) lookup                                                                              | Fast key-based access                                               |
+| Linked List      | Nodes with pointers, no random access                                                                     | Frequent insertions/deletions (when you already have the node)      |
 
 ### ⏰ Time Complexity
 
-Time complexity is a measure of how the runtime of an algorithm grows with the size of the input data. It helps us understand how efficient an algorithm is and how it will scale when dealing with larger datasets.
+Time complexity measures how runtime grows with input size. It tells you how an algorithm scales — not exact execution time, but growth rate (Big-O notation).
 
 [![Watch the video by Alex Hyett](https://img.youtube.com/vi/aIG48ldbpRI/maxresdefault.jpg)](https://youtu.be/aIG48ldbpRI)
 
@@ -1771,7 +1778,7 @@ Here is a graph of Time Complexity:
 Time complexity: `O(1)`
 </td></tr></table>
 
-An algorithm has constant time complexity if its runtime does not depend on the size of the input data. It performs the same number of operations regardless of the input size.
+Runtime is independent of input size — always the same number of operations, whether you pass 1 element or 1 million.
 
 Here's an example:
 
@@ -1799,7 +1806,7 @@ int main()
 Time complexity: `O(log n)`
 </td></tr></table>
 
-An algorithm has logarithmic time complexity if its runtime grows logarithmically with the size of the input. It divides the input data into smaller portions and discards a significant portion at each step.
+Runtime grows as log(n) — each step cuts the problem in half. Binary search is the classic example: halves the search space every iteration.
 
 Here's an example:
 
@@ -1845,7 +1852,7 @@ int main()
 Time complexity: `O(n)`
 </td></tr></table>
 
-An algorithm has linear time complexity if its runtime grows linearly with the size of the input data. It performs an operation for each element in the input.
+Runtime scales directly with input size — double the input, double the time. One pass through the data.
 
 Here's an example:
 
@@ -1879,7 +1886,7 @@ int main()
 Time complexity: `O(n^2)`
 </td></tr></table>
 
-An algorithm has quadratic time complexity if its runtime grows with the square of the input size. It often involves nested loops, leading to multiple iterations over the input data.
+Runtime scales as n² — usually nested loops. Doubling input quadruples runtime. Avoid for large datasets.
 
 Here's an example:
 
@@ -1916,7 +1923,7 @@ int main()
 Time complexity: `O(2^n)`
 </td></tr></table>
 
-An algorithm has exponential time complexity if its runtime grows exponentially with the size of the input data. It performs repeated operations that double with each increase in input size.
+Runtime doubles with each additional input element. Extremely slow — avoid for anything beyond tiny inputs (e.g., naive Fibonacci recursion).
 
 Here's an example:
 
@@ -1948,7 +1955,7 @@ int main()
 Time complexity: `O(n!)`
 </td></tr></table>
 
-An algorithm has factorial time complexity if its runtime grows with the factorial of the input size. It is one of the slowest-growing time complexities and should be avoided for larger datasets.
+Runtime grows as n! — even worse than exponential. Only feasible for tiny inputs (n < 15). Generating all permutations is a common example.
 
 Here's an example:
 
@@ -1978,12 +1985,12 @@ int main()
 
 | Time Complexity  | Description                                                       | Example                 | Characteristics                                           |
 |------------------|-------------------------------------------------------------------|-------------------------|----------------------------------------------------------|
-| Constant (O(1)) | The time taken is constant, irrespective of the input size.     | Accessing an element in an array with an index. | Fast and efficient, doesn't depend on input size.      |
-| Logarithmic (O(log n)) | The time grows logarithmically with the input size.       | Binary search algorithm. | Efficient for large datasets, grows slowly with input.  |
-| Linear (O(n))   | The time grows linearly with the input size.                    | Linear search in an unsorted array. | Time increases linearly with input size.              |
-| Quadratic (O(n^2)) | The time grows quadratically with the input size.         | Nested loops.            | Becomes inefficient for large input, grows rapidly.    |
-| Exponential (O(2^n)) | The time grows exponentially with the input size.         | Recursive Fibonacci.     | Very slow, becomes impractical for even small inputs.  |
-| Factorial (O(n!))   | The time grows factorially with the input size.          | Recursive permutation algorithm. | Extremely slow, highly impractical for most cases.   |
+| Constant (O(1)) | Independent of input size                                         | Array index access        | Always the same speed                                     |
+| Logarithmic (O(log n)) | Cuts problem in half each step                             | Binary search             | Very fast for large data                                  |
+| Linear (O(n))   | One pass through the data                                         | Linear search             | Scales directly with input                                |
+| Quadratic (O(n²)) | Nested loops over the data                                      | Bubble sort               | Slow for large inputs                                     |
+| Exponential (O(2ⁿ)) | Doubles with each input element                            | Naive Fibonacci           | Only works for tiny inputs                                |
+| Factorial (O(n!)) | n × (n-1) × ... × 1                                            | Generating permutations   | Impractical beyond n≈15                                   |
 
 <!-- prettier-ignore-end -->
 
